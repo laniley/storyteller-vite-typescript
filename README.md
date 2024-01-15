@@ -1,5 +1,5 @@
 <p align="center">
-  	<img src="https://github.com/laniley/storyteller-vite-typescript/blob/master/src/assets/images/logo.JPG?raw=true" align="center">
+  	<img src="https://github.com/laniley/storyteller-vite-typescript/blob/main/src/assets/images/logo.JPG?raw=true" align="center">
   	<br>
   	<br>
 </p>
