@@ -1,18 +1,35 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
+import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+// Keep a reference for dev mode
+let dev = false
+console.log(process.defaultApp)
+console.log(process.execPath)
+if (!app.isPackaged) {
+  dev = true
+  console.log("Executing in DEV mode!\n");
+}
+else {
+  console.log("Executed in PROD mode!\n");
+}
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1600,
+    height: 900,
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+			nodeIntegrationInWorker: true,
+      webSecurity: false // to allow copying of local files
     },
   });
 
@@ -23,8 +40,24 @@ const createWindow = () => {
     mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
   }
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  installExtension(REACT_DEVELOPER_TOOLS)
+  .then((name) => console.log(`Added Extension:  ${name}`))
+  .catch((err) => console.log('An error occurred: ', err));
+
+  installExtension(REDUX_DEVTOOLS)
+  .then((name) => console.log(`Added Extension:  ${name}`))
+  .catch((err) => console.log('An error occurred: ', err));
+
+    // Don't show until we are ready and loaded
+    mainWindow.once('ready-to-show', () => {
+
+      mainWindow.show()
+  
+      // Open the DevTools automatically if developing
+      if (dev) {
+          mainWindow.webContents.openDevTools()
+      }
+    })
 };
 
 // This method will be called when Electron has finished
