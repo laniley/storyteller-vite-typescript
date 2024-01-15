@@ -19,6 +19,9 @@ else {
   console.log("Executed in PROD mode!\n");
 }
 
+import { initialize, enable as enableRemote } from "@electron/remote/main";
+initialize();
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -29,9 +32,13 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
 			nodeIntegrationInWorker: true,
+      nodeIntegrationInSubFrames: true,
+      contextIsolation: false,
       webSecurity: false // to allow copying of local files
     },
   });
+
+  enableRemote(mainWindow.webContents);
 
   // and load the index.html of the app.
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
