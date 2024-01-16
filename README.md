@@ -22,7 +22,7 @@
 	</a>
 </p>
 
-## A writing application build with Electron, React, PostCSS and Webpack.
+## Storyteller
 
 A writing application build with Electron, React, Typescript, Tailwind and Vite.
 
