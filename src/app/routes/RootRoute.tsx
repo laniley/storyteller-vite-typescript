@@ -6,7 +6,7 @@ import * as appStateActions from "../store/appState/appState.actions";
 //import * as workspaceActions from "../store/workspace/workspace.actions";
 import * as projectActions from "../store/project/project.actions";
 
-//import WelcomeRoute from './RootRouteSubroutes/WelcomeRoute/WelcomeRoute';
+import WelcomeRoute from './RootRouteSubroutes/WelcomeRoute/WelcomeRoute';
 //import ProjectRoute from './RootRouteSubroutes/ProjectRoute/ProjectRoute';
 
 const app = require('@electron/remote').app
@@ -67,8 +67,7 @@ export function Content() {
 		return <div>"Project"</div>
 	}
 	else {
-		//return <WelcomeRoute />
-		return <div>"Welcome"</div>
+		return <WelcomeRoute />
 	}
 }
 
@@ -85,7 +84,7 @@ export function mapDispatch(dispatch:any) {
 	return {
 	//setTheme: (theme:string) => dispatch(appStateActions.setTheme(theme)),
 	//openWorkspace: (filePath) => { dispatch(workspaceActions.openWorkspace(filePath)) },
-		openProject: (filePath:string) => { dispatch(projectActions.openProjectAction(filePath)) },
+		//openProject: (filePath:string) => { dispatch(projectActions.openProject(filePath)) },
 	};
 }
 

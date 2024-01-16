@@ -1,11 +1,15 @@
 /* Main CSS file */
 
-@import './../../../node_modules/normalize.css/normalize.css';
-@import "./../../../node_modules/@blueprintjs/core/lib/css/blueprint.css";
+@import './../node_modules/normalize.css/normalize.css';
+@import "./../node_modules/@blueprintjs/core/lib/css/blueprint.css";
 
 @font-face {
   font-family: 'Storyteller';
-  src: url('./../fonts/Typewriter.ttf') format('truetype');
+  src: url('./assets/fonts/Typewriter.ttf') format('truetype');
+}
+
+html, body, #root, #RootRoute {
+	height: 100%;
 }
 
 body {
