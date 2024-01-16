@@ -11,12 +11,10 @@ import {
 
 export default function WelcomeRoute () {
 
-	let containerClassName = "flex flex-col h-screen " + useAppSelector(state => state.appState.theme)
-
 	return (
-		<div id="WelcomeRoute" className={containerClassName}>
+		<div id="WelcomeRoute" className={'flex flex-col h-screen ' + useAppSelector(state => state.appState.theme)}>
 
-			{/* <TopNavBar workspaceIsOpen={true} /> */}
+			<TopNavBar workspaceIsOpen={true} />
 
 			<div className="flex flex-col h-screen justify-center items-center">
 

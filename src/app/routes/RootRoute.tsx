@@ -1,34 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from './../hooks'
 import { connect } from 'react-redux';
 
-import * as appStateActions from "../store/appState/appState.actions";
+import * as appState from "./../store/appState/appState.reducer";
 //import * as workspaceActions from "../store/workspace/workspace.actions";
 import * as projectActions from "../store/project/project.actions";
 
 import WelcomeRoute from './RootRouteSubroutes/WelcomeRoute/WelcomeRoute';
 //import ProjectRoute from './RootRouteSubroutes/ProjectRoute/ProjectRoute';
 
-const app = require('@electron/remote').app
-const fs = require('fs');
-const path = require('path');
+import { dataPath, filePath, storage } from './../../utils/storage'
 
-const dataPath = app.getPath('userData');
-const filePath = path.join(dataPath, 'config.json');
-
-console.log(dataPath)
-console.log(filePath)
+console.log("dataPath: " + dataPath)
+console.log("filePath: " + filePath)
 
 function RootRoute() {
 
 	const dispatch = useAppDispatch();
-
-	const fileContent = fs.readFileSync( filePath, { encoding: 'utf8', flag: 'r' } )
-	const result = JSON.parse(fileContent)
+	const result = storage.get(filePath)
+	console.log(result)
 
 	if (result.data.theme) {
 		console.log("theme: " + result.data.theme);
-		//props.setTheme(result.data.theme);
+		useEffect(() => {dispatch(appState.setTheme(result.data.theme)) })
 	}
 	else {
 		console.log("theme: not set");

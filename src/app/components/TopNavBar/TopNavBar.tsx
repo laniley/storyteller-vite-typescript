@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppSelector, useAppDispatch } from './../../hooks'
 import { connect } from 'react-redux';
 
-import * as appStateActions from "../../store/appState/appState.actions";
+//import * as appStateActions from "../../store/appState/appState.actions";
 import * as projectActions from "../../store/project/project.actions";
 
 import './TopNavBar.css';
@@ -23,9 +23,9 @@ import {
   Tooltip,
 } from '@blueprintjs/core';
 
-const rmote = require('@electron/remote')
+//const remote = require('@electron/remote')
 
-export class TopNavBar extends React.Component {
+export default function TopNavBar () {
 /*
 	handleTabChange(navbarTabId) {
 		if (navbarTabId != useAppSelector(state => state.project.route.current)) {
@@ -37,22 +37,19 @@ export class TopNavBar extends React.Component {
 		}
 	}
 */
-	render() {
+	return (
+		
+		<Navbar id="TopNavBarContainer" className={'px-2 py-0 ' + useAppSelector(state => state.appState.theme)}>
+			<NavbarGroup id="TopNavBarGroupLeft" align={Alignment.LEFT}>
+				{/* SETTINGS DROPDOWN */}
+				<Popover content={<Settings />} position={Position.BOTTOM_RIGHT}>
+					<Button minimal={true} icon="settings" />
+				</Popover>
 
-        return (
-			<Navbar id="TopNavBarContainer" className={useAppSelector(state => state.appState.theme)}>
+				<NavbarDivider />
 
-				<NavbarGroup id="TopNavBarGroupLeft" align={Alignment.LEFT}>
-
-					{/* SETTINGS DROPDOWN */}
-					<Popover content={<Settings />} position={Position.BOTTOM_RIGHT}>
-						<Button minimal={true} icon="settings" />
-					</Popover>
-
-					<NavbarDivider />
-
-					{/* SECTION TABS */}
-					{useAppSelector(state => state.appState.path) &&
+				{/* SECTION TABS */}
+				{useAppSelector(state => state.appState.path) &&
 
 						<Tabs
 						id="TopNavTabs"
@@ -107,13 +104,11 @@ export class TopNavBar extends React.Component {
 						/>
 					</Tooltip>
 
-                </NavbarGroup>
-
-            </Navbar>
-        );
+        </NavbarGroup>
+      </Navbar>
+    );
 	}
-}
-
+/*
 function mapDispatchToProps (dispatch) {
 	return {
 		// project
@@ -133,3 +128,4 @@ export default connect(
 	null,
   mapDispatchToProps
 )(TopNavBar)
+*/

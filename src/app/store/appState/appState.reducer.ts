@@ -1,8 +1,37 @@
-import * as appStateActions from "./appState.actions";
-import { initialState } from './appState.model'
+import { createSlice } from '@reduxjs/toolkit'
+import { storage } from './../../../utils/storage'
 
-const appStateReducer = (state = initialState, action: { type?: any; object_to_delete?: any; path?: any; theme?: any; }) => {
+//import * as appStateActions from "./appState.actions";
 
+interface AppState {
+	path: string,
+	theme: string
+};
+
+export const initialState = {
+	path: "",
+	theme: "bp3-dark"
+} as AppState
+
+const appStateSlice = createSlice({
+	name: 'appState',
+	initialState,
+	reducers: {
+		setTheme(state, action) {
+			state.theme = action.payload
+		}
+	}
+})
+
+// Extract the action creators object and the reducer
+const { actions, reducer } = appStateSlice
+// Extract and export each action creator by name
+export const { setTheme } = actions
+
+export default reducer
+
+
+/*
 	switch (action.type) {
 
 		case appStateActions.SET_OBJECT_TO_DELETE:
@@ -34,7 +63,4 @@ const appStateReducer = (state = initialState, action: { type?: any; object_to_d
             return state;
 						
     }
-		
-};
-
-export default appStateReducer;
+		*/

@@ -1,6 +1,7 @@
 // @flow
 import { combineReducers } from '@reduxjs/toolkit';
 import { routerReducer } from 'react-router-redux';
+
 import appState from './appState/appState.reducer';
 import chapters from './chapters/chapters.reducer';
 import charactersReducer from './reducers/charactersReducer/reducer.characters.index';

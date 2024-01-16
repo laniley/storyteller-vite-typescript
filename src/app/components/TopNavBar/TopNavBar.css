@@ -1,8 +1,5 @@
-#TopNavBarContainer {
-	padding: 0 5px;
-}
 
-#TopNavBarGroupRight .bp3-navbar-divider {
+#TopNavBarGroupRight .bp5-navbar-divider {
 	margin: 0;
 }
 
@@ -11,7 +8,7 @@
 	color: #48aff0;
 }
 
-#WorkspaceButton:hover .bp3-icon {
+#WorkspaceButton:hover .bp5-icon {
 	color: #48aff0;
 }
 

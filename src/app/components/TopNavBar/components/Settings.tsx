@@ -1,40 +1,37 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from './../../../hooks'
-import { connect } from 'react-redux';
+import { storage } from './../../../../utils/storage'
 
-import * as appStateActions from "../../../store/appState/appState.actions";
+//import * as appStateActions from "../../../store/appState/appState.actions";
+import * as appState from "../../../store/appState/appState.reducer";
 
 import {
 	Menu,
 	MenuItem,
 } from '@blueprintjs/core';
 
-export class Settings extends React.Component {
+export default function Settings () {
 
-	handleThemeChange(theme) {
-		this.props.changeTheme(theme);
-	}
+	const dispatch = useAppDispatch();
 
-	render() {
-		return (
-			<Menu>
-				<MenuItem text="Theme" icon="style">
-					<MenuItem text="Light Mode" active={this.props.appState.theme == 'bp3-body'} onClick={() => this.handleThemeChange('bp3-body')} />
-					<MenuItem text="Dark Mode" active={this.props.appState.theme == 'bp3-dark'} onClick={() => this.handleThemeChange('bp3-dark')} />
-				</MenuItem>
-			</Menu>
-		);
-	}
+	return (
+		<Menu className={useAppSelector(state => state.appState.theme)}>
+			<MenuItem text="Theme" icon="style" className={useAppSelector(state => state.appState.theme)}>
+				<MenuItem 
+					text="Light Mode" 
+					active={useAppSelector(state => state.appState.theme) == 'bp5-body'}
+					onClick={() => { 
+						dispatch(appState.setTheme('bp5-body')) 
+						storage.saveTheme('bp5-body')
+					}} />
+				<MenuItem 
+					text="Dark Mode" 
+					active={useAppSelector(state => state.appState.theme) == 'bp5-dark'} 
+					onClick={() => {
+						dispatch(appState.setTheme('bp5-dark'))
+						storage.saveTheme('bp5-dark')
+					}} />
+			</MenuItem>
+		</Menu>
+	);
 }
-
-function mapDispatchToProps(dispatch) {
-	return {
-		// app_state
-		changeTheme: (theme) => dispatch(appStateActions.changeTheme(theme)),
-	};
-}
-
-export default connect(
-	null,
-	mapDispatchToProps,
-)(Settings)
