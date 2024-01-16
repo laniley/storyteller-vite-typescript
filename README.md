@@ -1,5 +1,5 @@
 <p align="center">
-  	<img src="https://github.com/laniley/storyteller-vite-typescript/blob/main/src/assets/images/logo.JPG?raw=true" align="center">
+  	<img src="https://github.com/laniley/storyteller/blob/main/src/assets/images/logo.JPG?raw=true" align="center">
   	<br>
   	<br>
 </p>
@@ -14,17 +14,17 @@
   	<a href="https://www.linkedin.com/in/melanie-mende/">
   		<img alt="Built by LANILEY" src="https://img.shields.io/badge/built%20by-LANILEY-brightgreen.svg?colorB=d30320">
 	</a>
-	<a href="https://github.com/laniley/storyteller-vite-typescript">
-  		<img alt="Build Status" src="https://github.com/laniley/storyteller-vite-typescript/workflows/build/badge.svg">
+	<a href="https://github.com/laniley/storyteller">
+  		<img alt="Build Status" src="https://github.com/laniley/storyteller/workflows/build/badge.svg">
 	</a>
-  	<a href="https://github.com/laniley/storyteller-vite-typescript/releases">
-	  	<img alt="Current release" src="https://img.shields.io/github/release/laniley/storyteller-vite-typescript.svg">
+  	<a href="https://github.com/laniley/storyteller/releases">
+	  	<img alt="Current release" src="https://img.shields.io/github/release/laniley/storyteller.svg">
 	</a>
 </p>
 
 ## A writing application build with Electron, React, PostCSS and Webpack.
 
-A writing application build with Electron, React, PostCSS and Webpack.
+A writing application build with Electron, React, Typescript, Tailwind and Vite.
 
 ### Table of contents
 
@@ -38,7 +38,7 @@ A writing application build with Electron, React, PostCSS and Webpack.
 #### Clone this repo
 
 ```
-git clone https://github.com/laniley/storyteller-vite-typescript.git
+git clone https://github.com/laniley/storyteller.git
 ```
 
 #### Install dependencies
