@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from './../hooks'
-import { connect } from 'react-redux';
 
 import * as appState from "./../store/appState/appState.reducer";
+import * as workspace from "./../store/workspace/workspace.reducer";
 //import * as workspaceActions from "../store/workspace/workspace.actions";
 import * as projectActions from "../store/project/project.actions";
 
@@ -14,15 +14,16 @@ import { dataPath, filePath, storage } from './../../utils/storage'
 console.log("dataPath: " + dataPath)
 console.log("filePath: " + filePath)
 
-function RootRoute() {
+export default function RootRoute() {
 
 	const dispatch = useAppDispatch();
-	const result = storage.get(filePath)
+	const result = storage.get()
+	console.log("storage: ")
 	console.log(result)
 
 	if (result.data.theme) {
 		console.log("theme: " + result.data.theme);
-		useEffect(() => {dispatch(appState.setTheme(result.data.theme)) })
+		dispatch(appState.setTheme(result.data.theme))
 	}
 	else {
 		console.log("theme: not set");
@@ -30,6 +31,7 @@ function RootRoute() {
 
 	if (result.data.workspace) {
 		console.log("workspace: " + result.data.workspace);
+		dispatch(workspace.openWorkspace())
 		//props.openWorkspace(result.data.workspace);
 	}
 	else {
@@ -64,17 +66,3 @@ export function Content() {
 		return <WelcomeRoute />
 	}
 }
-
-export function mapDispatch(dispatch:any) {
-	return {
-	//setTheme: (theme:string) => dispatch(appStateActions.setTheme(theme)),
-	//openWorkspace: (filePath) => { dispatch(workspaceActions.openWorkspace(filePath)) },
-		//openProject: (filePath:string) => { dispatch(projectActions.openProject(filePath)) },
-	};
-}
-
-
-export default connect(
-	null,
-	mapDispatch,
-)(RootRoute)

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { storage } from './../../../utils/storage'
 
 //import * as appStateActions from "./appState.actions";
 
@@ -10,7 +9,7 @@ interface AppState {
 
 export const initialState = {
 	path: "",
-	theme: "bp3-dark"
+	theme: "bp5-dark"
 } as AppState
 
 const appStateSlice = createSlice({

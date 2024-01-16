@@ -3,7 +3,6 @@ import * as chaptersActions from './../chapters/chapter.actions';
 import * as charactersActions from '../actions/characters/actions.characters.index';
 import * as partsActions from '../actions/parts/actions.parts.index';
 import * as scenesActions from './../scenes/scenes.actions';
-import * as workspaceActions from '../workspace/workspace.actions';
 
 import { initialState as initialProjectState } from './project.model';
 

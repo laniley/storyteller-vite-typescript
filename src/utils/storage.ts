@@ -23,16 +23,50 @@ class Storage {
     }
   }
 
-  get(filePath:string) {
-    this._current_content = JSON.parse(fs.readFileSync( filePath, { encoding: 'utf8', flag: 'r' } ))
+  load() {
+    let result = fs.readFileSync( filePath, { encoding: 'utf8', flag: 'r' } )
+
+    if(result) {
+      try {
+        this._current_content = JSON.parse(fs.readFileSync( filePath, { encoding: 'utf8', flag: 'r' } ))
+      }
+      catch (e) {
+        console.log("JSON.parse of " + filePath + " failed.")
+      }
+    }
+    else {
+      console.log('Config file ' + filePath + ' is empty.')
+    }
+  }
+
+  get() {
+    this.load()
     return this._current_content
   }
 
+  saveWorkspace(path:string) {
+    console.log(path)
+    this.load()
+    Object.assign(this._current_content.data, { workspace: path });
+    fs.writeFileSync( filePath, JSON.stringify(this._current_content))
+  }
+
+  getProjects(state:any) {
+    let projects: Project[] = [];
+    fs.readdirSync(filePath).forEach((project: Project) => {
+			projects.push({ 
+        name: project, 
+        path: path.join(filePath, project),
+        isCurrentlyOpen: state.appState.path === path.join(filePath, project)
+      });
+      return projects;
+		});
+  }
+
   saveTheme(theme:string) {
-    let new_content:StorageData = Object.assign({}, this._current_content, { data: {
-      theme: theme
-    }});
-    fs.writeFileSync( filePath, JSON.stringify(new_content))
+    this.load()
+    Object.assign(this._current_content.data, { theme: theme });
+    fs.writeFileSync( filePath, JSON.stringify(this._current_content))
   }
 }
 
