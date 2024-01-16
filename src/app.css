@@ -1,15 +1,14 @@
 /* Main CSS file */
-
 @import './../node_modules/normalize.css/normalize.css';
 @import "./../node_modules/@blueprintjs/core/lib/css/blueprint.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @font-face {
   font-family: 'Storyteller';
   src: url('./assets/fonts/Typewriter.ttf') format('truetype');
-}
-
-html, body, #root, #RootRoute {
-	height: 100%;
 }
 
 body {
@@ -22,11 +21,6 @@ button:focus, .bp3-tab:focus {
 
 input {
 	font-family: Verdana;
-}
-
-.column {
-	display: flex;
-	flex-direction: column;
 }
 
 .row {

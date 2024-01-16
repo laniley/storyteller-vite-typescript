@@ -51,7 +51,7 @@ function RootRoute() {
 	}
 
 	return (
-		<div id="RootRoute">
+		<div id="RootRoute" className="h-screen flex flex-col justify-center">
 			<Content />
 		</div>
 	);
@@ -68,15 +68,6 @@ export function Content() {
 	}
 	else {
 		return <WelcomeRoute />
-	}
-}
-
-const styles = {
-	container: {
-		display: 'flex',
-		flexDirection: 'column',
-		height: '100vh',
-		justifyContent: 'center',
 	}
 }
 
