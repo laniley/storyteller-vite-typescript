@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from './../hooks'
-import { connect } from 'react-redux';
 
 import * as appState from "./../store/appState/appState.reducer";
-//import * as workspaceActions from "../store/workspace/workspace.actions";
-import * as projectActions from "../store/project/project.actions";
+import * as workspace from "./../store/workspace/workspace.reducer";
+import * as project from "../store/project/project.reducer";
 
-import WelcomeRoute from './RootRouteSubroutes/WelcomeRoute/WelcomeRoute';
+import WelcomeRoute from './WelcomeRoute/WelcomeRoute';
 //import ProjectRoute from './RootRouteSubroutes/ProjectRoute/ProjectRoute';
 
-import { dataPath, filePath, storage } from './../../utils/storage'
+import { dataPath, filePath, storage } from '../../api/storage'
 
 console.log("dataPath: " + dataPath)
 console.log("filePath: " + filePath)
 
-function RootRoute() {
+export default function RootRoute() {
 
 	const dispatch = useAppDispatch();
-	const result = storage.get(filePath)
+	const result = storage.get()
+	console.log("storage: ")
 	console.log(result)
 
 	if (result.data.theme) {
 		console.log("theme: " + result.data.theme);
-		useEffect(() => {dispatch(appState.setTheme(result.data.theme)) })
+		dispatch(appState.setTheme(result.data.theme))
 	}
 	else {
 		console.log("theme: not set");
@@ -30,15 +30,16 @@ function RootRoute() {
 
 	if (result.data.workspace) {
 		console.log("workspace: " + result.data.workspace);
-		//props.openWorkspace(result.data.workspace);
+		dispatch(workspace.setPath(result.data.workspace))
+		dispatch(workspace.loadProjects())
 	}
 	else {
 		console.log("workspace: not set");
 	}
 
-	if (result.data.path) {
-		console.log("current_project: " + result.data.path);
-		dispatch(projectActions.openProject(result.data.path))
+	if (result.data.current_project) {
+		console.log("current_project: " + result.data.current_project);
+		dispatch(project.open(result.data.current_project))
 	}
 	else {
 		console.log("current_project: not set");
@@ -52,11 +53,11 @@ function RootRoute() {
 }
 
 export function Content() {
+	const current_project = false
+	//const current_project = useAppSelector(state => state.app_state.current_project)
+	//console.log("current_project: " + current_project)
 
-	const path = useAppSelector(state => state.appState.path)
-	console.log("path: " + path)
-
-	if (path) {
+	if (current_project) {
 		//return <ProjectRoute project={props.project} />
 		return <div>"Project"</div>
 	}
@@ -64,17 +65,3 @@ export function Content() {
 		return <WelcomeRoute />
 	}
 }
-
-export function mapDispatch(dispatch:any) {
-	return {
-	//setTheme: (theme:string) => dispatch(appStateActions.setTheme(theme)),
-	//openWorkspace: (filePath) => { dispatch(workspaceActions.openWorkspace(filePath)) },
-		//openProject: (filePath:string) => { dispatch(projectActions.openProject(filePath)) },
-	};
-}
-
-
-export default connect(
-	null,
-	mapDispatch,
-)(RootRoute)

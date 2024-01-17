@@ -23,8 +23,6 @@ import {
   Tooltip,
 } from '@blueprintjs/core';
 
-//const remote = require('@electron/remote')
-
 export default function TopNavBar () {
 /*
 	handleTabChange(navbarTabId) {

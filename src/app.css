@@ -1,6 +1,7 @@
 /* Main CSS file */
 @import './../node_modules/normalize.css/normalize.css';
 @import "./../node_modules/@blueprintjs/core/lib/css/blueprint.css";
+@import url("./assets/styles/colors.css");
 
 @tailwind base;
 @tailwind components;
@@ -30,12 +31,33 @@ input {
 }
 
 .bp5-dark {
-    color: #f5f8fa;
-    background-color: #394B59;
+	color: #f5f8fa;
+	background-color: var(--bg-color-dark);
+}
+
+.bp5-dark h2 {
+	color: var(--color-h2-dark);
+}
+
+.bp5-dark .bp5-card {
+	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.13);
+	background-color: var(--bg-color-darker);
+}
+
+.bp5-navbar.bp5-dark, .bp5-dark .bp5-navbar {
+	background-color: var(--bg-color-darker);
 }
 
 .bp5-input-group:not(:last-child) {
 	padding-right: 10px;
+}
+
+.bp5-dark .bp5-button:not([class*=bp5-intent-]) {
+	background-color: var(--bg-color-dark);
+}
+
+.bp5-dark .bp5-button:not([class*=bp5-intent-]):hover {
+	background-color: var(--bg-color-button-hover);
 }
 
 .bp5-button.bp5-minimal:active, .bp5-button.bp5-minimal.bp5-active {
@@ -65,7 +87,7 @@ input {
 .page-preview-content {
 	display: flex;
 	flex-direction: column;
-    justify-content: center;
+  justify-content: center;
 	width: 420px;
 	height: 595px;
 	overflow: hidden;

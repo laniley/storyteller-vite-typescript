@@ -1,12 +1,14 @@
+@import url("./../../../assets/styles/colors.css");
+
 h2 {
-	text-align: center;
+	font-size: 1.1rem;
 }
 
-#projectsList {
-	margin-top: 5px;
+hr {
+	border-color: var(--bg-color-dark);
+	border-width: 0.1rem;
 }
 
 #projectsList > .bp3-button {
 	justify-content: left;
-	/* margin-left: 20px; */
 }
