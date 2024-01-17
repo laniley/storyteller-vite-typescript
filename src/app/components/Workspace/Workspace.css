@@ -1,3 +1,15 @@
+@import url("./../../../assets/styles/colors.css");
+
+h2 {
+	font-size: 1.1rem;
+	line-height: 2.2;
+}
+
+hr {
+	border-color: var(--bg-color-dark);
+	border-width: 0.1rem;
+}
+
 #projectsList > .bp3-button {
 	justify-content: left;
 }
