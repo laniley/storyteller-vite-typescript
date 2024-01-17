@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 const { dialog } = require('@electron/remote');
-import { storage } from './../../../utils/storage'
+import { storage } from '../../../api/storage'
 
 interface Workspace {
 	path: string,
@@ -30,11 +30,11 @@ export const changeWorkspace = createAsyncThunk(
   }
 )
 
-export const openWorkspace = createAsyncThunk(
-	'workspace/openWorkspace',
+export const open = createAsyncThunk(
+	'workspace/open',
 	async(arg, thunkAPI) => {
 		let state:any = thunkAPI.getState()
-		thunkAPI.dispatch(setPath(state.path))
+		thunkAPI.dispatch(setPath(state.workspace.path))
 		thunkAPI.dispatch(loadProjects());
 	}
 );

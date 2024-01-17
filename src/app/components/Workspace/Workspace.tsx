@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from './../../hooks'
 
-import { storage } from './../../../utils/storage'
+import { storage } from '../../../api/storage'
 import * as workspaceReducer from "./../../store/workspace/workspace.reducer";
 
 import * as projectActions from "../../store/project/project.actions";
@@ -9,10 +9,6 @@ import * as projectActions from "../../store/project/project.actions";
 //import { save } from '../../store/chapters/chapter.actions';
 
 import * as ProjectListItem from './ProjectListItem';
-
-const path = window.require('path');
-const { dialog } = require('@electron/remote');
-const fs = require('fs-extra');
 
 import "./Workspace.css";
 
@@ -36,7 +32,8 @@ export default function Workspace () {
 		const [ createIsOpen ] = useState(false)
 
 		let workspace = useAppSelector(state => state.workspace)
-
+		console.log(workspace)
+		console.log(workspace.path)
 		let projectListItems = useAppSelector(state => state.workspace.projects).map((project) =>
 				<ProjectListItem
 					key={project.name}

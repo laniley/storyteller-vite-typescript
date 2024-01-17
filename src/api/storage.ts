@@ -8,8 +8,9 @@ export const filePath = path.join(dataPath, 'config.json');
 
 interface StorageData {
   data: {
-    path: string,
-    theme: string
+    theme: string,
+    workspace: string,
+    current_project: string
   }
 };
 
@@ -17,9 +18,9 @@ class Storage {
 
   _current_content = {
     data: {
-      path: "",
       theme: "",
       workspace: "",
+      current_project: "",
     }
   }
 
@@ -29,8 +30,7 @@ class Storage {
     if(result) {
       try {
         this._current_content = JSON.parse(fs.readFileSync( filePath, { encoding: 'utf8', flag: 'r' } ))
-      }
-      catch (e) {
+      } catch (e) {
         console.log("JSON.parse of " + filePath + " failed.")
       }
     }
@@ -42,13 +42,6 @@ class Storage {
   get() {
     this.load()
     return this._current_content
-  }
-
-  saveWorkspace(path:string) {
-    console.log(path)
-    this.load()
-    Object.assign(this._current_content.data, { workspace: path });
-    fs.writeFileSync( filePath, JSON.stringify(this._current_content))
   }
 
   getProjects(state:any) {
@@ -66,6 +59,13 @@ class Storage {
   saveTheme(theme:string) {
     this.load()
     Object.assign(this._current_content.data, { theme: theme });
+    fs.writeFileSync( filePath, JSON.stringify(this._current_content))
+  }
+
+  saveWorkspace(path:string) {
+    console.log(path)
+    this.load()
+    Object.assign(this._current_content.data, { workspace: path });
     fs.writeFileSync( filePath, JSON.stringify(this._current_content))
   }
 }

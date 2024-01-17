@@ -1,9 +1,8 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from './../../../hooks'
-import { connect } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../hooks'
 
-import TopNavBar from '../../../components/TopNavBar/TopNavBar';
-import Workspace from '../../../components/Workspace/Workspace';
+import TopNavBar from '../../components/TopNavBar/TopNavBar';
+import Workspace from '../../components/Workspace/Workspace';
 
 import {
 	Icon,

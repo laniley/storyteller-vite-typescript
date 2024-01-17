@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from './../../../hooks'
-import { storage } from './../../../../utils/storage'
+import { storage } from '../../../../api/storage'
 import * as appState from "../../../store/appState/appState.reducer";
 
 import {

@@ -1,15 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-//import * as appStateActions from "./appState.actions";
-
 interface AppState {
-	path: string,
-	theme: string
+	theme: string,
+	path_to_current_project: string
 };
 
 export const initialState = {
-	path: "",
-	theme: "bp5-dark"
+	theme: "bp5-dark",
+	path_to_current_project: ""
 } as AppState
 
 const appStateSlice = createSlice({
@@ -36,16 +34,6 @@ export default reducer
 		case appStateActions.SET_OBJECT_TO_DELETE:
 			return Object.assign({}, state, {
 				object_to_delete: action.object_to_delete
-			});
-
-        case appStateActions.SET_PATH:
-            return Object.assign({}, state, {
-                path: action.path
-			});
-
-		case appStateActions.SET_THEME:
-			return Object.assign({}, state, {
-				theme: action.theme
 			});
 
 		case appStateActions.SHOW_MOVE_TO_TRASH_ALERT:

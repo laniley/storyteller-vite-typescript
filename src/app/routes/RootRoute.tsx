@@ -3,13 +3,12 @@ import { useAppSelector, useAppDispatch } from './../hooks'
 
 import * as appState from "./../store/appState/appState.reducer";
 import * as workspace from "./../store/workspace/workspace.reducer";
-//import * as workspaceActions from "../store/workspace/workspace.actions";
 import * as projectActions from "../store/project/project.actions";
 
-import WelcomeRoute from './RootRouteSubroutes/WelcomeRoute/WelcomeRoute';
+import WelcomeRoute from './WelcomeRoute/WelcomeRoute';
 //import ProjectRoute from './RootRouteSubroutes/ProjectRoute/ProjectRoute';
 
-import { dataPath, filePath, storage } from './../../utils/storage'
+import { dataPath, filePath, storage } from '../../api/storage'
 
 console.log("dataPath: " + dataPath)
 console.log("filePath: " + filePath)
@@ -31,16 +30,16 @@ export default function RootRoute() {
 
 	if (result.data.workspace) {
 		console.log("workspace: " + result.data.workspace);
-		dispatch(workspace.openWorkspace())
-		//props.openWorkspace(result.data.workspace);
+		dispatch(workspace.setPath(result.data.workspace))
+		dispatch(workspace.open())
 	}
 	else {
 		console.log("workspace: not set");
 	}
 
-	if (result.data.path) {
-		console.log("current_project: " + result.data.path);
-		dispatch(projectActions.openProject(result.data.path))
+	if (result.data.current_project) {
+		console.log("current_project: " + result.data.current_project);
+		dispatch(projectActions.openProject(result.data.current_project))
 	}
 	else {
 		console.log("current_project: not set");
@@ -54,11 +53,11 @@ export default function RootRoute() {
 }
 
 export function Content() {
+	const current_project = false
+	//const current_project = useAppSelector(state => state.app_state.current_project)
+	//console.log("current_project: " + current_project)
 
-	const path = useAppSelector(state => state.appState.path)
-	console.log("path: " + path)
-
-	if (path) {
+	if (current_project) {
 		//return <ProjectRoute project={props.project} />
 		return <div>"Project"</div>
 	}
