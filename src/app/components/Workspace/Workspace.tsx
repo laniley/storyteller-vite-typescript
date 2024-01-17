@@ -34,8 +34,8 @@ export default function Workspace () {
 		}
 		else {
 			return (
-				<div>
-					<h2>Workspace</h2>
+				<div id="Workspace">
+					<h2 className="mb-2">Workspace</h2>
 					<hr/>
 					<div className="px-0 py-2">
 						{workspace.path}
@@ -46,7 +46,8 @@ export default function Workspace () {
 							onClick={ () => { dispatch(workspaceReducer.changeWorkspace()) }} />
 					</div>
 					<hr />
-					<h2>Projects</h2>
+					<h2 className="mt-2 mb-2">Projects</h2>
+					<hr />
 					<ProjectList />
 				</div>
 			)

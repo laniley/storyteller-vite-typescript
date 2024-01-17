@@ -35,6 +35,10 @@ input {
 	background-color: var(--bg-color-dark);
 }
 
+.bp5-dark h2 {
+	color: var(--color-h2-dark);
+}
+
 .bp5-dark .bp5-card {
 	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.13);
 	background-color: var(--bg-color-darker);

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from './../../hooks'
 
-import { storage } from '../../../api/storage'
 import * as workspaceReducer from "./../../store/workspace/workspace.reducer";
-
 import * as projectActions from "../../store/project/project.actions";
 
 //import { save } from '../../store/chapters/chapter.actions';
@@ -28,10 +26,10 @@ export default function ProjectList () {
 	const dispatch = useAppDispatch();
 
 	const [ createIsOpen ] = useState(false)
+  const workspace = useAppSelector(state => state.workspace)
+  const no_projects = workspace.projects.length == 0
 
-  let workspace = useAppSelector(state => state.workspace)
-
-  let projectListItems = useAppSelector(state => state.workspace.projects).map((project) =>
+  let projectListItems = workspace.projects.map((project:Project) =>
       <ProjectListItem
         key={project.name}
         project={project}
@@ -41,50 +39,58 @@ export default function ProjectList () {
     )
 
 	return(
-		<div style={{ display: "flex", justifyContent: "center" }}>
-      <ButtonGroup id="projectsList" className='mt-4' minimal={false} vertical={true} style={{ minWidth: "250px" }}>
-        {projectListItems}
-        <Collapse isOpen={createIsOpen}>
-          <Pre>
-            <InputGroup
-              placeholder={"Title of new project..."}
-              /*
-              onChange={() => this.setState({
-                name_of_new_project: event.target.value,
-                name_of_new_project_is_valid: this.is_a_valid_new_project_name(event.target.value)
-              })}
-              */
-              autoFocus />
-          </Pre>
-        </Collapse>
-        {!createIsOpen &&
-          <Button id="CreateProjectButton"
-          minimal={false}
-          icon={"folder-new"}
-          text={"Create a new project"}
-          intent={Intent.SUCCESS}
-          //onClick={this.handleCreateClick.bind(this)} 
-          />
-        }
-        {createIsOpen &&
-          <ButtonGroup>
-            <Button id="CreateProjectButton"
-            style={{width:"50%"}}
-            minimal={false}
-            icon={"floppy-disk"}
-            text={"Save"}
-            disabled={this.state.name_of_new_project_is_valid ? false : true}
-            onClick={this.handleSaveClick.bind(this)} />
+		<div className="flex flex-col justify-center mt-3">
+      {no_projects &&
+        <div className="mb-3">There are currently no projects in this workspace.</div>
+      }
+      {!no_projects &&
+        <ButtonGroup id="projectsList" className='' minimal={false} vertical={true} style={{ minWidth: "250px" }}>
+          {projectListItems}
+          <Collapse isOpen={createIsOpen}>
+            <Pre>
+              <InputGroup
+                placeholder={"Title of new project..."}
+                /*
+                onChange={() => this.setState({
+                  name_of_new_project: event.target.value,
+                  name_of_new_project_is_valid: this.is_a_valid_new_project_name(event.target.value)
+                })}
+                */
+                autoFocus />
+            </Pre>
+          </Collapse>
+          
+          {createIsOpen &&
+            <ButtonGroup>
+              <Button id="CreateProjectButton"
+              style={{width:"50%"}}
+              minimal={false}
+              icon={"floppy-disk"}
+              text={"Save"}
+              disabled={this.state.name_of_new_project_is_valid ? false : true}
+              onClick={this.handleSaveClick.bind(this)} />
 
-            <Button id="CancelCreateProjectButton"
-            style={{ width: "50%" }}
+              <Button id="CancelCreateProjectButton"
+              style={{ width: "50%" }}
+              minimal={false}
+              icon={"delete"}
+              text={"Cancel"}
+              onClick={this.handleCancelClick.bind(this)} />
+            </ButtonGroup>
+          }
+        </ButtonGroup>
+      }
+      {!createIsOpen &&
+        <div className="flex justify-center mt-2">
+          <Button id="CreateProjectButton"
             minimal={false}
-            icon={"delete"}
-            text={"Cancel"}
-            onClick={this.handleCancelClick.bind(this)} />
-          </ButtonGroup>
-        }
-      </ButtonGroup>
+            icon={"folder-new"}
+            text={"Create a new project"}
+            intent={Intent.SUCCESS}
+            //onClick={this.handleCreateClick.bind(this)} 
+          />
+        </div>
+      }
     </div>
 	);
 }
