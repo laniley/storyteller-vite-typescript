@@ -31,7 +31,7 @@ export default function RootRoute() {
 	if (result.data.workspace) {
 		console.log("workspace: " + result.data.workspace);
 		dispatch(workspace.setPath(result.data.workspace))
-		dispatch(workspace.open())
+		dispatch(workspace.loadProjects())
 	}
 	else {
 		console.log("workspace: not set");

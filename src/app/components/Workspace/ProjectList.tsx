@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from './../../hooks'
 
 import * as workspaceReducer from "./../../store/workspace/workspace.reducer";
-import * as projectActions from "../../store/project/project.actions";
+import * as project from "../../store/project/project.reducer";
 
 //import { save } from '../../store/chapters/chapter.actions';
 
-import * as ProjectListItem from './ProjectListItem';
+import ProjectListItem from './ProjectListItem';
 
 import "./Workspace.css";
 
@@ -25,112 +25,109 @@ export default function ProjectList () {
 
 	const dispatch = useAppDispatch();
 
-	const [ createIsOpen ] = useState(false)
+  const initialState = {
+    createIsOpen: false,
+    title_of_new_project: "",
+    title_of_new_project_is_valid: false
+  }
+
+	const [ state, setState ] = useState(initialState)
   const workspace = useAppSelector(state => state.workspace)
   const no_projects = workspace.projects.length == 0
+  const show_empty_workspace_text = no_projects && !state.createIsOpen
 
-  let projectListItems = workspace.projects.map((project:Project) =>
+  let projectListItems = workspace.projects.map((project:Project) => 
       <ProjectListItem
-        key={project.name}
-        project={project}
+        key={project.title}
+        title={project.title}
         isCurrentlyOpen={project.isCurrentlyOpen}
         onClick={() => { this.props.openProject(project.path); this.props.changeCurrentRootRoute('script'); this.props.save(); }}
-        onDelete={() => { this.props.deleteProject(project.path); }} />
+        onDelete={() => { this.props.deleteProject(project.path); }} 
+      />
     )
+
+  function handleSaveClick() {
+    dispatch(project.create(state.title_of_new_project))
+    dispatch(workspaceReducer.loadProjects())
+    // reset the form values
+    setState({
+      ...state,
+      createIsOpen: false,
+      title_of_new_project: ""
+    });
+  }
+
+  function is_a_valid_new_project_title(new_title:string) {
+
+		new_title = new_title.trim();
+
+		var new_title_is_unique = true;
+
+		workspace.projects.forEach(project => {
+			if (project.title == new_title) {
+				new_title_is_unique = false;
+			}
+		})
+
+		return new_title.length > 0 && new_title_is_unique
+	}
 
 	return(
 		<div className="flex flex-col justify-center mt-3">
-      {no_projects &&
+      {show_empty_workspace_text &&
         <div className="mb-3">There are currently no projects in this workspace.</div>
       }
-      {!no_projects &&
-        <ButtonGroup id="projectsList" className='' minimal={false} vertical={true} style={{ minWidth: "250px" }}>
-          {projectListItems}
-          <Collapse isOpen={createIsOpen}>
-            <Pre>
-              <InputGroup
-                placeholder={"Title of new project..."}
-                /*
-                onChange={() => this.setState({
-                  name_of_new_project: event.target.value,
-                  name_of_new_project_is_valid: this.is_a_valid_new_project_name(event.target.value)
-                })}
-                */
-                autoFocus />
-            </Pre>
-          </Collapse>
-          
-          {createIsOpen &&
-            <ButtonGroup>
-              <Button id="CreateProjectButton"
-              style={{width:"50%"}}
-              minimal={false}
-              icon={"floppy-disk"}
-              text={"Save"}
-              disabled={this.state.name_of_new_project_is_valid ? false : true}
-              onClick={this.handleSaveClick.bind(this)} />
 
-              <Button id="CancelCreateProjectButton"
-              style={{ width: "50%" }}
-              minimal={false}
-              icon={"delete"}
-              text={"Cancel"}
-              onClick={this.handleCancelClick.bind(this)} />
-            </ButtonGroup>
-          }
+      <ButtonGroup id="projectsList" className='mb-3' minimal={false} vertical={true} style={{ minWidth: "250px" }}>
+        {projectListItems}
+        <Collapse isOpen={state.createIsOpen}>
+          <Pre>
+            <InputGroup
+              placeholder={"Title of new project..."}
+              onChange={(event) => setState({
+                ...state,
+                title_of_new_project: event.target.value,
+                title_of_new_project_is_valid: is_a_valid_new_project_title(event.target.value)
+              })}
+              autoFocus />
+          </Pre>
+        </Collapse>
+      </ButtonGroup>
+      
+      {state.createIsOpen &&
+        <ButtonGroup>
+          <Button id="SaveProjectButton"
+          style={{width:"50%"}}
+          minimal={false}
+          icon={"floppy-disk"}
+          text={"Save"}
+          disabled={state.title_of_new_project_is_valid ? false : true}
+          onClick={ () => handleSaveClick() } />
+
+          <Button id="CancelCreateProjectButton"
+            style={{ width: "50%" }}
+            minimal={false}
+            icon={"delete"}
+            text={"Cancel"}
+            onClick={ () => setState({
+              ...state,
+              createIsOpen: false,
+              title_of_new_project: ""
+            })} 
+          />
         </ButtonGroup>
       }
-      {!createIsOpen &&
+      {!state.createIsOpen &&
         <div className="flex justify-center mt-2">
           <Button id="CreateProjectButton"
             minimal={false}
             icon={"folder-new"}
             text={"Create a new project"}
             intent={Intent.SUCCESS}
-            //onClick={this.handleCreateClick.bind(this)} 
+            onClick={ () => { setState({ ...state, createIsOpen: true }) }} 
           />
         </div>
       }
     </div>
 	);
 }
-
-/*
-	is_a_valid_new_project_name(new_name) {
-
-		new_name = new_name.trim();
-
-		var new_name_is_unique = true;
-
-		this.props.workspace.projects.forEach(project => {
-			if (project.name == new_name) {
-				new_name_is_unique = false;
-			}
-		})
-
-		return new_name.length > 0 && new_name_is_unique
-	}
-
-	handleCreateClick() {
-		this.setState({ createIsOpen: true });
-	}
-
-	handleSaveClick() {
-		let path_of_new_project = path.join(this.props.workspace.path, this.state.name_of_new_project);
-		console.log(path_of_new_project);
-		this.props.createProject(path_of_new_project)
-		this.props.loadProjects();
-		this.setState({
-			createIsOpen: false,
-			name_of_new_project: ""
-		});
-	}
-
-	handleCancelClick() {
-		this.setState({
-			createIsOpen: false,
-			name_of_new_project: ""
-		});
-	}
-}
-*/

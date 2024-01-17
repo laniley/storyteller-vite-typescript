@@ -52,6 +52,14 @@ input {
 	padding-right: 10px;
 }
 
+.bp5-dark .bp5-button:not([class*=bp5-intent-]) {
+	background-color: var(--bg-color-dark);
+}
+
+.bp5-dark .bp5-button:not([class*=bp5-intent-]):hover {
+	background-color: var(--bg-color-button-hover);
+}
+
 .bp5-button.bp5-minimal:active, .bp5-button.bp5-minimal.bp5-active {
   	background:rgba(100, 162, 208, 0.34);
 }

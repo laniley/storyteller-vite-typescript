@@ -13,41 +13,12 @@ const fs = require('fs-extra');
 const path = require('path');
 
 // ############ ACTION TYPES ##############
-export const SET_COVER = 'SET_COVER';
-export const SET_TITLE = 'SET_TITLE';
-export const SET_AUTHOR = 'SET_AUTHOR';
-export const SET_ABSTRACT = 'SET_ABSTRACT';
-export const SET_DEDICATION = 'SET_DEDICATION';
 export const SET_SELECTED_CHAPTER = 'SET_SELECTED_CHAPTER';
 export const SET_STYLES = 'SET_STYLES';
-export const SET_ROUTE = 'SET_ROUTE';
 
 // ############## ACTIONS #################
-export const setCover = (cover) => ({ type: SET_COVER, cover });
-export const setTitle = (title) => ({ type: SET_TITLE, title });
-export const setAuthor = (author) => ({ type: SET_AUTHOR, author });
-export const setAbstract = (abstract) => ({ type: SET_ABSTRACT, abstract });
-export const setDedication = (dedication) => ({ type: SET_DEDICATION, dedication });
 export const setSelectedChapter = (chapter) => ({ type: SET_SELECTED_CHAPTER, chapter });
 export const setStyles = (styles) => ({ type: SET_STYLES, styles });
-export const setRoute = (route) => ({ type: SET_ROUTE, route });
-
-export const createProjectAction = (directoryPath) => {
-
-	// create new project folder
-	fs.mkdirSync(directoryPath);
-
-	return (dispatch, getState) => {
-
-		if (!fs.existsSync(directoryPath + "\\src")) {
-			fs.mkdirSync(directoryPath + "\\src");
-		}
-
-		fs.writeFile(directoryPath + "/src/project.json", JSON.stringify(initialProjectState), (err) => {
-			if (err) throw err;
-		});
-	};
-};
 
 export const openProject = (directoryPath) => {
 

@@ -7,27 +7,20 @@ import {
 } from '@blueprintjs/core';
 
 interface ProjectListItem {
-	name: string,
+	title: string,
   onClick: ((event: React.MouseEvent<HTMLElement, MouseEvent>) => void),
   onDelete: ((event: React.MouseEvent<HTMLElement, MouseEvent>) => void),
   isCurrentlyOpen: boolean
 };
 
-export default function Project(props:ProjectListItem) {
+export default function ProjectListItem(props:ProjectListItem) {
 	return (
-		<div>Test</div>
-	);
-}
-/*
-export default function Project(props:ProjectListItem) {
-	return (
-		<ButtonGroup key={props.name} style={{display: "flex"}}>
+		<ButtonGroup key={props.title} style={{display: "flex"}}>
 			<Button
-				id={props.name}
-				text={props.name}
+				id={props.title}
+				text={props.title}
 				onClick={props.onClick}
 				icon={props.isCurrentlyOpen ? "folder-open" : "folder-close"}
-				intent={Intent.PRIMARY}
 				active={props.isCurrentlyOpen ? true : false}
 				style={{
 					flex: "1",
@@ -36,7 +29,7 @@ export default function Project(props:ProjectListItem) {
 				}}
 			/>
 			<Button
-				id={props.name + "-delete"}
+				id={props.title + "-delete"}
 				onClick={props.onDelete}
 				icon={"trash"}
 				intent={Intent.DANGER}
@@ -48,4 +41,3 @@ export default function Project(props:ProjectListItem) {
 		</ButtonGroup>
 	);
 }
-*/

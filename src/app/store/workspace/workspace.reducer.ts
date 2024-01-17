@@ -3,11 +3,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 const { dialog } = require('@electron/remote');
 import { storage } from '../../../api/storage'
 
-interface Workspace {
-	path: string,
-	projects: [],
-};
-
 export const initialState = {
 	path: "",
 	projects: [],
@@ -30,22 +25,11 @@ export const changeWorkspace = createAsyncThunk(
   }
 )
 
-export const open = createAsyncThunk(
-	'workspace/open',
-	async(arg, thunkAPI) => {
-		let state:any = thunkAPI.getState()
-		thunkAPI.dispatch(setPath(state.workspace.path))
-		thunkAPI.dispatch(loadProjects());
-	}
-);
-
 export const loadProjects = createAsyncThunk(
 	'workspace/loadProjects',
 	async(arg, thunkAPI) => {
-
 		let state:any = thunkAPI.getState()
 		let projects:any = storage.getProjects(state);
-		
 		thunkAPI.dispatch(setProjects(projects));
 	}
 );
