@@ -29,7 +29,12 @@ export const loadProjects = createAsyncThunk(
 	'workspace/loadProjects',
 	async(arg, thunkAPI) => {
 		let state:any = thunkAPI.getState()
-		let projects:any = storage.getProjects(state);
+		let projects:Array<Project> = storage.getProjects(state);
+		projects.forEach(project => {
+			if(project.title === state.appState.current_project) {
+				project.isCurrentlyOpen = true
+			}
+		});
 		thunkAPI.dispatch(setProjects(projects));
 	}
 );

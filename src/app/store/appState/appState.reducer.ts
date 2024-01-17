@@ -1,14 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { storage } from '../../../api/storage'
 
 interface AppState {
 	theme: string,
-	path_to_current_project: string
+	current_project: string
 };
 
 export const initialState = {
 	theme: "bp5-dark",
-	path_to_current_project: ""
+	current_project: ""
 } as AppState
+
+export const changeWorkspace = createAsyncThunk(
+  'workspace/changeCurrentProject',
+  async (title:string, thunkAPI) => {
+    thunkAPI.dispatch(setCurrentProject(title))
+		storage.saveCurrentProject(title)
+  }
+)
 
 const appStateSlice = createSlice({
 	name: 'appState',
@@ -16,6 +25,9 @@ const appStateSlice = createSlice({
 	reducers: {
 		setTheme(state, action) {
 			state.theme = action.payload
+		},
+		setCurrentProject(state, action) {
+			state.current_project = action.payload
 		}
 	}
 })
@@ -23,7 +35,7 @@ const appStateSlice = createSlice({
 // Extract the action creators object and the reducer
 const { actions, reducer } = appStateSlice
 // Extract and export each action creator by name
-export const { setTheme } = actions
+export const { setTheme, setCurrentProject } = actions
 
 export default reducer
 

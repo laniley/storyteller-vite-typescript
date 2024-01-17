@@ -20,76 +20,6 @@ export const SET_STYLES = 'SET_STYLES';
 export const setSelectedChapter = (chapter) => ({ type: SET_SELECTED_CHAPTER, chapter });
 export const setStyles = (styles) => ({ type: SET_STYLES, styles });
 
-export const openProject = (directoryPath) => {
-
-  console.log("openProjectAction: " + directoryPath);
-
-	return (dispatch, getState) => {
-
-		let result_get = sync_storage.get('storyteller');
-
-		var new_data = Object.assign({}, result_get.data, {
-			path: directoryPath
-		});
-
-		let result_set = sync_storage.set('storyteller', new_data);
-
-		if (!result_set.status) {
-			throw error;
-		}
-
-		if (projectFolderExists(directoryPath)) {
-
-			if (storytellerProjectFileExists(path.join(directoryPath, "src"))) {
-				console.log("project.json file exists");
-				console.log("reading project.json file...");
-
-				let fileData = fs.readFileSync(directoryPath + '/src/project.json')
-
-				if (!fileData) {
-
-					console.log("project.json file exists - but is empty");
-					return dispatch(createNewStorytellerProjectFile(directoryPath));
-				}
-				else {
-					return dispatch(openProjectSuccess(directoryPath, JSON.parse(fileData)));
-				}
-			}
-			else {
-				// TO DO: Show UI dialog that directory is not empty, ask user if it should be used for a new project
-				console.log("project.json file does not exist");
-			}
-		}
-		else {
-			console.log("project folder does not exist!")
-		}
-    };
-}
-
-function openProjectSuccess(directoryPath, jsonData) {
-
-	console.log("openProjectSuccess");
-
-	return (dispatch, getState) => {
-
-		dispatch(setRoute(jsonData.route || initialProjectState.route));
-		dispatch(appStateActions.setPath(directoryPath));
-		dispatch(workspaceActions.loadProjects());
-
-  		dispatch(setCover(jsonData.cover));
- 		dispatch(setTitle(jsonData.title));
-		dispatch(setAuthor(jsonData.author));
-		dispatch(setAbstract(jsonData.abstract));
-		dispatch(setDedication(jsonData.dedication));
-		dispatch(setStyles(jsonData.styles));
-		dispatch(setSelectedChapter(jsonData.selectedChapter || initialProjectState.selectedChapter));
-		dispatch(charactersActions.load(directoryPath))
-		dispatch(partsActions.load(directoryPath))
-		dispatch(chaptersActions.load(directoryPath))
-		dispatch(scenesActions.load(directoryPath))
-    }
-}
-
 export const closeProjectAction = () => {
 
 	console.log("closeProjectAction");
@@ -204,19 +134,3 @@ export const changeCurrentScriptRoute = (navbarTabId) => {
 		dispatch(setRoute(route));
 	}
 }
-
-function projectFolderExists(directoryPath) {
-	return fs.existsSync(directoryPath);
-};
-
-function storytellerProjectFileExists(directoryPath) {
-
-	let fileNameExists = false;
-
-	fs.readdirSync(directoryPath).forEach(fileName => {
-		if (fileName == "project.json") fileNameExists = true;
-		// console.log(fileName, fileNameExists)
-	});
-
-	return fileNameExists;
-};

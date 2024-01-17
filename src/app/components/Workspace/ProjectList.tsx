@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from './../../hooks'
 
 import * as workspaceReducer from "./../../store/workspace/workspace.reducer";
-import * as project from "../../store/project/project.reducer";
+import * as projectReducer from "../../store/project/project.reducer";
 
 //import { save } from '../../store/chapters/chapter.actions';
 
@@ -41,13 +41,14 @@ export default function ProjectList () {
         key={project.title}
         title={project.title}
         isCurrentlyOpen={project.isCurrentlyOpen}
-        onClick={() => { this.props.openProject(project.path); this.props.changeCurrentRootRoute('script'); this.props.save(); }}
+        onClick={() => dispatch(projectReducer.open(project.title))}
+        //onClick={() => { this.props.openProject(project.path); this.props.changeCurrentRootRoute('script'); this.props.save(); }}
         onDelete={() => { this.props.deleteProject(project.path); }} 
       />
     )
 
   function handleSaveClick() {
-    dispatch(project.create(state.title_of_new_project))
+    dispatch(projectReducer.create(state.title_of_new_project))
     dispatch(workspaceReducer.loadProjects())
     // reset the form values
     setState({

@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from './../hooks'
 
 import * as appState from "./../store/appState/appState.reducer";
 import * as workspace from "./../store/workspace/workspace.reducer";
-import * as projectActions from "../store/project/project.actions";
+import * as project from "../store/project/project.reducer";
 
 import WelcomeRoute from './WelcomeRoute/WelcomeRoute';
 //import ProjectRoute from './RootRouteSubroutes/ProjectRoute/ProjectRoute';
@@ -39,7 +39,7 @@ export default function RootRoute() {
 
 	if (result.data.current_project) {
 		console.log("current_project: " + result.data.current_project);
-		dispatch(projectActions.openProject(result.data.current_project))
+		dispatch(project.open(result.data.current_project))
 	}
 	else {
 		console.log("current_project: not set");
