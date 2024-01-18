@@ -1,8 +1,8 @@
 {
-  "name": "storyteller-vite-typescript",
-  "productName": "storyteller-vite-typescript",
+  "name": "storyteller",
+  "productName": "storyteller",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "A writing application build with Electron, React, Typescript, Tailwind and Vite.",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
