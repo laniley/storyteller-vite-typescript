@@ -1,6 +1,10 @@
 
-#TopNavBarContainer {
+#TopNavBar {
 	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.13);
+}
+
+#TopNavBarSettings, #quit {
+	background: none;
 }
 
 #TopNavBarGroupRight .bp5-navbar-divider {

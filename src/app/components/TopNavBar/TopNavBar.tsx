@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from './../../hooks'
-import { connect } from 'react-redux';
 
 //import * as appStateActions from "../../store/appState/appState.actions";
 import * as projectActions from "../../store/project/project.actions";
@@ -23,6 +22,9 @@ import {
   Tooltip,
 } from '@blueprintjs/core';
 
+const remote = require('@electron/remote')
+const app = remote.app
+
 export default function TopNavBar () {
 /*
 	handleTabChange(navbarTabId) {
@@ -37,17 +39,17 @@ export default function TopNavBar () {
 */
 	return (
 		
-		<Navbar id="TopNavBarContainer" className={'px-2 py-0 ' + useAppSelector(state => state.appState.theme)}>
+		<Navbar id="TopNavBar" className={'sticky top-0 px-2 py-0 ' + useAppSelector(state => state.appState.theme)}>
 			<NavbarGroup id="TopNavBarGroupLeft" align={Alignment.LEFT}>
 				{/* SETTINGS DROPDOWN */}
 				<Popover content={<Settings />} position={Position.BOTTOM_RIGHT}>
-					<Button minimal={true} icon="settings" />
+					<Button id="TopNavBarSettings" minimal={true} icon="settings" />
 				</Popover>
 
 				<NavbarDivider />
 
 				{/* SECTION TABS */}
-				{useAppSelector(state => state.appState.path) &&
+				{useAppSelector(state => state.appState.current_project_path) &&
 
 						<Tabs
 						id="TopNavTabs"
@@ -83,7 +85,7 @@ export default function TopNavBar () {
 
 				<NavbarGroup id="TopNavBarGroupRight" align={Alignment.RIGHT}>
 
-					{useAppSelector(state => state.appState.path) &&
+					{useAppSelector(state => state.appState.current_project_path) &&
 						<Button
 							minimal={true}
 							icon="export"
@@ -96,9 +98,10 @@ export default function TopNavBar () {
 
 					<Tooltip content="Quit Storyteller" position={Position.BOTTOM}>
 						<Button
+							id="quit"
 							minimal={true}
 							icon="small-cross"
-							//onClick={() => remote.app.quit()}
+							onClick={() => remote.app.quit()}
 						/>
 					</Tooltip>
 
@@ -121,9 +124,4 @@ function mapDispatchToProps (dispatch) {
 		changeTheme: (theme) => dispatch(appStateActions.changeTheme(theme)),
     };
 }
-
-export default connect(
-	null,
-  mapDispatchToProps
-)(TopNavBar)
 */
