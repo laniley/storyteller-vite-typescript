@@ -22,11 +22,17 @@ class Storage {
     data: {
       theme: "",
       workspace: "",
-      current_project: "",
+      current_project_title: "",
+      current_project_path: ""
     }
   }
 
   load() {
+
+    if(!fs.existsSync(filePath)) {
+      return this._current_content
+    }
+
     let result = fs.readFileSync( filePath, { encoding: 'utf8', flag: 'r' } )
 
     if(result) {
@@ -122,9 +128,15 @@ class Storage {
     fs.writeFileSync( filePath, JSON.stringify(this._current_content))
   }
 
-  saveCurrentProject(title:string) {
+  saveCurrentProjectTitle(title:string) {
     this.load()
-    Object.assign(this._current_content.data, { current_project: title });
+    Object.assign(this._current_content.data, { current_project_title: title });
+    fs.writeFileSync( filePath, JSON.stringify(this._current_content))
+  }
+
+  saveCurrentProjectPath(path:string) {
+    this.load()
+    Object.assign(this._current_content.data, { current_project_path: path });
     fs.writeFileSync( filePath, JSON.stringify(this._current_content))
   }
 }
