@@ -40,8 +40,7 @@ export default function RootRoute() {
 
 	if (result.data.current_project_title) {
 		console.log("current_project: " + result.data.current_project_title);
-		let data = { workspace: result.data.workspace, title: result.data.current_project_title }
-		dispatch(project.open(data))
+		dispatch(project.open(result.data.current_project_title))
 	}
 	else {
 		console.log("current_project: not set");
