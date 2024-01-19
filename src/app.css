@@ -65,7 +65,7 @@ input {
 }
 
 .bp5-dark .bp5-button:not([class*=bp5-intent-]).bp5-active {
-	background-color: #333f4b;
+	background-color: #485969;
 	cursor: default;
 }
 

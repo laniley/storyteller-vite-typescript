@@ -58,8 +58,8 @@ class ProjectAPI {
     return fileNameExists;
   }
 
-  getProjectData(workspace:string, title:string) {
-    let projectPath = path.join(workspace, title);
+  getProjectData(workspace:Workspace, title:string) {
+    let projectPath = path.join(workspace.path, title);
     if (fs.existsSync(projectPath)) {
       let src_path = path.join(projectPath, "src")
       if(this.storytellerProjectFileExists(src_path)) {
