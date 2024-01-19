@@ -46,28 +46,29 @@ export default function TopNavBar () {
 						id="TopNavTabs"
 						onChange={ (navbarTabId) => handleTabChange(navbarTabId) }
 						selectedTabId={state.project.route.current}
-						animate={true}>
+						animate={true}
+						fill={true}>
 	
 							<Tab id="workspace" className="mr-0" >
-								<Icon icon="box" /> Workspace
+								<Icon icon="box" className="mr-2 ml-2" /> Workspace
 							</Tab>
 
-							<NavbarDivider />
+							<NavbarDivider className="ml-0 mb-[15px]" />
 
 							<Tab id="script">
-									<Icon icon="draw" /> Script
+									<Icon icon="draw" className="mr-2" /> Script
 							</Tab>
 							<Tab id="characters">
-									<Icon icon="people" /> Characters
+									<Icon icon="people" className="mr-2" /> Characters
 							</Tab>
 							<Tab id="locations">
-									<Icon icon="map-marker" /> Locations
+									<Icon icon="map-marker" className="mr-2" /> Locations
 							</Tab>
 							<Tab id="timeline">
-									<Icon icon="time" /> Timeline
+									<Icon icon="time" className="mr-2" /> Timeline
 							</Tab>
 							<Tab id="preview">
-								<Icon icon="eye-open" /> Preview
+								<Icon icon="eye-open" className="mr-2" /> Preview
 							</Tab>
 					</Tabs>
         }
