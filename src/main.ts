@@ -47,24 +47,36 @@ const createWindow = () => {
     mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
   }
 
-  installExtension(REACT_DEVELOPER_TOOLS)
-  .then((name) => console.log(`Added Extension:  ${name}`))
-  .catch((err) => console.log('An error occurred: ', err));
+  if (dev) {
+    installExtension(REACT_DEVELOPER_TOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err));
 
-  installExtension(REDUX_DEVTOOLS)
-  .then((name) => console.log(`Added Extension:  ${name}`))
-  .catch((err) => console.log('An error occurred: ', err));
+    installExtension(REDUX_DEVTOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err));
+  }
 
-    // Don't show until we are ready and loaded
-    mainWindow.once('ready-to-show', () => {
+  // Don't show until we are ready and loaded
+  mainWindow.once('ready-to-show', () => {
 
-      mainWindow.show()
-  
-      // Open the DevTools automatically if developing
-      if (dev) {
-          mainWindow.webContents.openDevTools()
-      }
-    })
+    mainWindow.show()
+
+    // Open the DevTools automatically if developing
+    if (dev) {
+      mainWindow.webContents.on('did-frame-finish-load', () => {
+        // We close the DevTools so that it can be reopened and redux reconnected.
+        // This is a workaround for a bug in redux devtools.
+        mainWindow.webContents.closeDevTools();
+        
+        mainWindow.webContents.once('devtools-opened', () => {
+          mainWindow.focus();
+        });
+        
+        mainWindow.webContents.openDevTools();
+      });
+    }
+  })
 };
 
 // This method will be called when Electron has finished
