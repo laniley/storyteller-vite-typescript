@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 const { dialog } = require('@electron/remote');
-import { storage } from '../../../api/storage'
+import { storage } from '../../../api/appStateAPI'
 
 export const initialState = {
 	path: "",

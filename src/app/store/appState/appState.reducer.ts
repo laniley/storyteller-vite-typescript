@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { storage } from '../../../api/storage'
+import { storage } from '../../../api/appStateAPI'
 
 interface AppState {
 	theme: string,

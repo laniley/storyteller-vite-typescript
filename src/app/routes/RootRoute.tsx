@@ -8,7 +8,7 @@ import * as project from "../store/project/project.reducer";
 import WelcomeRoute from './WelcomeRoute/WelcomeRoute';
 import ProjectRoute from './ProjectRoute/ProjectRoute';
 
-import { dataPath, filePath, storage } from '../../api/storage'
+import { dataPath, filePath, storage } from '../../api/appStateAPI'
 import { TopNavBar } from '../components';
 
 console.log("dataPath: " + dataPath)
@@ -40,7 +40,8 @@ export default function RootRoute() {
 
 	if (result.data.current_project_title) {
 		console.log("current_project: " + result.data.current_project_title);
-		dispatch(project.open(result.data.current_project_title))
+		let data = { workspace: result.data.workspace, title: result.data.current_project_title }
+		dispatch(project.open(data))
 	}
 	else {
 		console.log("current_project: not set");

@@ -1,8 +1,7 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from './../../hooks'
 
-//import * as appStateActions from "../../store/appState/appState.actions";
-import * as projectActions from "../../store/project/project.actions";
+import * as projectReducer from "./../../store/project/project.reducer";
 
 import './TopNavBar.css';
 
@@ -26,20 +25,13 @@ const remote = require('@electron/remote')
 const app = remote.app
 
 export default function TopNavBar () {
-/*
-	handleTabChange(navbarTabId) {
-		if (navbarTabId != useAppSelector(state => state.project.route.current)) {
-			this.props.changeCurrentRootRoute(navbarTabId);
-			this.props.save();
-		}
-		else {
-			console.log("Current route already is \\" + useAppSelector(state => state.project.route.current))
-		}
-	}
-*/
+
+	const state = useAppSelector(state => state)
+	const dispatch = useAppDispatch();
+
 	return (
 		
-		<Navbar id="TopNavBar" className={'sticky top-0 px-2 py-0 ' + useAppSelector(state => state.appState.theme)}>
+		<Navbar id="TopNavBar" className={'sticky top-0 px-2 py-0 ' + state.appState.theme}>
 			<NavbarGroup id="TopNavBarGroupLeft" align={Alignment.LEFT}>
 				{/* SETTINGS DROPDOWN */}
 				<Popover content={<Settings />} position={Position.BOTTOM_RIGHT}>
@@ -49,79 +41,79 @@ export default function TopNavBar () {
 				<NavbarDivider />
 
 				{/* SECTION TABS */}
-				{useAppSelector(state => state.appState.current_project_path) &&
-
-						<Tabs
+				{state.appState.current_project_path &&
+					<Tabs
 						id="TopNavTabs"
-						//onChange={this.handleTabChange.bind(this)}
-						selectedTabId={useAppSelector(state => state.project.route.current)}
+						onChange={ (navbarTabId) => handleTabChange(navbarTabId) }
+						selectedTabId={state.project.route.current}
 						animate={true}>
-
-							<Tab id="workspace" style={{ marginRight: "0px"}} >
+	
+							<Tab id="workspace" className="mr-0" >
 								<Icon icon="box" /> Workspace
-              </Tab>
+							</Tab>
 
-							<NavbarDivider style={{ marginRight: "10px" }} />
+							<NavbarDivider />
 
-                            <Tab id="script">
-                                <Icon icon="draw" /> Script
-                            </Tab>
-                            {/* <Tab id="characters">
-                                <Icon icon="people" /> Characters
-                            </Tab> */}
-                            {/* <Tab id="locations">
-                                <Icon icon="map-marker" /> Locations
-                            </Tab> */}
-                            {/* <Tab id="timeline">
-                                <Icon icon="time" /> Timeline
-							</Tab> */}
-							{/* <Tab id="preview">
+							<Tab id="script">
+									<Icon icon="draw" /> Script
+							</Tab>
+							<Tab id="characters">
+									<Icon icon="people" /> Characters
+							</Tab>
+							<Tab id="locations">
+									<Icon icon="map-marker" /> Locations
+							</Tab>
+							<Tab id="timeline">
+									<Icon icon="time" /> Timeline
+							</Tab>
+							<Tab id="preview">
 								<Icon icon="eye-open" /> Preview
-							</Tab> */}
-                        </Tabs>
-                    }
+							</Tab>
+					</Tabs>
+        }
+      </NavbarGroup>
 
-                </NavbarGroup>
+			<NavbarGroup id="TopNavBarGroupRight" align={Alignment.RIGHT}>
+				{useAppSelector(state => state.appState.current_project_path) &&
+					<Button
+						id="export"
+						minimal={true}
+						icon="export"
+						text="Export"
+						//onClick={() => this.props.exportAsEpub()}
+					/>
+				}
 
-				<NavbarGroup id="TopNavBarGroupRight" align={Alignment.RIGHT}>
+				<NavbarDivider />
 
-					{useAppSelector(state => state.appState.current_project_path) &&
-						<Button
-							minimal={true}
-							icon="export"
-							text="Export"
-							//onClick={() => this.props.exportAsEpub()}
-						/>
-					}
+				<Tooltip content="Quit Storyteller" position={Position.BOTTOM}>
+					<Button
+						id="quit"
+						minimal={true}
+						icon="small-cross"
+						onClick={() => remote.app.quit()}
+					/>
+				</Tooltip>
+      </NavbarGroup>
+    </Navbar>
+  );
 
-					<NavbarDivider />
-
-					<Tooltip content="Quit Storyteller" position={Position.BOTTOM}>
-						<Button
-							id="quit"
-							minimal={true}
-							icon="small-cross"
-							onClick={() => remote.app.quit()}
-						/>
-					</Tooltip>
-
-        </NavbarGroup>
-      </Navbar>
-    );
+	function handleTabChange(navbarTabId:any) {
+		if (navbarTabId != state.project.route.current) {
+			console.log("Tab '" + navbarTabId + "' got clicked.")
+			dispatch(projectReducer.changeCurrentRootRoute(navbarTabId));
+		}
+		else {
+			console.log("Current route is already \\" + state.project.route.current)
+		}
 	}
+}
 /*
 function mapDispatchToProps (dispatch) {
 	return {
 		// project
-		openProject: (filePath) => dispatch(projectActions.openProjectAction(filePath)),
-		closeProject: () => dispatch(projectActions.closeProjectAction()),
-		createProject: (filePath) => dispatch(projectActions.createProjectAction(filePath)),
 		archiveProject: () => dispatch(projectActions.archive()),
 		exportAsEpub: () => dispatch(projectActions.exportAsEpub()),
-		changeCurrentRootRoute: (navbarTabId) => dispatch(projectActions.changeCurrentRootRoute(navbarTabId)),
-		save: () => dispatch(projectActions.save()),
-		// app_state
-		changeTheme: (theme) => dispatch(appStateActions.changeTheme(theme)),
     };
 }
 */
