@@ -6,61 +6,25 @@ const path = require('path');
 import { initialState as initialProjectState } from '../app/store/project/project.model'
 
 class ProjectAPI {
-/*
-  _current_content = {
-    data: {
-      theme: "",
-      workspace: "",
-      current_project_title: "",
-      current_project_path: ""
-    }
-  }
-  */
-/*
-  load() {
 
-    if(!fs.existsSync(filePath)) {
-      return this._current_content
-    }
-
-    let result = fs.readFileSync( filePath, { encoding: 'utf8', flag: 'r' } )
-
-    if(result) {
-      try {
-        this._current_content = JSON.parse(result)
-      } catch (e) {
-        console.log("JSON.parse of " + filePath + " failed.")
-      }
-    }
-    else {
-      console.log('Config file ' + filePath + ' is empty.')
-    }
-  }
-*/
-/*
-  get() {
-    this.load()
-    return this._current_content
-  }
-*/
   save(projectPath:string, projectState:Project) {
     console.log("saving project...")
     let content = JSON.stringify(projectState);
+    console.log(content)
     if (!content) {
-      console.error("content: " + content);
+      console.error("no content");
       return;
     }
-    let path = projectPath;
-    if (!path) {
-      console.error("path: " + path);
+    if (!projectPath) {
+      console.error("path: " + projectPath);
       return;
     }
-    let err = fs.writeFileSync(path + "/src/project.json", content)
+    let err = fs.writeFileSync(path.join(projectPath, "src", "project.json"), content)
     if (err) {
-      console.log("FAILURE: ", err)
+      console.error("FAILURE: ", err)
     }
     else {
-      console.log("Saved!")
+      console.log("Saved to " + projectPath)
     }
   }
 
