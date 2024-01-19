@@ -4,6 +4,18 @@
 declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string;
 declare const MAIN_WINDOW_VITE_NAME: string;
 
+interface State {
+  appState?: AppState,
+  workspace?: Workspace,
+  project?: Project
+}
+
+interface AppState {
+  theme: string,
+  current_project_title: string,
+  current_project_path: string
+}
+
 interface Workspace { 
   path: string, 
   projects: Array<Project>, 

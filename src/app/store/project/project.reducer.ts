@@ -11,6 +11,7 @@ import * as workspace from "./../workspace/workspace.reducer";
 export const create = createAsyncThunk(
   'project/create',
   async (title_of_new_project:string, thunkAPI) => {
+		console.log("Creating a new project...")
 		let state:any = thunkAPI.getState()
 		projectAPI.createProject(state.workspace, title_of_new_project)
   }
