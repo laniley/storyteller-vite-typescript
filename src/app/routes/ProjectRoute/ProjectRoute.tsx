@@ -15,7 +15,7 @@ import { getBgColor } from '../../store/appState/appState.selectors';
 
 //import { MoveToTrashAlert } from '../../components';
 
-//import ProjectRouteContent from './ProjectRouteComponents/ProjectRouteContent';
+import ProjectRouteContent from './ProjectRouteComponents/ProjectRouteContent';
 
 export default function ProjectRoute() {
 
@@ -35,14 +35,6 @@ export default function ProjectRoute() {
 		<div
 			id="ProjectRoute"
 			className={'flex flex-col h-screen ' + useAppSelector(state => state.appState.theme)}>
-
-			<div
-				id="path_to_open_project"
-				className={'flex items-center h-1 p-1 border-b-[' + border + '] bg-[' + getBgColor(useAppSelector(state => state.appState), "dark") + ']'}
-			>
-				{pathToOpenProject}
-			</div>
-
 			<div id="Main" style={{ display: 'flex', flexGrow: '1', padding: '10px', overflow: 'auto' }}>
 				<div style={{
 					display: 'flex',
@@ -50,7 +42,7 @@ export default function ProjectRoute() {
 					justifyContent: "center",
 					alignItems: "center"
 				}}>
-					{/* <ProjectRouteContent /> */}
+					<ProjectRouteContent />
 				</div>
 			</div>
 
@@ -73,8 +65,6 @@ export default function ProjectRoute() {
 /*
 function mapStateToProps({ appState, project }) {
 	return {
-		appState,
-		project,
 		route: getRoute(project),
 		border: `1px solid ${appState.theme == 'bp3-dark' ? Colors.DARK_GRAY1 : Colors.LIGHT_GRAY1}`,
 		,

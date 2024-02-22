@@ -27,3 +27,14 @@ interface Project {
   isCurrentlyOpen: boolean;
   cover: string,
 }
+
+interface Chapters {
+  chapters: []
+}
+
+interface Chapter {
+  id: string,
+  title: string,
+  position: number,
+  deleted_at: Date
+}
