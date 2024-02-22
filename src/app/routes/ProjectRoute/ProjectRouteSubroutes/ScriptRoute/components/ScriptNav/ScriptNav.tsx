@@ -3,23 +3,12 @@ import { connect } from 'react-redux';
 import Nav from "./Nav/Nav";
 /* import Parts from "./Parts/Parts"; */
 import Chapters from "./Chapters/ScriptNavChapters";
-import Chapter from "./Chapters/ScriptNavChapter";
+import Chapter from "./Chapters/ScriptNavChapter"; 
 import Scenes from "./Scenes/Scenes";
-import Trash from "../Trash/Trash.index.js";
+//import Trash from "./Trash/Trash.index.js";
 
-class ScriptNav extends React.Component {
-
-    constructor(props) {
-
-		super(props);
-
-		this.state = {
-		};
-	}
-
-	render() {
-
-		return (
+export default function ScriptNav() {
+	return (
 
 			<div id="ScriptStructure">
 
@@ -35,9 +24,9 @@ class ScriptNav extends React.Component {
 
 			</div>
         );
-	}
+	
 }
-
+/*
 function mapStateToProps({ partsReducer, chapters }) {
 
 	let deleted_chapters = chapters.filter((chapter) => {
@@ -58,13 +47,4 @@ function mapStateToProps({ partsReducer, chapters }) {
 		trash_content: trash_content
     };
 }
-
-function mapDispatchToProps (dispatch) {
-	return {
-    };
-}
-
-export default connect(
-    mapStateToProps,
-	mapDispatchToProps
-)(ScriptNav)
+*/
