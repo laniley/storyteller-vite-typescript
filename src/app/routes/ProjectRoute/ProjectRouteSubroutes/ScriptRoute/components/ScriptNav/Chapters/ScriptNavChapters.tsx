@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppSelector, useAppDispatch } from './../../../../../../../hooks'
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
-import ChapterCreationDialog from "./../../../../../../../components/Chapters/ChapterCreationDialog";
+import ChapterCreationDialog from "../../../../../../../components/Chapters/ChapterCreationDialog/ChapterCreationDialog";
 import ScriptNavChapter from "./ScriptNavChapter.js";
 
 import * as chaptersReducer from "../../../../../../../store/chapters/chapter.reducer";

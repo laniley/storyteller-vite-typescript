@@ -1,12 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { storage } from '../../../api/appStateAPI'
 
-interface AppState {
-	theme: string,
-	current_project_title: string,
-	current_project_path: string
-};
-
 export const initialState = {
 	theme: "bp5-dark",
 	current_project_title: "",
