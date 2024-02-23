@@ -1,10 +1,3 @@
-import * as chaptersActions from './../chapters/chapter.actions';
-import * as charactersActions from '../actions/characters/actions.characters.index';
-import * as partsActions from '../actions/parts/actions.parts.index';
-import * as scenesActions from './../scenes/scenes.actions';
-
-import { initialState as initialProjectState } from './project.model';
-
 import { exportAsEpub } from './project.actions.export.epub.index';
 export { exportAsEpub };
 
@@ -75,19 +68,4 @@ export const deleteProject = (directoryPath) => {
 			dispatch(workspaceActions.loadProjects());
 		});
 	};
-}
-
-
-
-export const changeCurrentScriptRoute = (navbarTabId) => {
-
-	return (dispatch, getState) => {
-
-		var route_copy = getState().project.route || initialProjectState.route;
-		route_copy.script.current = navbarTabId;
-
-		var route = Object.assign({}, getState().project.route, route_copy);
-
-		dispatch(setRoute(route));
-	}
 }

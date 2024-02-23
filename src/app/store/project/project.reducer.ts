@@ -8,6 +8,10 @@ export const path = require('path');
 import * as appState from "./../appState/appState.reducer";
 import * as workspace from "./../workspace/workspace.reducer";
 
+import {
+	TabId,
+} from '@blueprintjs/core';
+
 export const create = createAsyncThunk(
   'project/create',
   async (title_of_new_project:string, thunkAPI) => {
@@ -58,6 +62,19 @@ export const changeCurrentRootRoute = createAsyncThunk(
 		state = thunkAPI.getState()
 		projectAPI.save(state.appState.current_project_path, state.project);
   }
+)
+
+export const changeCurrentScriptRoute = createAsyncThunk(
+	'project/changeCurrentScriptRoute',
+  async (navbarTabId:TabId, thunkAPI) => {
+		console.log("Changing the current script route...")
+		let state:any = thunkAPI.getState()
+		var new_script_route = Object.assign({}, state.project.route.script, { current: navbarTabId });
+		var new_route = Object.assign({}, state.project.route, { script: new_script_route });
+		thunkAPI.dispatch(setRoute(new_route))
+		state = thunkAPI.getState()
+		projectAPI.save(state.appState.current_project_path, state.project);
+	}
 )
 
 const projectSlice = createSlice({
