@@ -22,10 +22,11 @@ interface Workspace {
 }
 
 interface Project { 
-  title: any; 
-  path: any; 
+  title: string; 
+  path: string; 
   isCurrentlyOpen: boolean;
   cover: string,
+  route: { current: string }
 }
 
 interface Chapters {

@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from './../../../../hooks'
 
 import { getBorderStyle } from '../../../../store/appState/appState.selectors';
 import ScriptNav from './components/ScriptNav/ScriptNav';
-import ScriptRouteContent from './ScriptRouteContent';
+import ScriptRouteContent from './components/Content/ScriptRouteContent';
 
 export default function ScriptRoute() {
 
@@ -45,8 +45,7 @@ export default function ScriptRoute() {
 					padding: '10px',
 				}}
 			>
-				{/* <ScriptRouteContent /> */}
-
+				<ScriptRouteContent />
 			</div>
 		</div>
 	);

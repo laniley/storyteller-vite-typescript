@@ -20,8 +20,11 @@ import "./Cover.css";
 
 export default function Cover() {
 
+	const appState = useAppSelector(state => state.appState)
+	const project = useAppSelector(state => state.project)
+
 	const initialState = {
-    coverFolderPath: path.join(useAppSelector(state => state.appState.current_project_path), "src", "assets", "cover"),
+    coverFolderPath: path.join(appState.current_project_path, "src", "assets", "cover"),
 		fileName: "",
 		isHovering: false,
   }
@@ -29,13 +32,13 @@ export default function Cover() {
 	// without a cover
 	var content =
 		<div id="cover-preview-empty">
-			<Icon icon="media" iconSize={100} style={{
+			<Icon icon="media" size={100} style={{
 				alignSelf: `center`,
-				color: this.props.color
+				color: getColor(appState)
 			}} />
 			<Button
 				id="OpenProjectButton"
-				minimal={this.state.minimal}
+				minimal={true}
 				icon="folder-open"
 				text="Browse"
 				style={{ marginTop: "20px" }}
@@ -45,7 +48,7 @@ export default function Cover() {
 						filters: [
 							{ name: 'Images', extensions: ['jpg', 'png', 'gif'] },
 						]
-					}).then(result => {
+					}).then((result: { canceled: boolean; filePaths: string[]; }) => {
 						console.log("result: " + JSON.stringify(result));
 						if (!result.canceled) {
 							this.onUpdateCover(result.filePaths[0])
@@ -56,7 +59,7 @@ export default function Cover() {
 		</div>;
 
 		// with a cover
-		if (this.props.project.cover && this.props.project.cover.length > 0) {
+		if (project.cover && project.cover.length > 0) {
 			content =
 				<div id="cover-preview-filled"
 					onMouseEnter={this.handleMouseHover.bind(this)}
@@ -82,7 +85,7 @@ export default function Cover() {
 									filters: [
 										{ name: 'Images', extensions: ['jpg', 'png', 'gif'] },
 									]
-								}).then(result => {
+								}).then((result: { canceled: boolean; filePaths: string[]; }) => {
 									console.log("result: " + JSON.stringify(result));
 									if (!result.canceled) {
 										this.onUpdateCover(result.filePaths[0])
@@ -165,7 +168,6 @@ function mapStateToProps({ appState, project }, ownProps) {
 		appState,
 		project,
 		borderStyle: getBorderStyle(appState),
-		color: getColor(appState),
 	};
 }
 

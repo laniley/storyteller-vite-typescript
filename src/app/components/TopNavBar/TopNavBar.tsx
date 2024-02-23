@@ -26,12 +26,13 @@ const app = remote.app
 
 export default function TopNavBar () {
 
-	const state = useAppSelector(state => state)
+	const appState = useAppSelector(state => state.appState)
+	const project = useAppSelector(state => state.project)
 	const dispatch = useAppDispatch();
 
 	return (
 		
-		<Navbar id="TopNavBar" className={'sticky top-0 px-2 py-0 ' + state.appState.theme}>
+		<Navbar id="TopNavBar" className={'sticky top-0 px-2 py-0 ' + appState.theme}>
 			<NavbarGroup id="TopNavBarGroupLeft" align={Alignment.LEFT}>
 				{/* SETTINGS DROPDOWN */}
 				<Popover content={<Settings />} position={Position.BOTTOM_RIGHT}>
@@ -41,11 +42,11 @@ export default function TopNavBar () {
 				<NavbarDivider />
 
 				{/* SECTION TABS */}
-				{state.appState.current_project_path &&
+				{appState.current_project_path &&
 					<Tabs
 						id="TopNavTabs"
 						onChange={ (navbarTabId) => handleTabChange(navbarTabId) }
-						selectedTabId={state.project.route.current}
+						selectedTabId={project.route.current}
 						animate={true}
 						fill={true}>
 	
@@ -100,12 +101,12 @@ export default function TopNavBar () {
   );
 
 	function handleTabChange(navbarTabId:any) {
-		if (navbarTabId != state.project.route.current) {
+		if (navbarTabId != project.route.current) {
 			console.log("Tab '" + navbarTabId + "' got clicked.")
 			dispatch(projectReducer.changeCurrentRootRoute(navbarTabId));
 		}
 		else {
-			console.log("Current route is already \\" + state.project.route.current)
+			console.log("Current route is already \\" + project.route.current)
 		}
 	}
 }

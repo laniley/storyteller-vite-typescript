@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as chapterActions from '../../store/chapters/chapter.actions';
 
-import TextInput from "./../../components/TextInput/TextInput";
+import TextInput from "../TextInput/TextInput";
 
 import {
 	Button,
@@ -11,28 +11,22 @@ import {
 	TextArea
 } from '@blueprintjs/core';
 
-class Editor extends React.Component {
+export default function Editor() {
 
-	constructor(props) {
-
-		super(props);
-
-		this.state = {
-			text: props.chapter.text,
-		};
-	}
-
+	const initialState = {
+    //text: props.chapter.text,
+  }
+/*
 	save() {
 		this.props.saveText(this.props.chapter, this.state.text);
 	}
-
+*/
+/*
 	onChange(event) {
 		this.setState({ "text": event.target.value });
 	}
-
-	render() {
-
-		return (
+*/
+	return (
 			<div id="Editor"
 				style={{
 					display: 'flex',
@@ -98,8 +92,7 @@ class Editor extends React.Component {
 			</div>
 		);
 	}
-}
-
+/*
 function mapStateToProps({ appState, project }) {
 	return {
 		appState,
@@ -117,3 +110,4 @@ export default connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(Editor)
+*/
