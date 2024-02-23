@@ -1,10 +1,3 @@
-import * as chaptersActions from './../chapters/chapter.actions';
-import * as charactersActions from '../actions/characters/actions.characters.index';
-import * as partsActions from '../actions/parts/actions.parts.index';
-import * as scenesActions from './../scenes/scenes.actions';
-
-import { initialState as initialProjectState } from './project.model';
-
 import { exportAsEpub } from './project.actions.export.epub.index';
 export { exportAsEpub };
 
@@ -44,38 +37,6 @@ export const closeProjectAction = () => {
 	}
 }
 
-export const save = () => {
-
-	console.log("saving project...")
-
-	return (dispatch, getState) => {
-
-		let content = JSON.stringify(getState().project);
-
-		if (!content) {
-			console.error("content: " + content);
-			return;
-		}
-
-		// console.log("content: " + content);
-		let path = getState().appState.path;
-
-		if (!path) {
-			console.error("path: " + path);
-			return;
-		}
-
-		let err = fs.writeFileSync(path + "/src/project.json", content)
-
-		if (err) {
-			console.log("FAILURE: ", err)
-		}
-		else {
-			console.log("Saved!")
-		}
-	};
-};
-
 export const archive = () => {
 
 	return (dispatch, getState) => {
@@ -107,30 +68,4 @@ export const deleteProject = (directoryPath) => {
 			dispatch(workspaceActions.loadProjects());
 		});
 	};
-}
-
-export const changeCurrentRootRoute = (navbarTabId) => {
-
-	return (dispatch, getState) => {
-
-		var route_copy = getState().project.route || initialProjectState.route;
-		route_copy.current = navbarTabId;
-
-		var route = Object.assign({}, getState().project.route, route_copy);
-
-		dispatch(setRoute(route));
-	}
-}
-
-export const changeCurrentScriptRoute = (navbarTabId) => {
-
-	return (dispatch, getState) => {
-
-		var route_copy = getState().project.route || initialProjectState.route;
-		route_copy.script.current = navbarTabId;
-
-		var route = Object.assign({}, getState().project.route, route_copy);
-
-		dispatch(setRoute(route));
-	}
 }

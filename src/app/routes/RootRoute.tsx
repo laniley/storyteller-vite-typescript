@@ -6,9 +6,10 @@ import * as workspace from "./../store/workspace/workspace.reducer";
 import * as project from "../store/project/project.reducer";
 
 import WelcomeRoute from './WelcomeRoute/WelcomeRoute';
-//import ProjectRoute from './RootRouteSubroutes/ProjectRoute/ProjectRoute';
+import ProjectRoute from './ProjectRoute/ProjectRoute';
 
-import { dataPath, filePath, storage } from '../../api/storage'
+import { dataPath, filePath, storage } from '../../api/appStateAPI'
+import { TopNavBar } from '../components';
 
 console.log("dataPath: " + dataPath)
 console.log("filePath: " + filePath)
@@ -37,29 +38,28 @@ export default function RootRoute() {
 		console.log("workspace: not set");
 	}
 
-	if (result.data.current_project) {
-		console.log("current_project: " + result.data.current_project);
-		dispatch(project.open(result.data.current_project))
+	if (result.data.current_project_title) {
+		console.log("current_project: " + result.data.current_project_title);
+		dispatch(project.open(result.data.current_project_title))
 	}
 	else {
 		console.log("current_project: not set");
 	}
 
 	return (
-		<div id="RootRoute" className="h-screen flex flex-col justify-center">
-			<Content />
+		<div id="RootRoute" className="h-screen">
+			<TopNavBar />
+			<div id="rootContent" className="absolute w-full top-[50px] bottom-0">
+				<Content />
+			</div>
 		</div>
 	);
 }
 
 export function Content() {
-	const current_project = false
-	//const current_project = useAppSelector(state => state.app_state.current_project)
-	//console.log("current_project: " + current_project)
-
+	const current_project = useAppSelector(state => state.appState.current_project_title)
 	if (current_project) {
-		//return <ProjectRoute project={props.project} />
-		return <div>"Project"</div>
+		return <ProjectRoute />
 	}
 	else {
 		return <WelcomeRoute />

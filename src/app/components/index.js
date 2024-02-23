@@ -3,7 +3,7 @@ import Character from './Character/Character';
 import Cover from './Cover/Cover';
 import MoveToTrashAlert from './MoveToTrashAlert/MoveToTrashAlert';
 import PagePreview from './PagePreview/PagePreview';
-import Parts from './Parts/Parts';
+import Parts from '../routes/ProjectRoute/ProjectRouteSubroutes/ScriptRoute/components/Parts/Parts';
 import PartTitle from './PartTitle/PartTitle';
 import Timeline from './Timeline/Timeline';
 import TitleAndAuthor from './TitleAndAuthor/TitleAndAuthor';

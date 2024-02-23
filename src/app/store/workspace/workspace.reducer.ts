@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 const { dialog } = require('@electron/remote');
-import { storage } from '../../../api/storage'
+import { storage } from '../../../api/appStateAPI'
 
 export const initialState = {
 	path: "",
@@ -28,10 +28,10 @@ export const changeWorkspace = createAsyncThunk(
 export const loadProjects = createAsyncThunk(
 	'workspace/loadProjects',
 	async(arg, thunkAPI) => {
-		let state:any = thunkAPI.getState()
+		let state:State = thunkAPI.getState()
 		let projects:Array<Project> = storage.getProjects(state);
 		projects.forEach(project => {
-			if(project.title === state.appState.current_project) {
+			if(project.title === state.appState.current_project_title) {
 				project.isCurrentlyOpen = true
 			}
 		});

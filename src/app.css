@@ -60,6 +60,15 @@ input {
 	background-color: var(--bg-color-button-hover);
 }
 
+.bp5-dark .bp5-button:not([class*=bp5-intent-]):focus {
+	background-color: var(--bg-color-button-pressed);
+}
+
+.bp5-dark .bp5-button:not([class*=bp5-intent-]).bp5-active {
+	background-color: #485969;
+	cursor: default;
+}
+
 .bp5-button.bp5-minimal:active, .bp5-button.bp5-minimal.bp5-active {
   	background:rgba(100, 162, 208, 0.34);
 }

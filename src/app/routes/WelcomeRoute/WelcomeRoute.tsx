@@ -11,9 +11,7 @@ import {
 export default function WelcomeRoute () {
 
 	return (
-		<div id="WelcomeRoute" className={'flex flex-col h-screen ' + useAppSelector(state => state.appState.theme)}>
-
-			<TopNavBar/>
+		<div id="WelcomeRoute" className={'absolute w-full h-full flex flex-col ' + useAppSelector(state => state.appState.theme)}>
 
 			<div className="flex flex-col h-screen justify-center items-center">
 
