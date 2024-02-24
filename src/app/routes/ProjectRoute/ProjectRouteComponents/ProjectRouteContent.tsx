@@ -3,7 +3,6 @@ import { useAppSelector, useAppDispatch } from './../../../hooks'
 
 import { getRoute } from './../../../store/project/project.selectors';
 
-import Workspace from './../../../components/Workspace/Workspace';
 import ScriptRoute from '../ProjectRouteSubroutes/ScriptRoute/ScriptRoute';
 import CharactersRoute from '../ProjectRouteSubroutes/CharactersRoutes/CharactersRoute';
 import PreviewRoute from '../ProjectRouteSubroutes/PreviewRoute/PreviewRoute';
@@ -22,9 +21,6 @@ export default function ProjectRouteContent() {
 		if (!project) return null;
 	
 		switch (project.route.current) {
-	
-			case 'workspace':
-				return <Workspace />
 	
 			case 'script':
 				return <ScriptRoute />

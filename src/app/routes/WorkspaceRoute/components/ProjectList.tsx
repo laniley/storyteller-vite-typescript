@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from './../../hooks'
+import { useAppSelector, useAppDispatch } from '../../../hooks'
 
-import * as workspaceReducer from "./../../store/workspace/workspace.reducer";
-import * as projectReducer from "../../store/project/project.reducer";
+import * as workspaceReducer from "../../../store/workspace/workspace.reducer";
+import * as projectReducer from "../../../store/project/project.reducer";
 
 //import { save } from '../../store/chapters/chapter.actions';
 
@@ -42,7 +42,6 @@ export default function ProjectList () {
         title={project.title}
         isCurrentlyOpen={project.isCurrentlyOpen}
         onClick={() => dispatch(projectReducer.open(project.title))}
-        //onClick={() => { this.props.openProject(project.path); this.props.changeCurrentRootRoute('script'); this.props.save(); }}
         onDelete={() => { this.props.deleteProject(project.path); }} 
       />
     )

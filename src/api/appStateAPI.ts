@@ -9,12 +9,11 @@ export const filePath = path.join(dataPath, 'config.json');
 class AppStateAPI {
 
   _current_content = {
-    data: {
+      route: "",
       theme: "",
       workspace: "",
       current_project_title: "",
       current_project_path: ""
-    }
   }
 
   load() {
@@ -39,41 +38,46 @@ class AppStateAPI {
     return this._current_content
   }
 
-  getProjects(state:any) {
+  getProjects(appState:AppState) {
     let projects: Project[] = [];
-    fs.readdirSync(state.workspace.path).forEach((project_title: string) => {
+    fs.readdirSync(appState.workspace).forEach((project_title: string) => {
 			projects.push({ 
         title: project_title,
-        path: path.join(state.workspace.path, project_title),
-        isCurrentlyOpen: state.appState.path === path.join(state.workspace.path, project_title),
-        cover: ''
+        path: path.join(appState.workspace, project_title),
+        isCurrentlyOpen: appState.current_project_path === path.join(appState.workspace, project_title),
+        cover: '',
+        route: { current: 'script' }
       }); 
 		});
     return projects;
   }
 
+  save(state:AppState) {
+    fs.writeFileSync( filePath, JSON.stringify(state))
+  }
+
   saveTheme(theme:string) {
     this.load()
-    Object.assign(this._current_content.data, { theme: theme });
+    Object.assign(this._current_content, { theme: theme });
     fs.writeFileSync( filePath, JSON.stringify(this._current_content))
   }
 
   saveWorkspace(path:string) {
     console.log(path)
     this.load()
-    Object.assign(this._current_content.data, { workspace: path });
+    Object.assign(this._current_content, { workspace: path });
     fs.writeFileSync( filePath, JSON.stringify(this._current_content))
   }
 
   saveCurrentProjectTitle(title:string) {
     this.load()
-    Object.assign(this._current_content.data, { current_project_title: title });
+    Object.assign(this._current_content, { current_project_title: title });
     fs.writeFileSync( filePath, JSON.stringify(this._current_content))
   }
 
   saveCurrentProjectPath(path:string) {
     this.load()
-    Object.assign(this._current_content.data, { current_project_path: path });
+    Object.assign(this._current_content, { current_project_path: path });
     fs.writeFileSync( filePath, JSON.stringify(this._current_content))
   }
 }

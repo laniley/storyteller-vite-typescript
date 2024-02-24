@@ -4,10 +4,9 @@ const { dialog } = require('@electron/remote');
 import { storage } from '../../../api/appStateAPI'
 
 export const initialState = {
-	path: "",
 	projects: [],
 } as Workspace
-
+/*
 export const changeWorkspace = createAsyncThunk(
   'workspace/changeWorkspace',
   async (arg, thunkAPI) => {
@@ -24,12 +23,12 @@ export const changeWorkspace = createAsyncThunk(
 		});
   }
 )
-
+*/
 export const loadProjects = createAsyncThunk(
 	'workspace/loadProjects',
 	async(arg, thunkAPI) => {
 		let state:State = thunkAPI.getState()
-		let projects:Array<Project> = storage.getProjects(state);
+		let projects:Array<Project> = storage.getProjects(state.appState);
 		projects.forEach(project => {
 			if(project.title === state.appState.current_project_title) {
 				project.isCurrentlyOpen = true
@@ -43,9 +42,6 @@ const workspaceSlice = createSlice({
 	name: 'workspace',
 	initialState,
 	reducers: {
-		setPath(state, action) {
-			state.path = action.payload
-		},
 		setProjects(state, action) {
 			state.projects = action.payload
 		}
@@ -54,6 +50,6 @@ const workspaceSlice = createSlice({
 // Extract the action creators object and the reducer
 const { actions, reducer } = workspaceSlice
 // Extract and export each action creator by name
-export const { setPath, setProjects } = actions
+export const { setProjects } = actions
 
 export default reducer

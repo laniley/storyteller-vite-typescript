@@ -1,14 +1,36 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { storage } from '../../../api/appStateAPI'
+import * as workspaceReducer from '../workspace/workspace.reducer'
+import { TabId } from '@blueprintjs/core'
+
+const { dialog } = require('@electron/remote');
 
 export const initialState = {
 	theme: "bp5-dark",
+	workspace: "",
 	current_project_title: "",
 	current_project_path: ""
 } as AppState
 
 export const changeWorkspace = createAsyncThunk(
-  'workspace/changeCurrentProject',
+  'appState/changeWorkspace',
+  async (arg, thunkAPI) => {
+    dialog.showOpenDialog({ properties: ['openDirectory'] })
+			.then((result: { canceled: any; filePaths: any[]; }) => {
+				console.log("result: " + JSON.stringify(result));
+				if (!result.canceled) {
+					var path = result.filePaths[0];
+					thunkAPI.dispatch(setWorkspace(path))
+					thunkAPI.dispatch(workspaceReducer.loadProjects());
+					let state:any = thunkAPI.getState()
+					storage.saveWorkspace(state.workspace.path)
+			}
+		});
+  }
+)
+
+export const changeCurrentProject = createAsyncThunk(
+  'appState/changeCurrentProject',
   async (data:{ title:string, path:string }, thunkAPI) => {
     thunkAPI.dispatch(setCurrentProjectTitle(data.title))
 		thunkAPI.dispatch(setCurrentProjectPath(data.path))
@@ -17,12 +39,30 @@ export const changeWorkspace = createAsyncThunk(
   }
 )
 
+export const changeCurrentRootRoute = createAsyncThunk(
+  'appState/changeCurrentRootRoute',
+  async (navbarTabId:TabId, thunkAPI) => {
+		console.log("Changing the current root route...")
+		let state:any = thunkAPI.getState()
+		console.log(state)
+		thunkAPI.dispatch(setRoute(navbarTabId))
+		state = thunkAPI.getState()
+		storage.save(state.appState);
+  }
+)
+
 const appStateSlice = createSlice({
 	name: 'appState',
 	initialState,
 	reducers: {
+		setRoute(state, action) {
+			state.route = action.payload
+		},
 		setTheme(state, action) {
 			state.theme = action.payload
+		},
+		setWorkspace(state, action) {
+			state.workspace = action.payload
 		},
 		setCurrentProjectTitle(state, action) {
 			state.current_project_title = action.payload
@@ -36,7 +76,13 @@ const appStateSlice = createSlice({
 // Extract the action creators object and the reducer
 const { actions, reducer } = appStateSlice
 // Extract and export each action creator by name
-export const { setTheme, setCurrentProjectTitle, setCurrentProjectPath } = actions
+export const {
+	setRoute, 
+	setTheme,
+	setWorkspace,
+	setCurrentProjectTitle, 
+	setCurrentProjectPath 
+} = actions
 
 export default reducer
 

@@ -11,7 +11,9 @@ interface State {
 }
 
 interface AppState {
+  route: string | "workspace",
   theme: string,
+  workspace: string,
   current_project_title: string,
   current_project_path: string
 }
@@ -23,7 +25,7 @@ interface Workspace {
 
 interface Project { 
   title: string; 
-  path: string; 
+  path: any; 
   isCurrentlyOpen: boolean;
   cover: string,
   route: { current: string }

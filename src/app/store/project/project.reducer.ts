@@ -30,6 +30,8 @@ export const open = createAsyncThunk(
 			console.log("project.json file exists - but is empty");
 		}
 		else {
+			thunkAPI.dispatch(appState.changeCurrentRootRoute('project'))
+
 			thunkAPI.dispatch(setRoute(fileData.route || initialState.route));
 			thunkAPI.dispatch(setCover(fileData.cover));
 			thunkAPI.dispatch(setTitle(fileData.title));
@@ -42,9 +44,11 @@ export const open = createAsyncThunk(
 			//thunkAPI.dispatch(partsActions.load(directoryPath))
 			//thunkAPI.dispatch(chaptersActions.load(directoryPath))
 			//thunkAPI.dispatch(scenesActions.load(directoryPath))
+			
 			thunkAPI.dispatch(appState.setCurrentProjectTitle(fileData.title))
 			let state:any = thunkAPI.getState()
-			let project_path = path.join(state.workspace.path, fileData.title)
+			let project_path = path.join(state.appState.workspace, fileData.title)
+			console.log(project_path)
 			thunkAPI.dispatch(appState.setCurrentProjectPath(project_path))
 			storage.saveCurrentProjectTitle(title)
 			storage.saveCurrentProjectPath(project_path)
@@ -52,10 +56,10 @@ export const open = createAsyncThunk(
 		}
 })
 
-export const changeCurrentRootRoute = createAsyncThunk(
+export const changeCurrentProjectRoute = createAsyncThunk(
   'project/changeCurrentRootRoute',
   async (navbarTabId:string, thunkAPI) => {
-		console.log("Changing the current root route...")
+		console.log("Changing the current project route...")
 		let state:any = thunkAPI.getState()
 		var new_route = Object.assign({}, state.project.route, { current: navbarTabId });
 		thunkAPI.dispatch(setRoute(new_route))

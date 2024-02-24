@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from './../hooks'
 
-import * as appState from "./../store/appState/appState.reducer";
+import * as appStateReducer from "./../store/appState/appState.reducer";
 import * as workspace from "./../store/workspace/workspace.reducer";
 import * as project from "../store/project/project.reducer";
 
 import WelcomeRoute from './WelcomeRoute/WelcomeRoute';
+import WorkspaceRoute from './WorkspaceRoute/WorkspaceRoute';
 import ProjectRoute from './ProjectRoute/ProjectRoute';
 
 import { dataPath, filePath, storage } from '../../api/appStateAPI'
@@ -17,30 +18,39 @@ console.log("filePath: " + filePath)
 export default function RootRoute() {
 
 	const dispatch = useAppDispatch();
-	const result = storage.get()
-	console.log("storage: ")
-	console.log(result)
 
-	if (result.data.theme) {
-		console.log("theme: " + result.data.theme);
-		dispatch(appState.setTheme(result.data.theme))
+	const result = storage.get()
+	console.log("storage: ", result)
+
+	if (result.theme) {
+		console.log("theme: " + result.theme);
+		dispatch(appStateReducer.setTheme(result.theme))
 	}
 	else {
 		console.log("theme: not set");
 	}
 
-	if (result.data.workspace) {
-		console.log("workspace: " + result.data.workspace);
-		dispatch(workspace.setPath(result.data.workspace))
+	if (result.workspace) {
+		console.log("workspace: " + result.workspace);
+		dispatch(appStateReducer.setWorkspace(result.workspace))
+		//dispatch(workspace.setPath(result.workspace))
 		dispatch(workspace.loadProjects())
 	}
 	else {
 		console.log("workspace: not set");
 	}
 
-	if (result.data.current_project_title) {
-		console.log("current_project: " + result.data.current_project_title);
-		dispatch(project.open(result.data.current_project_title))
+	if (result.route) {
+		console.log("route: " + result.route);
+		dispatch(appStateReducer.setRoute(result.route))
+	}
+	else {
+		console.log("route: not set");
+	}
+
+	if (result.current_project_title) {
+		console.log("current_project: " + result.current_project_title);
+		dispatch(project.open(result.current_project_title))
 	}
 	else {
 		console.log("current_project: not set");
@@ -56,10 +66,16 @@ export default function RootRoute() {
 	);
 }
 
-export function Content() {
+function Content() {
+	const root_route = useAppSelector(state => state.appState.route)
+	const workspace_path = useAppSelector(state => state.appState.workspace)
 	const current_project = useAppSelector(state => state.appState.current_project_title)
-	if (current_project) {
+	
+	if(root_route == 'project' && current_project) {
 		return <ProjectRoute />
+	}
+	else if (workspace_path) {
+		return <WorkspaceRoute />
 	}
 	else {
 		return <WelcomeRoute />
