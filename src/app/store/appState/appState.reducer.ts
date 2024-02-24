@@ -44,7 +44,6 @@ export const changeCurrentRootRoute = createAsyncThunk(
   async (navbarTabId:TabId, thunkAPI) => {
 		console.log("Changing the current root route...")
 		let state:any = thunkAPI.getState()
-		console.log(state)
 		thunkAPI.dispatch(setRoute(navbarTabId))
 		state = thunkAPI.getState()
 		storage.save(state.appState);

@@ -68,24 +68,31 @@ export default function TopNavBar () {
 						}
 
 						{appState.current_project_path &&
-							<div id="projectTabs">
-								<Tab id="script">
-										<Icon icon="draw" className="mr-2" /> Script
-								</Tab>
-								<Tab id="characters">
-										<Icon icon="people" className="mr-2" /> Characters
-								</Tab>
-								<Tab id="locations">
-										<Icon icon="map-marker" className="mr-2" /> Locations
-								</Tab>
-								<Tab id="timeline">
-										<Icon icon="time" className="mr-2" /> Timeline
-								</Tab>
-								<Tab id="preview">
-									<Icon icon="eye-open" className="mr-2" /> Preview
-								</Tab>
-						</div>
+							<Tab id="script">
+									<Icon icon="draw" className="mr-2" /> Script
+							</Tab>
 						}
+						{appState.current_project_path &&
+							<Tab id="characters">
+									<Icon icon="people" className="mr-2" /> Characters
+							</Tab>
+						}
+						{appState.current_project_path &&
+							<Tab id="locations">
+									<Icon icon="map-marker" className="mr-2" /> Locations
+							</Tab>
+						}
+						{appState.current_project_path &&
+							<Tab id="timeline">
+									<Icon icon="time" className="mr-2" /> Timeline
+							</Tab>
+						}
+						{appState.current_project_path &&
+							<Tab id="preview">
+								<Icon icon="eye-open" className="mr-2" /> Preview
+							</Tab>
+						}
+						
 				</Tabs>
       </NavbarGroup>
 
