@@ -38,6 +38,8 @@ export default function RootRoute() {
 	}
 	else {
 		console.log("workspace: not set");
+		dispatch(appStateReducer.changeCurrentRootRoute('welcome'))
+		
 	}
 
 	if (result.route) {

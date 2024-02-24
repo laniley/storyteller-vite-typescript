@@ -23,7 +23,7 @@ export const changeWorkspace = createAsyncThunk(
 					thunkAPI.dispatch(setWorkspace(path))
 					thunkAPI.dispatch(workspaceReducer.loadProjects());
 					let state:any = thunkAPI.getState()
-					storage.saveWorkspace(state.workspace.path)
+					storage.saveWorkspace(state.appState.workspace)
 			}
 		});
   }

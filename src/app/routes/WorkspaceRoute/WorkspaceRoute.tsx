@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks'
 
-import TopNavBar from '../../components/TopNavBar/TopNavBar';
+import TopNavBar from '../components/TopNavBar/TopNavBar';
 import Workspace from './components/Workspace';
 
 import {

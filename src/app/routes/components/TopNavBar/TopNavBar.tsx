@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from './../../hooks'
+import { useAppSelector, useAppDispatch } from '../../../hooks'
 
-import * as appStateReducer from "./../../store/appState/appState.reducer";
-import * as projectReducer from "./../../store/project/project.reducer";
+import * as appStateReducer from "../../../store/appState/appState.reducer";
+import * as projectReducer from "../../../store/project/project.reducer";
 
 import './TopNavBar.css';
 
@@ -57,11 +57,15 @@ export default function TopNavBar () {
 					animate={true}
 					fill={true}>
 
-						<Tab id="workspace" className="mr-0" >
-							<Icon icon="box" className="mr-2 ml-2" /> Workspace
-						</Tab>
+						{appState.workspace &&
+							<Tab id="workspace" className="mr-0" >
+								<Icon icon="box" className="mr-2 ml-2" /> Workspace
+							</Tab>
+						}
 
-						<NavbarDivider className="ml-0 mb-[15px]" />
+						{appState.workspace &&
+							<NavbarDivider className="ml-0 mb-[15px]" />
+						}
 
 						{appState.current_project_path &&
 							<div id="projectTabs">

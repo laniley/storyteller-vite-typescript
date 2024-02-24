@@ -7,7 +7,7 @@ import Parts from '../routes/ProjectRoute/ProjectRouteSubroutes/ScriptRoute/comp
 import PartTitle from './PartTitle/PartTitle';
 import Timeline from './Timeline/Timeline';
 import TitleAndAuthor from './TitleAndAuthor/TitleAndAuthor';
-import TopNavBar from './TopNavBar/TopNavBar';
+import TopNavBar from '../routes/components/TopNavBar/TopNavBar';
 
 // export all components as modules
 export {
