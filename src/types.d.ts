@@ -14,12 +14,11 @@ interface AppState {
   route: string | "workspace",
   theme: string,
   workspace: string,
-  current_project_title: string,
   current_project_path: string
 }
 
 interface Workspace { 
-  path: string, 
+  current_project_title: string, 
   projects: Array<Project>, 
 }
 

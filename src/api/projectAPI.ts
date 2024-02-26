@@ -28,8 +28,8 @@ class ProjectAPI {
     }
   }
 
-  createProject(workspace: Workspace, title_of_new_project:string) {
-    let projectPath = path.join(workspace.path, title_of_new_project);
+  createProject(appState: AppState, title_of_new_project:string) {
+    let projectPath = path.join(appState.workspace, title_of_new_project);
     // create new project folder if it does not exist yet
     if (!fs.existsSync(projectPath)) {
       console.log('Project path ' + projectPath + ' gets created...')

@@ -41,7 +41,7 @@ export default function ProjectList () {
         key={project.title}
         title={project.title}
         isCurrentlyOpen={project.isCurrentlyOpen}
-        onClick={() => dispatch(projectReducer.open(project.title))}
+        onClick={() => { console.log('Clicked on project "' + project.title + '"'); dispatch(projectReducer.open(project.title))}}
         onDelete={() => { this.props.deleteProject(project.path); }} 
       />
     )

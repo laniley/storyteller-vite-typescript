@@ -8,9 +8,19 @@ const { dialog } = require('@electron/remote');
 export const initialState = {
 	theme: "bp5-dark",
 	workspace: "",
-	current_project_title: "",
-	current_project_path: ""
 } as AppState
+
+
+export const changeCurrentRootRoute = createAsyncThunk(
+  'appState/changeCurrentRootRoute',
+  async (navbarTabId:TabId, thunkAPI) => {
+		console.log("Changing the current root route...")
+		let state:any = thunkAPI.getState()
+		thunkAPI.dispatch(setRoute(navbarTabId))
+		state = thunkAPI.getState()
+		storage.save(state.appState);
+  }
+)
 
 export const changeWorkspace = createAsyncThunk(
   'appState/changeWorkspace',
@@ -21,32 +31,11 @@ export const changeWorkspace = createAsyncThunk(
 				if (!result.canceled) {
 					var path = result.filePaths[0];
 					thunkAPI.dispatch(setWorkspace(path))
-					thunkAPI.dispatch(workspaceReducer.loadProjects());
+					thunkAPI.dispatch(workspaceReducer.open());
 					let state:any = thunkAPI.getState()
 					storage.saveWorkspace(state.appState.workspace)
 			}
 		});
-  }
-)
-
-export const changeCurrentProject = createAsyncThunk(
-  'appState/changeCurrentProject',
-  async (data:{ title:string, path:string }, thunkAPI) => {
-    thunkAPI.dispatch(setCurrentProjectTitle(data.title))
-		thunkAPI.dispatch(setCurrentProjectPath(data.path))
-		storage.saveCurrentProjectTitle(data.title)
-		storage.saveCurrentProjectPath(data.path)
-  }
-)
-
-export const changeCurrentRootRoute = createAsyncThunk(
-  'appState/changeCurrentRootRoute',
-  async (navbarTabId:TabId, thunkAPI) => {
-		console.log("Changing the current root route...")
-		let state:any = thunkAPI.getState()
-		thunkAPI.dispatch(setRoute(navbarTabId))
-		state = thunkAPI.getState()
-		storage.save(state.appState);
   }
 )
 
@@ -62,12 +51,6 @@ const appStateSlice = createSlice({
 		},
 		setWorkspace(state, action) {
 			state.workspace = action.payload
-		},
-		setCurrentProjectTitle(state, action) {
-			state.current_project_title = action.payload
-		},
-		setCurrentProjectPath(state, action) {
-			state.current_project_path = action.payload
 		}
 	}
 })
@@ -79,8 +62,6 @@ export const {
 	setRoute, 
 	setTheme,
 	setWorkspace,
-	setCurrentProjectTitle, 
-	setCurrentProjectPath 
 } = actions
 
 export default reducer

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from './../hooks'
 
 import * as appStateReducer from "./../store/appState/appState.reducer";
-import * as workspace from "./../store/workspace/workspace.reducer";
+import * as workspaceReducer from "./../store/workspace/workspace.reducer";
 import * as project from "../store/project/project.reducer";
 
 import WelcomeRoute from './WelcomeRoute/WelcomeRoute';
@@ -20,7 +20,7 @@ export default function RootRoute() {
 	const dispatch = useAppDispatch();
 
 	const result = storage.get()
-	console.log("storage: ", result)
+	console.log("appState loaded: ", result)
 
 	if (result.theme) {
 		console.log("theme: " + result.theme);
@@ -33,29 +33,20 @@ export default function RootRoute() {
 	if (result.workspace) {
 		console.log("workspace: " + result.workspace);
 		dispatch(appStateReducer.setWorkspace(result.workspace))
-		//dispatch(workspace.setPath(result.workspace))
-		dispatch(workspace.loadProjects())
+		dispatch(workspaceReducer.open())
+		/*
+		if (result.current_project_title) {
+			console.log("current_project: " + result.current_project_title);
+			dispatch(project.open(result.current_project_title))
+		}
+		else {
+			console.log("current_project: not set");
+		}
+		*/
 	}
 	else {
 		console.log("workspace: not set");
 		dispatch(appStateReducer.changeCurrentRootRoute('welcome'))
-		
-	}
-
-	if (result.route) {
-		console.log("route: " + result.route);
-		dispatch(appStateReducer.setRoute(result.route))
-	}
-	else {
-		console.log("route: not set");
-	}
-
-	if (result.current_project_title) {
-		console.log("current_project: " + result.current_project_title);
-		dispatch(project.open(result.current_project_title))
-	}
-	else {
-		console.log("current_project: not set");
 	}
 
 	return (
@@ -71,7 +62,7 @@ export default function RootRoute() {
 function Content() {
 	const root_route = useAppSelector(state => state.appState.route)
 	const workspace_path = useAppSelector(state => state.appState.workspace)
-	const current_project = useAppSelector(state => state.appState.current_project_title)
+	const current_project = useAppSelector(state => state.workspace.current_project_title)
 	
 	if(root_route == 'project' && current_project) {
 		return <ProjectRoute />

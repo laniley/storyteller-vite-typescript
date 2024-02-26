@@ -21,10 +21,11 @@ import "./Cover.css";
 export default function Cover() {
 
 	const appState = useAppSelector(state => state.appState)
+	const workspace = useAppSelector(state => state.workspace)
 	const project = useAppSelector(state => state.project)
 
 	const initialState = {
-    coverFolderPath: path.join(appState.current_project_path, "src", "assets", "cover"),
+    coverFolderPath: path.join(appState.workspace, workspace.current_project_title, "src", "assets", "cover"),
 		fileName: "",
 		isHovering: false,
   }

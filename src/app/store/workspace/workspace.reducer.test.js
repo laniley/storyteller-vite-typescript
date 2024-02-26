@@ -8,19 +8,6 @@ describe('Workspace reducer', () => {
 		expect(reducer(undefined, {})).toEqual(initialState)
 	})
 
-	it('should handle WORKSPACE_SET_PATH', () => {
-		expect(
-			reducer(initialState, {
-				type: actions.WORKSPACE_SET_PATH,
-				payload: 'test_path'
-			})
-		).toEqual(
-			Object.assign({}, initialState, {
-				path: "test_path"
-			})
-		)
-	})
-
 	it('should handle WORKSPACE_SET_PROJECTS', () => {
 		expect(
 			reducer(initialState, {

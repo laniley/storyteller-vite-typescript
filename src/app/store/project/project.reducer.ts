@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { storage } from '../../../api/appStateAPI'
+import { storage  as workspaceAPI } from '../../../api/workspaceAPI'
 import { projectAPI } from '../../../api/projectAPI'
 import { initialState } from './project.model'
 
@@ -43,13 +43,9 @@ export const open = createAsyncThunk(
 			//thunkAPI.dispatch(partsActions.load(directoryPath))
 			//thunkAPI.dispatch(chaptersActions.load(directoryPath))
 			//thunkAPI.dispatch(scenesActions.load(directoryPath))
-			thunkAPI.dispatch(appState.setCurrentProjectTitle(fileData.title))
+			thunkAPI.dispatch(workspace.setCurrentProjectTitle(fileData.title))
 			let state:any = thunkAPI.getState()
-			let project_path = path.join(state.appState.workspace, fileData.title)
-			console.log(project_path)
-			thunkAPI.dispatch(appState.setCurrentProjectPath(project_path))
-			storage.saveCurrentProjectTitle(title)
-			storage.saveCurrentProjectPath(project_path)
+			workspaceAPI.saveCurrentProjectTitle(state.appState.workspace, title)
 			thunkAPI.dispatch(workspace.loadProjects());
 		}
 })
