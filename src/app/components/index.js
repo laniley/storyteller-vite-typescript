@@ -1,6 +1,6 @@
 import Abstract from './Abstract/Abstract';
 import Character from './Character/Character';
-import Cover from './Cover/Cover';
+import Cover from '../routes/ProjectRoute/components/Cover/Cover';
 import MoveToTrashAlert from './MoveToTrashAlert/MoveToTrashAlert';
 import PagePreview from './PagePreview/PagePreview';
 import Parts from '../routes/ProjectRoute/ProjectRouteSubroutes/ScriptRoute/components/Parts/Parts';
