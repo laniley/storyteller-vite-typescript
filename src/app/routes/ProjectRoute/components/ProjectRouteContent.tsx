@@ -1,7 +1,7 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from './../../../hooks'
+import { useAppSelector, useAppDispatch } from '../../../hooks'
 
-import { getRoute } from './../../../store/project/project.selectors';
+import { getRoute } from '../../../store/project/project.selectors';
 
 import ScriptRoute from '../ProjectRouteSubroutes/ScriptRoute/ScriptRoute';
 import CharactersRoute from '../ProjectRouteSubroutes/CharactersRoutes/CharactersRoute';
@@ -9,7 +9,7 @@ import PreviewRoute from '../ProjectRouteSubroutes/PreviewRoute/PreviewRoute';
 
 import {
 	Timeline,
-} from './../../../components';
+} from '../../../components';
 
 export default function ProjectRouteContent() {
 

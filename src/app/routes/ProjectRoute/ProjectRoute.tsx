@@ -15,7 +15,7 @@ import { getBgColor } from '../../store/appState/appState.selectors';
 
 //import { MoveToTrashAlert } from '../../components';
 
-import ProjectRouteContent from './ProjectRouteComponents/ProjectRouteContent';
+import ProjectRouteContent from './components/ProjectRouteContent';
 
 export default function ProjectRoute() {
 
