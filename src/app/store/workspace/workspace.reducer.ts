@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 const { dialog } = require('@electron/remote');
 import { storage } from '../../../api/workspaceAPI'
 
-
+import * as projectReducer from "../../store/project/project.reducer";
 
 export const initialState = {
 	current_project_title: '',
@@ -24,6 +24,7 @@ export const open = createAsyncThunk(
 			}
 		});
 		thunkAPI.dispatch(setProjects(projects));
+		thunkAPI.dispatch(projectReducer.open(result.current_project_title));
 	}
 );
 
