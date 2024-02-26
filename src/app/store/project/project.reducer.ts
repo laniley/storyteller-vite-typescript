@@ -26,6 +26,7 @@ export const open = createAsyncThunk(
 	async(title:string, thunkAPI) => {
 		let state:any = thunkAPI.getState()
 		let fileData = projectAPI.getProjectData(state.appState.workspace, title)
+		console.log('project loaded: ' + fileData)
 		if (!fileData) {
 			console.log("project.json file exists - but is empty");
 		}
