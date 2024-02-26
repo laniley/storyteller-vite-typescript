@@ -20,6 +20,9 @@ import ProjectRouteContent from './ProjectRouteComponents/ProjectRouteContent';
 export default function ProjectRoute() {
 
 	const dispatch = useAppDispatch();
+	const theme = useAppSelector(state => state.appState.theme)
+	const title = useAppSelector(state => state.workspace.current_project_title)
+	const path = useAppSelector(state => state.appState.current_project_path)
 
   const initialState = {
     statistic: {
@@ -28,13 +31,14 @@ export default function ProjectRoute() {
 		},
   }
 
-	const border = `1px solid ${useAppSelector(state => state.appState.theme) == 'bp3-dark' ? Colors.DARK_GRAY1 : Colors.LIGHT_GRAY1}`
-	const pathToOpenProject = useAppSelector(state => state.appState.current_project_path) || 'No project selected.'
+	const border = `1px solid ${theme == 'bp3-dark' ? Colors.DARK_GRAY1 : Colors.LIGHT_GRAY1}`
+	const pathToOpenProject = path || 'No project selected.'
 
 	return (
 		<div
 			id="ProjectRoute"
-			className={'flex flex-col h-screen ' + useAppSelector(state => state.appState.theme)}>
+			className={'absolute top-[0px] bottom-0 flex flex-col w-full ' + theme}>
+			<div id="Title" className="flex items-center h-7 p-3">{title}</div>
 			<div id="Main" style={{ display: 'flex', flexGrow: '1', padding: '10px', overflow: 'auto' }}>
 				<div style={{
 					display: 'flex',
@@ -46,7 +50,7 @@ export default function ProjectRoute() {
 				</div>
 			</div>
 
-			<div
+			{/* <div
 				id="StatusBar"
 				style={{
 					//backgroundColor: this.props.bgColor,
@@ -54,8 +58,8 @@ export default function ProjectRoute() {
 					height: '50px',
 					padding: 12,
 				}}>
-				{/* words: {this.state.statistic.words} - chars: {this.state.statistic.chars} */}
-			</div>
+				words: {this.state.statistic.words} - chars: {this.state.statistic.chars}
+			</div> */}
 
 			{/* <MoveToTrashAlert /> */}
 
