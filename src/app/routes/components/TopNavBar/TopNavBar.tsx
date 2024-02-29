@@ -127,7 +127,7 @@ export default function TopNavBar () {
 		if( navbarTabId == 'workspace' && appState.route != 'workspace' ) {
 			dispatch(appStateReducer.changeCurrentRootRoute('workspace'));
 		}
-		else if (navbarTabId != project.route.current) {
+		else if (appState.route == 'workspace' || navbarTabId != project.route.current) {
 			dispatch(appStateReducer.changeCurrentRootRoute('project'));
 			dispatch(projectReducer.changeCurrentProjectRoute(navbarTabId));
 		}
