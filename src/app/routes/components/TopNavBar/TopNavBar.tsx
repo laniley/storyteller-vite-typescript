@@ -28,6 +28,7 @@ const app = remote.app
 export default function TopNavBar () {
 
 	const appState = useAppSelector(state => state.appState)
+	const workspace = useAppSelector(state => state.workspace)
 	const project = useAppSelector(state => state.project)
 	const dispatch = useAppDispatch();
 
@@ -67,27 +68,27 @@ export default function TopNavBar () {
 							<NavbarDivider className="ml-0 mb-[15px]" />
 						}
 
-						{appState.current_project_path &&
+						{workspace.current_project_title &&
 							<Tab id="script">
 									<Icon icon="draw" className="mr-2" /> Script
 							</Tab>
 						}
-						{appState.current_project_path &&
+						{workspace.current_project_title &&
 							<Tab id="characters">
 									<Icon icon="people" className="mr-2" /> Characters
 							</Tab>
 						}
-						{appState.current_project_path &&
+						{workspace.current_project_title &&
 							<Tab id="locations">
 									<Icon icon="map-marker" className="mr-2" /> Locations
 							</Tab>
 						}
-						{appState.current_project_path &&
+						{workspace.current_project_title &&
 							<Tab id="timeline">
 									<Icon icon="time" className="mr-2" /> Timeline
 							</Tab>
 						}
-						{appState.current_project_path &&
+						{workspace.current_project_title &&
 							<Tab id="preview">
 								<Icon icon="eye-open" className="mr-2" /> Preview
 							</Tab>
@@ -97,7 +98,7 @@ export default function TopNavBar () {
       </NavbarGroup>
 
 			<NavbarGroup id="TopNavBarGroupRight" align={Alignment.RIGHT}>
-				{useAppSelector(state => state.appState.current_project_path) &&
+				{workspace.current_project_title &&
 					<Button
 						id="export"
 						minimal={true}

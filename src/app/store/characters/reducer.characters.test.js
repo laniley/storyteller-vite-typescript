@@ -1,6 +1,6 @@
 import reducer from './reducer.characters.index'
-import { charactersActions as actions } from '../../actions'
-import { initialState as initialStateCharacter } from './../../models/characterModel'
+import { charactersActions as actions } from '../actions'
+import { initialState as initialStateCharacter } from './characterModel'
 
 const initialState = [];
 

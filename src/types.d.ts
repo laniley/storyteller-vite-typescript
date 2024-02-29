@@ -7,7 +7,9 @@ declare const MAIN_WINDOW_VITE_NAME: string;
 interface State {
   appState?: AppState,
   workspace?: Workspace,
-  project?: Project
+  project?: Project,
+  characters?: Character[],
+  parts?: Part[]
 }
 
 interface AppState {
@@ -30,13 +32,20 @@ interface Project {
   route: { current: string }
 }
 
-interface Chapters {
-  chapters: []
-}
-
 interface Chapter {
   id: string,
   title: string,
   position: number,
   deleted_at: Date
+}
+
+interface Character {
+  first_name: string,
+	last_name: string,
+	nickname: string,
+  deleted_at: date
+}
+
+interface Part {
+  
 }

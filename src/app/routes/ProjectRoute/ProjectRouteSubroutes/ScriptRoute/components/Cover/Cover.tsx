@@ -1,9 +1,9 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../hooks'
+import { useAppSelector, useAppDispatch } from '../../../../../../hooks'
 
-import { PagePreview } from '../../../../components';
-import { getBorderStyle, getColor } from '../../../../store/appState/appState.selectors';
-import * as projectActions from '../../../../store/project/project.actions';
+import { PagePreview } from '../../../../../../components';
+import { getBorderStyle, getColor } from '../../../../../../store/appState/appState.selectors';
+import * as projectActions from '../../../../../../store/project/project.actions';
 
 const path = require('path');
 const remote = require('@electron/remote')

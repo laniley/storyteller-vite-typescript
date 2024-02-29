@@ -1,5 +1,5 @@
-import { partsActions } from '../../../actions'
-import { initialState } from '../../../models/partModel'
+
+import { initialState } from './partModel'
 
 const partReducer = (state = initialState, action) => {
 

@@ -59,7 +59,8 @@ export const changeCurrentProjectRoute = createAsyncThunk(
 		var new_route = Object.assign({}, state.project.route, { current: navbarTabId });
 		thunkAPI.dispatch(setRoute(new_route))
 		state = thunkAPI.getState()
-		projectAPI.save(state.appState.current_project_path, state.project);
+		let projectPath = path.join(state.appState.workspace, state.workspace.current_project_title)
+		projectAPI.save(projectPath, state.project);
   }
 )
 
@@ -72,7 +73,8 @@ export const changeCurrentScriptRoute = createAsyncThunk(
 		var new_route = Object.assign({}, state.project.route, { script: new_script_route });
 		thunkAPI.dispatch(setRoute(new_route))
 		state = thunkAPI.getState()
-		projectAPI.save(state.appState.current_project_path, state.project);
+		let projectPath = path.join(state.appState.workspace, state.workspace.current_project_title)
+		projectAPI.save(projectPath, state.project);
 	}
 )
 

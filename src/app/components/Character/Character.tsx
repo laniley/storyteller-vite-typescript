@@ -1,5 +1,4 @@
 import React from 'react';
-import { charactersActions } from "../../store/actions";
 
 import {
 	Alert,
@@ -74,7 +73,7 @@ export default function Character() {
 	}
 	*/
 }
-
+/*
 function mapStateToProps({ appStateReducer, charactersReducer }, ownProps) {
 
 	var character = charactersReducer.find((characterInArray) => { return characterInArray.id == ownProps.match.params.id; });
@@ -92,3 +91,4 @@ function mapDispatchToProps(dispatch) {
 		saveToFile: () => dispatch(charactersActions.save()),
 	};
 }
+*/

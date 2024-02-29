@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from '../../../hooks'
 import { getRoute } from '../../../store/project/project.selectors';
 
 import ScriptRoute from '../ProjectRouteSubroutes/ScriptRoute/ScriptRoute';
-import CharactersRoute from '../ProjectRouteSubroutes/CharactersRoutes/CharactersRoute';
+import CharactersRoute from '../ProjectRouteSubroutes/CharactersRoute/CharactersRoute';
 import PreviewRoute from '../ProjectRouteSubroutes/PreviewRoute/PreviewRoute';
 
 import {
@@ -24,10 +24,9 @@ export default function ProjectRouteContent() {
 	
 			case 'script':
 				return <ScriptRoute />
-	/*
 			case 'characters':
-				return <CharactersRoute path_to_project={props.appState.path} />
-	
+				return <CharactersRoute />
+				/*
 			case 'locations':
 				return <h2>Locations</h2>
 	

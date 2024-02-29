@@ -10,7 +10,6 @@ class ProjectAPI {
   save(projectPath:string, projectState:Project) {
     console.log("saving project...")
     let content = JSON.stringify(projectState);
-    console.log(content)
     if (!content) {
       console.error("no content");
       return;

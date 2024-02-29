@@ -1,6 +1,6 @@
-import reducer from './reducer.parts.index'
-import { partsActions as actions } from '../../actions'
-import { initialState as initialStatePart } from './../../models/partModel'
+import reducer from './parts.reducer'
+import { partsActions as actions } from '../actions'
+import { initialState as initialStatePart } from './partModel'
 
 const initialState = [];
 

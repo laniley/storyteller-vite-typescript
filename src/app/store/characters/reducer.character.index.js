@@ -1,5 +1,5 @@
-import { charactersActions } from '../../../actions'
-import { initialState } from './../../../models/characterModel'
+import { charactersActions } from '../actions'
+import { initialState } from './characterModel'
 
 const characterReducer = (state = initialState, action) => {
 	// console.log("characterReducer: " + action.type, action)

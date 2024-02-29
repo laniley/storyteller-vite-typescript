@@ -1,7 +1,7 @@
 import React from 'react';
-import * as projectActions from '../../../store/project/project.actions';
+import * as projectActions from '../../../../../store/project/project.actions';
 
-import TextInput from "../../TextInput/TextInput";
+import TextInput from "../../../../../components/TextInput/TextInput";
 
 export default function Title() {
 

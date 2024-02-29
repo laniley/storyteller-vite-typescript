@@ -1,6 +1,6 @@
 import reducer from './reducer.part.index'
-import { partsActions as actions } from '../../../actions'
-import { initialState } from './../../../models/partModel'
+import { partsActions as actions } from '../actions'
+import { initialState } from './partModel'
 
 describe('Part reducer', () => {
 

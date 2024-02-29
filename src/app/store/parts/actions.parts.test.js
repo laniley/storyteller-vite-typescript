@@ -1,4 +1,4 @@
-import * as actions from './actions.parts.index.js';
+import * as actions from '../../parts/actions.parts.index.js';
 
 describe('Parts actions', () => {
 

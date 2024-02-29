@@ -1,10 +1,10 @@
 import React from 'react';
 import Title from "./Title/Title";
-import Author from "./Author/Author";
+import {Author} from "./Author/Author";
 
 import {
 	PagePreview
-} from '..';
+} from '../../../../components';
 
 export default function TitleAndAuthor() {
 
