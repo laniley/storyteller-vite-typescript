@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from './../hooks'
 
 import * as appStateReducer from "./../store/appState/appState.reducer";
 import * as workspaceReducer from "./../store/workspace/workspace.reducer";
-import * as project from "../store/project/project.reducer";
 
 import WelcomeRoute from './WelcomeRoute/WelcomeRoute';
 import WorkspaceRoute from './WorkspaceRoute/WorkspaceRoute';
@@ -34,15 +32,6 @@ export default function RootRoute() {
 		console.log("workspace: " + result.workspace);
 		dispatch(appStateReducer.setWorkspace(result.workspace))
 		dispatch(workspaceReducer.open())
-		/*
-		if (result.current_project_title) {
-			console.log("current_project: " + result.current_project_title);
-			dispatch(project.open(result.current_project_title))
-		}
-		else {
-			console.log("current_project: not set");
-		}
-		*/
 	}
 	else {
 		console.log("workspace: not set");
