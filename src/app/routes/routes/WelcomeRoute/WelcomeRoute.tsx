@@ -1,7 +1,7 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from '../../hooks'
+import { useAppSelector, useAppDispatch } from '../../../hooks'
 
-import * as appStateReducer from "./../../store/appState/appState.reducer";
+import * as appStateReducer from "../../../store/appState/appState.reducer";
 
 import {
 	Button,

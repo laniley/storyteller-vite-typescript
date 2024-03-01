@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from './../hooks'
 import * as appStateReducer from "./../store/appState/appState.reducer";
 import * as workspaceReducer from "./../store/workspace/workspace.reducer";
 
-import WelcomeRoute from './WelcomeRoute/WelcomeRoute';
+import WelcomeRoute from './routes/WelcomeRoute/WelcomeRoute';
 import WorkspaceRoute from './WorkspaceRoute/WorkspaceRoute';
 import ProjectRoute from './ProjectRoute/ProjectRoute';
 
