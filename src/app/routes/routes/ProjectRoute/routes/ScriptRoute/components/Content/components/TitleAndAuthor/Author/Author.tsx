@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as projectActions from '../../../../../store/project/project.actions';
+import * as projectActions from '../../../../../../../../../../store/project/project.actions';
 
-import TextInput from "../../../../../components/TextInput/TextInput";
+import TextInput from "../../../../../../../../../../components/TextInput/TextInput";
 
 export function Author() {
 	return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../hooks'
+import { useAppSelector, useAppDispatch } from '../../../../../hooks'
 
 import CharactersCreateRoute from './CharactersCreateRoute.js';
 
@@ -11,7 +11,7 @@ import {
 
 import {
 	Character
-} from '../../../../components/index.js';
+} from '../../../../../components/index.js';
 
 
 export default function CharactersRoute() {

@@ -1,6 +1,6 @@
-import { useAppSelector, useAppDispatch } from '../../../../../../hooks'
-import { PartTitle } from "../../../../../../components";
-import ScriptPartCreationDialog from "../ScriptNav/ScriptPartCreationDialog";
+import { useAppSelector, useAppDispatch } from '../../../../../../../../../hooks'
+import { PartTitle } from "../../../../../../../../../components";
+import ScriptPartCreationDialog from "../../../ScriptNav/ScriptPartCreationDialog";
 
 import {
 	TextArea,

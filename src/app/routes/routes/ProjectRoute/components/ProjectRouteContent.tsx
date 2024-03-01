@@ -1,11 +1,8 @@
-import { useAppSelector, useAppDispatch } from '../../../hooks'
-import ScriptRoute from '../subroutes/ScriptRoute/ScriptRoute';
-import CharactersRoute from '../subroutes/CharactersRoute/CharactersRoute';
-import PreviewRoute from '../subroutes/PreviewRoute/PreviewRoute';
-
-import {
-	Timeline,
-} from '../../../components';
+import { useAppSelector, useAppDispatch } from '../../../../hooks'
+import ScriptRoute from '../routes/ScriptRoute/ScriptRoute';
+import CharactersRoute from '../routes/CharactersRoute/CharactersRoute';
+import PreviewRoute from '../routes/PreviewRoute/PreviewRoute';
+import TimelineRoute from '../routes/TimelineRoute/components/Timeline/Timeline';
 
 export default function ProjectRouteContent() {
 
@@ -23,7 +20,7 @@ export default function ProjectRouteContent() {
 			case 'locations':
 				return <h2>Locations</h2>
 			case 'timeline':
-				return <Timeline />
+				return <TimelineRoute />
 			case 'preview':
 				return <PreviewRoute />
 			default:

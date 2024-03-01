@@ -1,15 +1,13 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../../../hooks'
+import { useAppSelector, useAppDispatch } from '../../../../../../../hooks'
 
-import {
-	Cover,
-	TitleAndAuthor,
-	Abstract,
-} from '../../../../../../components';
+import Abstract from './components/Abstract/Abstract';
+import TitleAndAuthor from './components/TitleAndAuthor/TitleAndAuthor';
+import Dedication from './components/Dedication/Dedication';
+import Parts from './components/Parts/Parts'
+import Cover from './components/Cover/Cover'
+import Chapters from './components/Chapters/Chapters';
 
-import Parts from './../Parts/Parts'
-import Chapters from '../../../../../../components/Chapters/Chapters';
-import Dedication from '../../../../../../components/Dedication/Dedication';
 
 export default function ScriptRouteContent() {
 

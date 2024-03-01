@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as projectActions from '../../store/project/project.actions';
+import * as projectActions from '../../../../../../../../../store/project/project.actions';
 
-import { PagePreview } from '..';
-import TextInput from "../TextInput/TextInput";
+import { PagePreview } from '../../../../../../../../../components';
+import TextInput from "../../../../../../../../../components/TextInput/TextInput";
 
 export default function Dedication() {
 /*

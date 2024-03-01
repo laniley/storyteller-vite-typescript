@@ -4,7 +4,7 @@ import {Author} from "./Author/Author";
 
 import {
 	PagePreview
-} from '../../../../components';
+} from '../../../../../../../../../components';
 
 export default function TitleAndAuthor() {
 

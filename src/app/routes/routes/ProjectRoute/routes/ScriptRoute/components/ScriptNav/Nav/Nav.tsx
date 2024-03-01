@@ -1,6 +1,6 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from './../../../../../../../hooks'
-import * as projectReducer from "./../../../../../../../store/project/project.reducer";
+import { useAppSelector, useAppDispatch } from './../../../../../../../../hooks'
+import * as projectReducer from "./../../../../../../../../store/project/project.reducer";
 
 import {
 	Tab,
