@@ -1,13 +1,13 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from './../../../../../../hooks'
+import { useAppSelector, useAppDispatch } from '../../../../../../hooks'
 
 import {
 	Cover,
 	TitleAndAuthor,
 	Abstract,
-	Parts
 } from '../../../../../../components';
 
+import Parts from './../Parts/Parts'
 import Chapters from '../../../../../../components/Chapters/Chapters';
 import Dedication from '../../../../../../components/Dedication/Dedication';
 

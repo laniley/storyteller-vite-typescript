@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 
-import { ScriptRoute } from './ScriptRoute.js';
-import { mapStateToProps, mapDispatchToProps } from './ScriptRoute';
+import { ScriptRoute } from '../../subroutes/ScriptRoute/ScriptRoute.js';
+import { mapStateToProps, mapDispatchToProps } from '../../subroutes/ScriptRoute/ScriptRoute.js';
 
 describe('ScriptRoute component', () => {
 

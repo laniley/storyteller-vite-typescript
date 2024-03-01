@@ -47,5 +47,6 @@ interface Character {
 }
 
 interface Part {
-  
+  position: number,
+  name: string
 }

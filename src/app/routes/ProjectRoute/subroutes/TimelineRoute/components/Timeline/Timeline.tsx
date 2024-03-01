@@ -9,14 +9,14 @@ export default function Timeline() {
 				flexGrow: '1',
 				flexDirection: 'column',
 			}}>
-			<Event
+{/* 			<Event
 				from={2010}
 				to={2012}
 				title={"title"}
 				subtitle={"subtitle"}
 				summary={"summary"}
 				text={"text"}
-			/>
+			/> */}
 		</div>
 	);
 }

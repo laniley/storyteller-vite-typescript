@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from './../../../../hooks'
+import { useAppSelector, useAppDispatch } from '../../../../hooks'
 
 import { getBorderStyle } from '../../../../store/appState/appState.selectors';
 import ScriptNav from './components/ScriptNav/ScriptNav';
