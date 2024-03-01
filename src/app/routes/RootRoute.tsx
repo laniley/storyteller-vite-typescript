@@ -4,8 +4,8 @@ import * as appStateReducer from "./../store/appState/appState.reducer";
 import * as workspaceReducer from "./../store/workspace/workspace.reducer";
 
 import WelcomeRoute from './routes/WelcomeRoute/WelcomeRoute';
-import WorkspaceRoute from './WorkspaceRoute/WorkspaceRoute';
-import ProjectRoute from './ProjectRoute/ProjectRoute';
+import WorkspaceRoute from './routes/WorkspaceRoute/WorkspaceRoute';
+import ProjectRoute from './routes/ProjectRoute/ProjectRoute';
 
 import { dataPath, filePath, storage } from '../../api/appStateAPI'
 import { TopNavBar } from '../components';
