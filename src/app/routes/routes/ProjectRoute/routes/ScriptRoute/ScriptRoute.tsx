@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppSelector, useAppDispatch } from '../../../../../hooks'
 
 import { getBorderStyle } from '../../../../../store/appState/appState.selectors';
@@ -16,6 +15,7 @@ export default function ScriptRoute() {
 	return (
 		<div 
 			id="ScriptRoute"
+			data-testid="ScriptRoute"
 			className="flex flex-row h-full w-full">
 			<div
 				id="TreeviewColumn"
@@ -35,14 +35,14 @@ export default function ScriptRoute() {
 			</div>
 			<div
 				id="ContentColumn"
-				className="flex flex-1 justify-center items-center"
+				data-testid="ContentColumn"
+				className="flex flex-1 justify-center items-center p-[10px]"
 				style={{
 					overflow: 'auto',
 					border: getBorderStyle(appState),
 					borderRadius: `${initialState.borderRadius}`,
 					resize: 'none',
 					outline: 'none',
-					padding: '10px',
 				}}
 			>
 				<ScriptRouteContent />
