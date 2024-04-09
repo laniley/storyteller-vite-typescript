@@ -69,7 +69,8 @@ npm run build
 
 #### Test the app
 ```
-npm run test
+npm run test # to run all tests
+npm run test -- -t 'name-of-the-file-without-.test.ts' # to run only a specific test
 ```
 
 #### Test the app with auto-reload
