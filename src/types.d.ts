@@ -4,19 +4,19 @@
 declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string;
 declare const MAIN_WINDOW_VITE_NAME: string;
 
+interface AppState {
+  route: string,
+  theme: string,
+  workspace: string,
+  current_project_path: string
+}
+
 interface State {
   appState?: AppState,
   workspace?: Workspace,
   project?: Project,
   characters?: Character[],
   parts?: Part[]
-}
-
-interface AppState {
-  route: string | "workspace",
-  theme: string,
-  workspace: string,
-  current_project_path: string
 }
 
 interface Workspace { 
@@ -32,11 +32,16 @@ interface Project {
   route: { current: string }
 }
 
+interface Chapters {
+  chapters: []
+}
+
 interface Chapter {
   id: string,
   title: string,
+  part: number,
   position: number,
-  deleted_at: Date
+  deleted_at?: Date
 }
 
 interface Character {
