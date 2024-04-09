@@ -2,10 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 
-import { store } from './store';
-
 import { FocusStyleManager } from "@blueprintjs/core";
 FocusStyleManager.onlyShowFocusOnTabs();
+
+import { setupStore } from './store';
+const store = setupStore()
 
 import RootRoute from './routes/RootRoute';
 

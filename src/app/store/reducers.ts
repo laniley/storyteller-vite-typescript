@@ -4,7 +4,7 @@ import { routerReducer } from 'react-router-redux';
 
 import appState from './appState/appState.reducer';
 import chapters from './chapters/chapters.reducer';
-import characters from './characters/reducer.characters.index';
+import characters from './characters/characters.reducer';
 import partsReducer from './parts/parts.reducer';
 import project from './project/project.reducer';
 import scenes from './scenes/scenes.reducer';
