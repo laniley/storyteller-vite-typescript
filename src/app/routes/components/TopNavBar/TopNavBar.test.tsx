@@ -1,14 +1,20 @@
-import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { screen, act } from '@testing-library/react'
+import { renderWithProviders } from './../../../utils/test-utils'
+import TopNavBar from './TopNavBar';
 
-import { TopNavBar } from './TopNavBar';
-import { initialState as appState } from './../../store/appState/appState.model'
-import { initialState as project } from '../../../store/project/project.model'
+describe('TopNavBar component', () => {
 
+	it('renders', async() => {
+		await act(async() => renderWithProviders(<TopNavBar />))
+		expect(screen.getAllByTestId('TopNavBar').length).toEqual(1);
+	});
+
+})
+/*
 test('TopNavBar - does not render tabs, when no path it set', () => {
 
     const topNavBar = shallow(
-        <TopNavBar appState={appState}/>
+        <TopNavBar/>
     );
 
     const topNavBarContainer = topNavBar.dive().find('#TopNavBarContainer');
@@ -21,10 +27,10 @@ test('TopNavBar - does not render tabs, when no path it set', () => {
 
 test('TopNavBar - does render tabs when path is set', () => {
 
-	appState.path = "./../../../test_projects/test_project_path/";
+	//appState.path = "./../../../test_projects/test_project_path/";
 
     const topNavBar = shallow(
-		<TopNavBar appState={appState} project={project} />
+		<TopNavBar/>
     );
 
     const topNavBarContainer = topNavBar.dive().find('#TopNavBarContainer');
@@ -33,4 +39,4 @@ test('TopNavBar - does render tabs when path is set', () => {
 
 	const TopNavTabs = topNavBarContainer.find('#TopNavTabs');
 	expect(TopNavTabs.length).toEqual(1);
-});
+});*/

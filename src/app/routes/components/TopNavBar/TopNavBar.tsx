@@ -6,7 +6,7 @@ import * as projectReducer from "../../../store/project/project.reducer";
 
 import './TopNavBar.css';
 
-import Settings from './components/Settings.js';
+import Settings from './components/Settings';
 
 import {
   Alignment,
@@ -41,7 +41,7 @@ export default function TopNavBar () {
 
 	return (
 		
-		<Navbar id="TopNavBar" className={'sticky top-0 px-2 py-0 ' + appState.theme}>
+		<Navbar id="TopNavBar" data-testid="TopNavBar" className={'sticky top-0 px-2 py-0 ' + appState.theme}>
 			<NavbarGroup id="TopNavBarGroupLeft" align={Alignment.LEFT}>
 				{/* SETTINGS DROPDOWN */}
 				<Popover content={<Settings />} position={Position.BOTTOM_RIGHT}>
