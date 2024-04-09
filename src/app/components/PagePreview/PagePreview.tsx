@@ -12,7 +12,7 @@ export default function PagePreview({ content }: PagePreviewProps) {
 	const appState = useAppSelector(state => state.appState)
 
 	return (
-		<div id="PagePreview" className="page-preview" >
+		<div id="PagePreview" data-testid="PagePreview" className="page-preview" >
 			<div className="page-preview-content" style={{
 				border: getBorderStyle(appState),
 				borderRadius: getBorderRadius(),
