@@ -1,6 +1,4 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import * as projectActions from '../../../../../../../../../store/project/project.actions';
 
 import Chapter from "./Chapter/Chapter";
 import ChapterCreationDialog from "./ChapterCreationDialog/ChapterCreationDialog";
@@ -16,13 +14,13 @@ export default function Chapters() {
 				</div>
 				<div><ChapterCreationDialog /></div>
 			</div>
-
+/*
 		if (this.props.chapter) {
 			content = <Chapter key={this.props.chapter.id} chapter={this.props.chapter} />
 		}
-
+*/
 		return (
-			<div id="Chapters" style={{
+			<div id="Chapters" data-testid="Chapters" style={{
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
@@ -34,7 +32,7 @@ export default function Chapters() {
 		);
 	
 }
-
+/*
 function mapStateToProps({ project, chapters }) {
 	return {
 		project,
@@ -47,3 +45,4 @@ function mapDispatchToProps(dispatch) {
 		saveProject: () => dispatch(projectActions.save()),
 	};
 }
+*/

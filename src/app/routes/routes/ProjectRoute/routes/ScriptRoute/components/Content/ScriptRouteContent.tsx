@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppSelector, useAppDispatch } from '../../../../../../../hooks'
 
 import Abstract from './components/Abstract/Abstract';
@@ -8,7 +7,6 @@ import Parts from './components/Parts/Parts'
 import Cover from './components/Cover/Cover'
 import Chapters from './components/Chapters/Chapters';
 
-
 export default function ScriptRouteContent() {
 
 	const project = useAppSelector(state => state.project)
@@ -16,6 +14,7 @@ export default function ScriptRouteContent() {
 	return (
 		<div
 			id="ScriptRouteContent"
+			data-testid="ScriptRouteContent"
 			style={{
 				width: '100%',
 				height: '100%'
@@ -25,25 +24,24 @@ export default function ScriptRouteContent() {
 	);
 }
 
-function Content(route:any) {
-
-	if (route === "/script/title_author") {
+export function Content(props: { route?:string }) {
+	if (props.route === "title_author") {
 		return (<TitleAndAuthor />);
 	}
 
-	if (route === "/script/abstract") {
+	if (props.route === "abstract") {
 		return (<Abstract />);
 	}
 
-	if (route === "/script/dedication") {
+	if (props.route === "dedication") {
 		return (<Dedication />);
 	}
-
-	if (route === "/script/parts") {
+	/*
+	if (props.route === "parts") {
 		return (<Parts />);
 	}
-
-	if (route === "/script/chapters") {
+*/
+	if (props.route === "chapters") {
 		return (<Chapters />);
 	}
 

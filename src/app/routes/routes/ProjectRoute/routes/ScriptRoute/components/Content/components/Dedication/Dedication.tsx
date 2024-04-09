@@ -1,6 +1,4 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import * as projectActions from '../../../../../../../../../store/project/project.actions';
 
 import { PagePreview } from '../../../../../../../../../components';
 import TextInput from "../../../../../../../../../components/TextInput/TextInput";
@@ -46,7 +44,7 @@ export default function Dedication() {
 							id="DedicationInput"
 							placeholder="Dedication..."
 							html={this.state.dedication} // innerHTML of the editable div
-							onChange={this.onChange.bind(this)}
+							//onChange={this.onChange.bind(this)}
 							disabled={false} // use true to disable edition
 							multiLine={true}
 							save={this.save.bind(this)}
@@ -60,10 +58,11 @@ export default function Dedication() {
 	
 }
 
-
+/*
 function mapDispatchToProps(dispatch) {
 	return {
 		setDedication: dedication => dispatch(projectActions.setDedication(dedication)),
 		saveProject: () => dispatch(projectActions.save()),
 	};
 }
+*/

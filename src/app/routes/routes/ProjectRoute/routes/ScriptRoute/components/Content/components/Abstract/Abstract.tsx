@@ -1,7 +1,3 @@
-import React from 'react';
-
-import * as projectActions from '../../../../../../../../../store/project/project.actions';
-
 import { PagePreview } from '../../../../../../../../../components';
 import TextInput from "../../../../../../../../../components/TextInput/TextInput";
 
@@ -42,7 +38,7 @@ export default function Abstract() {
 		</div>
 	);
 }
-
+/*
 function mapStateToProps({ project }) {
 	return {
 		project,
@@ -54,4 +50,4 @@ function mapDispatchToProps(dispatch) {
 		setAbstract: abstract => dispatch(projectActions.setAbstract(abstract)),
 		saveProject: () => dispatch(projectActions.save()),
 	};
-}
+}*/

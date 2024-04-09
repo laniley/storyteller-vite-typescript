@@ -1,19 +1,18 @@
-import React from 'react';
-import { Abstract } from './Abstract.js';
+import Abstract from './Abstract.js';
 import { shallow, mount, render } from 'enzyme';
 
 describe('Abstract component', () => {
 
 	it('renders', () => {
-
+/*
 		const mockProps = Abstract.getMappedProps({
 			project: {
 				abstract: 'test abstract'
 			}
 		});
-
+*/
 		const abstract = shallow(
-			<Abstract {...mockProps} />
+			<Abstract />
 		);
 
 		const wrapper = abstract.find('#Abstract');
