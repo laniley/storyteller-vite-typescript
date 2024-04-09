@@ -1,4 +1,4 @@
-import { getNewID } from '../utils'
+import { getNewID } from './utils'
 
 describe('getNewID', () => {
 
