@@ -6,8 +6,10 @@ import { TabId } from '@blueprintjs/core'
 const { dialog } = require('@electron/remote');
 
 export const initialState = {
+	route: "workspace",
 	theme: "bp5-dark",
 	workspace: "",
+	current_project_path: ""
 } as AppState
 
 

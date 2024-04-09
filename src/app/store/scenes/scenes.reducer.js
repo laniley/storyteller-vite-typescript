@@ -1,5 +1,5 @@
 import * as scenesActions from './scenes.actions'
-import { getNewID } from './../reducers/utils'
+import { getNewID } from '../../utils/utils'
 import { initialState } from './scene.model'
 import sceneReducer from './sceneReducer/scene.reducer'
 

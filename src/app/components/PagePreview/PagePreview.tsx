@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from './../../hooks'
 
 import { getBorderStyle, getBorderRadius, getBgColor } from '../../store/appState/appState.selectors';
 
-type PagePreviewProps = {
+export type PagePreviewProps = {
 	content: JSX.Element
 }
 

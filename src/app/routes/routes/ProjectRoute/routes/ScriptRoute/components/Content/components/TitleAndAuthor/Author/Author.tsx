@@ -1,14 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import * as projectActions from '../../../../../../../../../../store/project/project.actions';
+import { useAppSelector, useAppDispatch } from '../../../../../../../../../../hooks'
 
 import TextInput from "../../../../../../../../../../components/TextInput/TextInput";
 
-export function Author() {
+export default function Author() {
+
+	const project = useAppSelector(state => state.project)
+
 	return (
-		<div id="Author" style={{
-			display: "flex",
-			flexDirection: "column",
+		<div id="Author" className="flex flex-col" style={{
 			height: "30%",
 			margin: "10px 0",
 			fontSize: "24px",
@@ -19,35 +18,29 @@ export function Author() {
 			<TextInput
 				id="AuthorInput"
 				placeholder="Author..."
-				html={this.state.author} // innerHTML of the editable div
+				html={project.author} // innerHTML of the editable div
 				disabled={false} // use true to disable edition
-				save={this.save.bind(this)}
-				onChange={this.onChange.bind(this)}
+				style={{}}
+				multiLine={false}
+				save={()=>{ return true }}
+				//save={save}
+				//onChange={onChange}
 			/>
 
 		</div>
 	)
-/*
-	constructor(props) {
-
-		super(props);
-
-		this.state = {
-			author: this.props.project.author,
-		};
-	}
-*/
-	
 }
-
+/*
 function onChange(event:any) {
 	this.setState({ "author": event.target.value });
-}
-
+}*/
+/*
 function save(author:string) {
 	this.props.setAuthor(author);
 	this.props.saveProject();
+	return true;
 }
+*/
 /*
 function mapDispatchToProps(dispatch) {
 	return {

@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-import { getNewID } from '../reducers/utils'
+import { getNewID } from '../../utils/utils'
 import { initialState } from './chapter.model'
 
 // ############ ACTION TYPES ##############

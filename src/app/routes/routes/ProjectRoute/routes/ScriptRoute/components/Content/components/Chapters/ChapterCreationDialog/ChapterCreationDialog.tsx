@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 
 import { create } from "../../../../../../../../../../store/chapters/chapter.actions";
@@ -26,6 +25,7 @@ export default function ChapterCreationDialog() {
         <InputGroup
           placeholder="title of new chapter..."
           autoFocus
+          /*
           onChange={() => this.setState( { title : event.target.value } ) }
             rightElement={
               <div>
@@ -40,7 +40,7 @@ export default function ChapterCreationDialog() {
                   onClick={this.toggleDialog.bind(this)}
                 />
               </div>
-            }
+            }*/
         />
 
                   :   <Button

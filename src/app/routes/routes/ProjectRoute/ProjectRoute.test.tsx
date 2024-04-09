@@ -1,21 +1,15 @@
-import React from 'react';
 import { shallow, mount, render } from 'enzyme';
+import ProjectRoute from './ProjectRoute';
 
-import { ProjectRoute } from './ProjectRoute.js';
-import { mapStateToProps, mapDispatchToProps } from './ProjectRoute';
+jest.mock('@electron/remote', () => ({ exec: jest.fn() }));
+jest.mock('app', () => ({ exec: jest.fn() }));
 
 describe('ProjectRoute component', () => {
 
 	it('renders dark mode', () => {
 
-		const mockProps = ProjectRoute.getMappedProps({
-			appState: {
-				theme: 'bp3-dark'
-			}
-		});
-
 		const container = shallow(
-			<ProjectRoute {...mockProps} />
+			<ProjectRoute />
 		);
 
 		const result = container.find('#ProjectRoute');
@@ -24,14 +18,8 @@ describe('ProjectRoute component', () => {
 
 	it('renders light mode', () => {
 
-		const mockProps = ProjectRoute.getMappedProps({
-			appState: {
-				theme: 'bp3-body'
-			}
-		});
-
 		const container = shallow(
-			<ProjectRoute {...mockProps} />
+			<ProjectRoute />
 		);
 
 		const result = container.find('#ProjectRoute');

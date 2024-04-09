@@ -1,5 +1,3 @@
-import React from 'react';
-
 //import * as appStateActions from "./../../store/appState/appState.actions";
 //import * as scenesActions from "../../store/scenes/scenes.actions";
 
@@ -40,7 +38,7 @@ export default function MoveToTrashAlert() {
 					</p>
 				</Alert>
 
-				<Toaster ref={ref => (this.toaster = ref)} />
+				{/* <Toaster ref={ref => (this.toaster = ref)} /> */}
 
 			</div>
 		);
@@ -78,10 +76,10 @@ function mapStateToProps({ appState }) {
 	};
 	*/
 }
-
+/*
 function mapDispatchToProps(dispatch) {
 	return {
 		hideMoveToTrashAlert: () => dispatch(appStateActions.hideMoveToTrashAlert()),
 		deleteScene: sceneID => dispatch(scenesActions.deleteScene(sceneID)),
 	};
-}
+}*/

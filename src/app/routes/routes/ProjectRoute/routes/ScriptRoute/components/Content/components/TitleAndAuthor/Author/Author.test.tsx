@@ -1,8 +1,8 @@
 import React from 'react';
-import { Author } from './Author.js';
+import Author from './Author.js';
 import { shallow, mount, render } from 'enzyme';
 
-import { initialState } from '../../../../../store/project/project.model.js'
+import { initialState } from '../../../../../../../../../../store/project/project.model.js'
 
 describe('Author component', () => {
 
@@ -13,7 +13,7 @@ describe('Author component', () => {
 		})
 
 		const author = shallow(
-			<Author project={project} />
+			<Author />
 		);
 
 		// find TextInput component
@@ -27,7 +27,7 @@ describe('Author component', () => {
 		const project = initialState;
 
 		const author = shallow(
-			<Author project={project} />
+			<Author />
 		);
 
 		// find TextInput component

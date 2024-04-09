@@ -1,6 +1,3 @@
-import React from 'react';
-import * as projectActions from '../../store/project/project.actions';
-
 import './PartTitle.css';
 
 import {
@@ -64,7 +61,8 @@ export default function PartTitle() {
 							fill={true}
 							growVertically={true}
 							autoFocus
-							onChange={() => this.setState({ value: event.target.value })} />
+							//onChange={() => this.setState({ value: event.target.value })} 
+							/>
 
 						<div id="PartTitleButtons">
 							<Button

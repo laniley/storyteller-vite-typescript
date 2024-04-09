@@ -30,8 +30,9 @@ export default function ProjectRoute() {
 	return (
 		<div
 			id="ProjectRoute"
+			data-testid="ProjectRoute"
 			className={'absolute top-[0px] bottom-0 flex flex-col w-full ' + theme}>
-			<div id="Title" className="flex items-center h-7 p-3">{title}</div>
+			<div id="Title" className="flex items-center p-3 bg-gray-600 text-lg">{title}</div>
 			<div id="Main" className="flex grow p-3 overflow-auto">
 				<div className="flex grow justify-center align-center">
 					<ProjectRouteContent />
