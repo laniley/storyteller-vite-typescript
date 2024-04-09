@@ -23,7 +23,7 @@ export default function Workspace () {
 		let workspace = useAppSelector(state => state.appState.workspace)
 	
 		return (
-			<div id="Workspace">
+			<div id="Workspace" data-testid="Workspace">
 				<h2 className="mb-2">Workspace</h2>
 				<hr/>
 				<div className="px-0 py-2">

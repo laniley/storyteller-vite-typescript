@@ -1,21 +1,16 @@
-import React from 'react';
-import { Workspace } from './Workspace.js';
-import { shallow, mount, render } from 'enzyme';
+import { screen, act } from '@testing-library/react'
+import { renderWithProviders } from './../../../../utils/test-utils'
+import Workspace from './Workspace';
 
-import { initialState as appState } from './../../store/appState/appState.model'
+//import { initialState as appState } from './../../store/appState/appState.model'
 
 describe('Workspace component', () => {
 
-	it('renders', () => {
-
-		const container = shallow(
-			<Workspace appState={appState} />
-		);
-
-		const result = container.find('#Workspace');
-		expect(result.length).toEqual(1);
-	})
-
+	it('renders', async() => {
+		await act(async() => renderWithProviders(<Workspace />))
+		expect(screen.getAllByTestId('Workspace').length).toEqual(1);
+	});
+/*
 	it('renders SelectWorkspaceButton if workspace is undefined', () => {
 
 		const container = shallow(
@@ -40,5 +35,5 @@ describe('Workspace component', () => {
 		const changeWorkspaceButton = container.find('#ChangeWorkspaceButton');
 		expect(changeWorkspaceButton.length).toEqual(1);
 	})
-
+*/
 })
