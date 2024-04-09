@@ -10,15 +10,10 @@ export const CREATE = 'CREATE';
 export const SET_CHAPTERS = 'SET_CHAPTERS';
 export const DELETE_CHAPTER = 'DELETE_CHAPTER';
 
-export const SET_TITLE = 'SET_TITLE';
-export const SET_DELETED_AT = 'SET_DELETED_AT';
-
 // ############## ACTIONS #################
 export const add = (chapter) => ({ type: ADD, chapter });
 export const setChapters = (chapters) => ({ type: SET_CHAPTERS, chapters });
 
-export const setTitle = (chapter, title) => ({ type: SET_TITLE, chapter, title });
-export const setDeletedAt = (chapter, deleted_at) => ({ type: SET_DELETED_AT, chapter, deleted_at });
 
 // create a new chapter and save it to a new JSON file
 export const create = (chapter) => {
