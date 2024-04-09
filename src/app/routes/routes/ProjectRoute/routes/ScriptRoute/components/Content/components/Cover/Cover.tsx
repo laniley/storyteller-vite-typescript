@@ -3,7 +3,6 @@ import { useAppSelector, useAppDispatch } from '../../../../../../../../../hooks
 
 import { PagePreview } from '../../../../../../../../../components';
 import { getBorderStyle, getColor } from '../../../../../../../../../store/appState/appState.selectors';
-import * as projectActions from '../../../../../../../../../store/project/project.actions';
 
 const path = require('path');
 const remote = require('@electron/remote')
@@ -99,7 +98,7 @@ export default function Cover() {
 		}
 
 		return (
-			<div id="Cover" style={{
+			<div id="Cover" data-testid="Cover" style={{
 				width: '100%',
 				height: '100%',
 				display: 'flex',
