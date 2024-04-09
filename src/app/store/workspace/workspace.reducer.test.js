@@ -1,22 +1,24 @@
-import reducer from './workspace.reducer.js'
+import reducer, { initialState, setProjects, setCurrentProjectTitle } from './workspace.reducer'
 import * as actions from './workspace.actions.js'
-import { initialState } from './workspace.model.js'
 
 describe('Workspace reducer', () => {
 
 	it('should return the initial state for an unknown action', () => {
-		expect(reducer(undefined, {})).toEqual(initialState)
+		expect(reducer(undefined, { type: 'unknown' })).toEqual(initialState)
 	})
 
-	it('should handle WORKSPACE_SET_PROJECTS', () => {
-		expect(
-			reducer(initialState, {
-				type: actions.WORKSPACE_SET_PROJECTS,
-				payload: 'projects'
-			})
-		).toEqual(
+	it('should handle setProjects', () => {
+		expect(reducer(initialState, setProjects('projects'))).toEqual(
 			Object.assign({}, initialState, {
 				projects: "projects"
+			})
+		)
+	})
+
+	it('should handle setCurrentProjectTitle', () => {
+		expect(reducer(initialState, setCurrentProjectTitle('project_title'))).toEqual(
+			Object.assign({}, initialState, {
+				current_project_title: "project_title"
 			})
 		)
 	})
