@@ -1,10 +1,10 @@
-import React from 'react';
-import * as projectActions from '../../../../../store/project/project.actions';
-
-import TextInput from "../../../../../components/TextInput/TextInput";
+import TextInput from "../../../../../../../../../../components/TextInput/TextInput";
+import { useAppSelector, useAppDispatch } from './../../../../../../../../../../hooks'
 
 export default function Title() {
 
+	const title = useAppSelector(state => state.workspace.current_project_title)
+/*
 	constructor(props) {
 
 		super(props);
@@ -23,37 +23,37 @@ export default function Title() {
 	onChange(event) {
 		this.setState({ "title": event.target.value });
 	}
-
-	render() {
-		return (
-			<div id="Title"
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					fitContent: "100%",
-					margin: "10px 0",
-					fontSize: this.state.fontSize,
-					alignItems: "center",
-					justifyContent: "center"
-				}}>
+*/
+	return (
+		<div id="Title" data-testid="Title"
+			style={{
+				display: "flex",
+				flexDirection: "column",
+				//fitContent: "100%",
+				margin: "10px 0",
+				//fontSize: this.state.fontSize,
+				alignItems: "center",
+				justifyContent: "center"
+			}}>
 				<TextInput
 					id="TitleInput"
+					data-testid="TitleInput"
 					style={{
 						textAlign: "center",
 						overflow: "hidden"
 					}}
 					placeholder="Title..."
-					html={this.state.title} // innerHTML of the editable div
+					html={title} // innerHTML of the editable div
 					disabled={false} // use true to disable edition
-					onChange={this.onChange.bind(this)}
-					save={this.save.bind(this)}
+					multiLine={false}
+					//onChange={this.onChange.bind(this)}
+					save={() => { return false }}
 				/>
 
-			</div>
-		);
-	}
+		</div>
+	);
 }
-
+/*
 function mapStateToProps({ project }) {
 	return {
 		project
@@ -65,9 +65,4 @@ function mapDispatchToProps(dispatch) {
 		setTitle: title => dispatch(projectActions.setTitle(title)),
 		saveProject: () => dispatch(projectActions.save()),
 	};
-}
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Title)
+}*/
