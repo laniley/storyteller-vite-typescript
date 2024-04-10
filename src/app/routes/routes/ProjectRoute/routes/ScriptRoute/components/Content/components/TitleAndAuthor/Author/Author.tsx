@@ -7,7 +7,7 @@ export default function Author() {
 	const project = useAppSelector(state => state.project)
 
 	return (
-		<div id="Author" data-testid="Author" className="flex flex-col" style={{
+		<div id="Author" className="flex flex-col" style={{
 			height: "30%",
 			margin: "10px 0",
 			fontSize: "24px",
