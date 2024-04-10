@@ -1,5 +1,5 @@
 import { screen, act } from '@testing-library/react'
-import { renderWithProviders } from './../../../../../utils/test-utils'
+import { renderWithProviders } from '../../../../../../utils/test-utils'
 import ScriptRoute from './ScriptRoute';
 
 describe('ScriptRoute component', () => {

@@ -1,5 +1,5 @@
 import {screen, act} from '@testing-library/react'
-import { renderWithProviders } from './../../../utils/test-utils'
+import { renderWithProviders } from '../../../../utils/test-utils'
 import ProjectRoute from './ProjectRoute';
 
 describe('ProjectRoute component', () => {

@@ -43,7 +43,7 @@ export default function RootRoute() {
 	}
 
 	return (
-		<div id="RootRoute" data-testid="RootRoute" className="h-screen">
+		<div id="RootRoute" className="h-screen">
 			<TopNavBar />
 			<div id="rootContent" className="absolute w-full top-[50px] bottom-0">
 				<Content root_route={root_route} workspace_path={workspace_path} current_project={current_project} />
