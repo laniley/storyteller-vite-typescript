@@ -1,5 +1,5 @@
-import {fireEvent, screen} from '@testing-library/react'
-import { renderWithProviders } from './../../../../../../../../utils/test-utils'
+import { waitFor } from '@testing-library/react'
+import { render } from '../../../../../../../../../utils/test-utils'
 //import configureStore from 'redux-mock-store';
 import ScriptPartCreationDialog from './ScriptPartCreationDialog';
 
@@ -14,9 +14,13 @@ const project = {
 };
 
 describe('RootRoute component', () => {
-    it('renders', () => {
-        renderWithProviders(<ScriptPartCreationDialog /*isInEditMode={false}*/ />)
+
+  it('renders', async() => {
+    const {getAllById} = render(<ScriptPartCreationDialog />) 
+    await waitFor(() => {
+        expect(getAllById('ScriptPartCreationDialog').length).toEqual(1);
     })
+  });
 })
 /*
 test('ScriptPartCreationDialog - open edit mode', () => {
