@@ -13,7 +13,7 @@ export default function WelcomeRoute () {
 	const theme = useAppSelector(state => state.appState.theme)
 
 	return (
-		<div data-testid="WelcomeRoute" className={'absolute w-full h-full flex flex-col ' + theme}>
+		<div id="WelcomeRoute" className={'absolute w-full h-full flex flex-col ' + theme}>
 
 			<div className="flex flex-col h-screen justify-center items-center">
 
