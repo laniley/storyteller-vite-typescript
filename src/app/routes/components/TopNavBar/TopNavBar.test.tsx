@@ -1,12 +1,14 @@
-import { screen, act } from '@testing-library/react'
-import { renderWithProviders } from './../../../utils/test-utils'
+import { waitFor } from '@testing-library/react'
+import { render } from '../../../../utils/test-utils'
 import TopNavBar from './TopNavBar';
 
 describe('TopNavBar component', () => {
 
 	it('renders', async() => {
-		await act(async() => renderWithProviders(<TopNavBar />))
-		expect(screen.getAllByTestId('TopNavBar').length).toEqual(1);
+    const {getAllById} = render(<TopNavBar />) 
+		await waitFor(() => {
+			expect(getAllById('TopNavBar').length).toEqual(1);
+		})
 	});
 
 })

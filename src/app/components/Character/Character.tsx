@@ -1,4 +1,5 @@
-import charactersReducer from 'src/app/store/characters/characters.reducer';
+import { useState } from 'react';
+import * as characterReducer from 'src/app/store/character/character.reducer';
 import { useAppSelector, useAppDispatch } from './../../hooks'
 
 import {
@@ -10,71 +11,61 @@ import {
 	Intent,
 } from '@blueprintjs/core';
 
-export default function Character() {
-/*
-		this.state = {
-			moveToTrashIsOpen: false,
+export default function Character(props: {id?: number}) {
 
-			first_name: (props.character ? props.character.first_name : ""),
-			last_name: (props.character ? props.character.last_name : ""),
-		};
-	
-*/
+	const initialState = {
+    moveToTrashIsOpen: false,
+  }
 
-	const appState = useAppSelector(state => state.appState)
+	const [ state, setState ] = useState(initialState)
 	const characters = useAppSelector(state => state.characters)
-	//const character = characters.find((characterInArray) => { return characterInArray.id == ownProps.match.params.id; });
+	const character = characters.find((characterInArray:Character) => { return characterInArray.id == props.id; });
+	
+	const appState = useAppSelector(state => state.appState)
+
+	const dispatch = useAppDispatch();
 
 	return (
-			<div id="Character">
+		<div id="Character">
 
-				{/* <h2>All Characters / {this.state.first_name} {this.state.last_name}</h2> */}
+			<h2>All Characters / {character.first_name} {character.last_name}</h2>
 
-				<Button
-					id="DeleteCharacter"
-					minimal={true}
-					icon="trash"
-					text="Delete"
-					onClick={() => this.handleMoveToTrashOpen()}
-				/>
+			<Button
+				id="DeleteCharacter"
+				minimal={true}
+				icon="trash"
+				text="Delete"
+				onClick={() => handleMoveToTrashOpen()}
+			/>
 
-				<Alert
-					className={appState.theme}
-					cancelButtonText="Cancel"
-					confirmButtonText="Move to Trash"
-					icon="trash"
-					intent={Intent.DANGER}
-					isOpen={this.state.moveToTrashIsOpen}
-					onCancel={() => this.handleMoveToTrashCancel()}
-					onConfirm={() => this.handleMoveToTrashConfirm()}
-				>
-					<p>
-						{/* Are you sure you want to move the character <b>{this.state.first_name} {this.state.last_name}</b> to Trash? */}
-					</p>
-				</Alert>
-			</div>
-		);
-	/*
-	handleMoveToTrashOpen() {
-		this.setState({ "moveToTrashIsOpen": true})
+			<Alert
+				className={appState.theme}
+				cancelButtonText="Cancel"
+				confirmButtonText="Move to Trash"
+				icon="trash"
+				intent={Intent.DANGER}
+				isOpen={state.moveToTrashIsOpen}
+				onCancel={() => handleMoveToTrashCancel()}
+				onConfirm={() => handleMoveToTrashConfirm()}
+			>
+				<p>
+					Are you sure you want to move the character <b>{character.first_name} {character.last_name}</b> to Trash?
+				</p>
+			</Alert>
+		</div>
+	);
+	
+	function handleMoveToTrashOpen() {
+		setState({...state, moveToTrashIsOpen: true});
 	}
 
-	handleMoveToTrashCancel() {
-		this.setState({ "moveToTrashIsOpen": false })
+	function handleMoveToTrashCancel() {
+		setState({...state, moveToTrashIsOpen: false});
 	}
 
-	handleMoveToTrashConfirm() {
-		this.props.setDeletedAt(this.props.character, Date());
-		this.props.saveToFile();
-		this.props.history.push("/characters/index");
+	function handleMoveToTrashConfirm() {
+		dispatch(characterReducer.setDeletedAt({character: character, deleted_at: Date()}))
+		//dispatch(characterReducer.save())
+		setState({...state, moveToTrashIsOpen: false});
 	}
-	*/
 }
-/*
-function mapDispatchToProps(dispatch) {
-	return {
-		setDeletedAt: (character, deleted_at) => dispatch(charactersActions.setDeletedAt(character, deleted_at)),
-		saveToFile: () => dispatch(charactersActions.save()),
-	};
-}
-*/

@@ -33,7 +33,7 @@ interface Project {
 }
 
 interface Chapters {
-  chapters: []
+  chapters: Chapter[]
 }
 
 interface Chapter {
@@ -44,11 +44,16 @@ interface Chapter {
   deleted_at?: Date
 }
 
+interface Characters {
+  characters: Character[]
+}
+
 interface Character {
+  id: number,
   first_name: string,
 	last_name: string,
-	nickname: string,
-  deleted_at: date
+	nickname?: string,
+  deleted_at?: date
 }
 
 interface Part {
