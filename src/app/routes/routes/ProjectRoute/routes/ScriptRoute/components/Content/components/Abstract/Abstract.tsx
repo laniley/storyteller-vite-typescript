@@ -16,7 +16,7 @@ export default function Abstract() {
 	}
 
 	return (
-		<div id="Abstract" data-testid="Abstract" style={{
+		<div id="Abstract" style={{
 			width: `100%`,
 			height: `100%`,
 		}}>
