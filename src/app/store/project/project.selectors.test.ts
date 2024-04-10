@@ -6,7 +6,7 @@ describe('Project selectors', () => {
 	describe('getRoute()', () => {
 
 		it('should return "" if no current route is set', () => {
-			const test_project = Object.assign(initialState, {route: {}})
+			const test_project = Object.assign({}, initialState, {route: {}})
 			expect(selectors.getRoute(test_project)).toEqual("")
 		})
 /*
