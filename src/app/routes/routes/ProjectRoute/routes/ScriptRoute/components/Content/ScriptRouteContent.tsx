@@ -14,7 +14,6 @@ export default function ScriptRouteContent() {
 	return (
 		<div
 			id="ScriptRouteContent"
-			data-testid="ScriptRouteContent"
 			style={{
 				width: '100%',
 				height: '100%'
