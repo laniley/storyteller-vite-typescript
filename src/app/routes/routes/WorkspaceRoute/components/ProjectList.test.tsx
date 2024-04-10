@@ -1,18 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { screen, act } from '@testing-library/react';
+import { renderWithProviders } from './../../../../utils/test-utils'
 import ProjectList from './ProjectList';
-
-jest.mock('@electron/remote', () => ({ exec: jest.fn() }));
-jest.mock('app', () => ({ exec: jest.fn() }));
 
 describe('ProjectList component', () => {
 
-	it('renders', () => {
-
-		render(
-			<ProjectList />
-		);
-
-		screen.debug();
-	})
+	it('renders', async() => {
+		await act(async() => renderWithProviders(<ProjectList />))
+		expect(screen.getAllByTestId('ProjectList').length).toEqual(1);
+	});
 
 })
