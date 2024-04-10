@@ -98,7 +98,7 @@ export default function Cover() {
 		}
 
 		return (
-			<div id="Cover" data-testid="Cover" style={{
+			<div id="Cover" style={{
 				width: '100%',
 				height: '100%',
 				display: 'flex',

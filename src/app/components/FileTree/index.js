@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Directory from './components/Directory';
 import File from './components/File';
-import { getAllFiles } from '../../utils/file-functions';
+import { getAllFiles } from '../../../utils/file-functions';
 import defaultStyles from './utils/defaultStyles';
 import { toggleVisibility, openDirectory } from './reducers/file-tree';
 

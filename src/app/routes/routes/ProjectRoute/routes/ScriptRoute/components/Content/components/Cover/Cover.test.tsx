@@ -1,13 +1,16 @@
-import {screen, act} from '@testing-library/react'
-import { renderWithProviders } from './../../../../../../../../../utils/test-utils'
+import { waitFor } from '@testing-library/react'
+import { render } from '../../../../../../../../../../utils/test-utils'
 import Cover from './Cover';
 
 describe('Cover component', () => {
 
-	it('renders - without cover set', async() => {
-		await act(async() => renderWithProviders(<Cover />))
-		expect(screen.getAllByTestId('Cover').length).toEqual(1);
+	it('renders', async() => {
+    const {getAllById} = render(<Cover />) 
+		await waitFor(() => {
+			expect(getAllById('Cover').length).toEqual(1);
+		})
 	});
+
 /*
 	it('renders - with cover set', () => {
 
