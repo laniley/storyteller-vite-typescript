@@ -1,13 +1,16 @@
-import { screen, act } from '@testing-library/react'
-import { renderWithProviders } from './../../../../../../../../../../utils/test-utils'
+import { waitFor } from '@testing-library/react'
+import { render } from '../../../../../../../../../../../utils/test-utils'
 import Title from './Title';
 
 describe('Title component', () => {
 
 	it('renders', async() => {
-		await act(async() => renderWithProviders(<Title />))
-		expect(screen.getAllByTestId('Title').length).toEqual(1);
+    const {getAllById} = render(<Title />) 
+		await waitFor(() => {
+			expect(getAllById('Title').length).toEqual(1);
+		})
 	});
+
 /*
 	it('shows the title of the project in the TextInput component, when the title is not empty', () => {
 

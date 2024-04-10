@@ -25,7 +25,7 @@ export default function Title() {
 	}
 */
 	return (
-		<div id="Title" data-testid="Title"
+		<div id="Title"
 			style={{
 				display: "flex",
 				flexDirection: "column",
