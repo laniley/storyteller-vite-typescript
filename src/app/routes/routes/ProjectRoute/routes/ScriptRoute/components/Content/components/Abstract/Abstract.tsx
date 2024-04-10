@@ -1,24 +1,22 @@
+import * as projectReducer from './../../../../../../../../../store/project/project.reducer';
 import { PagePreview } from '../../../../../../../../../components';
 import TextInput from "../../../../../../../../../components/TextInput/TextInput";
+import { useAppSelector, useAppDispatch } from './../../../../../../../../../hooks'
 
 export default function Abstract() {
 
-	//const text = props.project.abstract
+	const dispatch = useAppDispatch();
+	const abstract = useAppSelector(state => state.project.abstract)
 
-	/*
-	componentDidUpdate() {
-		if (this.props.project.abstract !== this.state.text) {
-			this.setState({ text: this.props.project.abstract });
-		}
+	var text = abstract
+
+	function save() {
+		dispatch(projectReducer.setAbstract(text))
+		//dispatch(projectReducer.save())
 	}
 
-	save(text) {
-		this.props.setAbstract(text);
-		this.props.saveProject();
-	}
-*/
 	return (
-		<div id="Abstract" style={{
+		<div id="Abstract" data-testid="Abstract" style={{
 			width: `100%`,
 			height: `100%`,
 		}}>
@@ -26,10 +24,10 @@ export default function Abstract() {
 				<TextInput
 					id="AbstractInput"
 					placeholder="Abstract..."
-					html={this.state.text} // innerHTML of the editable div
+					html={text} // innerHTML of the editable div
 					disabled={false} // use true to disable edition
 					multiLine={true}
-					save={this.save.bind(this)}
+					save={() => save}
 					style={{
 						height: `100%`,
 					}}
@@ -38,16 +36,3 @@ export default function Abstract() {
 		</div>
 	);
 }
-/*
-function mapStateToProps({ project }) {
-	return {
-		project,
-	};
-}
-
-function mapDispatchToProps(dispatch) {
-	return {
-		setAbstract: abstract => dispatch(projectActions.setAbstract(abstract)),
-		saveProject: () => dispatch(projectActions.save()),
-	};
-}*/

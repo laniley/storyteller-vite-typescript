@@ -1,25 +1,12 @@
-import Abstract from './Abstract.js';
-import { shallow, mount, render } from 'enzyme';
+import { screen, act } from '@testing-library/react';
+import { renderWithProviders } from './../../../../../../../../../utils/test-utils'
+import Abstract from './Abstract';
 
 describe('Abstract component', () => {
 
-	it('renders', () => {
-/*
-		const mockProps = Abstract.getMappedProps({
-			project: {
-				abstract: 'test abstract'
-			}
-		});
-*/
-		const abstract = shallow(
-			<Abstract />
-		);
-
-		const wrapper = abstract.find('#Abstract');
-		expect(wrapper.length).toEqual(1);
-
-		const result = wrapper.text();
-		expect(result).toEqual("<PagePreview />");
-	})
+	it('renders', async() => {
+		await act(async() => renderWithProviders(<Abstract />))
+		expect(screen.getAllByTestId('Abstract').length).toEqual(1);
+	});
 
 })
