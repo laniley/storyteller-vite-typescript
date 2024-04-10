@@ -1,5 +1,5 @@
-import { screen, act } from '@testing-library/react';
-import { renderWithProviders } from './../../../../../../../../../../utils/test-utils'
+import { waitFor } from '@testing-library/react'
+import { render } from '../../../../../../../../../../../utils/test-utils'
 import Author from './Author';
 
 import { initialState } from '../../../../../../../../../../store/project/project.model.js'
@@ -7,9 +7,12 @@ import { initialState } from '../../../../../../../../../../store/project/projec
 describe('Author component', () => {
 
 	it('renders', async() => {
-		await act(async() => renderWithProviders(<Author />))
-		expect(screen.getAllByTestId('Author').length).toEqual(1);
+    const {getAllById} = render(<Author />) 
+		await waitFor(() => {
+			expect(getAllById('Author').length).toEqual(1);
+		})
 	});
+
 /*
 	it('shows the author of the project in the TextInput component, when the author is not empty', () => {
 
