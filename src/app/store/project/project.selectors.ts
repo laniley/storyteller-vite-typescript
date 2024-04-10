@@ -1,14 +1,12 @@
-export function getRoute(state) {
+export function getRoute(state:Project) {
 
 	if (!state) return;
 
 	return getSubRoute(state.route);
 }
 
-function getSubRoute(current_route_object) {
-
-	var route_string = "";
-
+function getSubRoute(current_route_object:{current:string}) {
+	/*
 	if (current_route_object && current_route_object.current) {
 
 		route_string += "/" + current_route_object.current;
@@ -20,4 +18,6 @@ function getSubRoute(current_route_object) {
 	}
 
 	return route_string;
+	*/
+	return ""
 }

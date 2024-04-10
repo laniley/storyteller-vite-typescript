@@ -1,4 +1,6 @@
 export const initialState = {
+	path: "",
+	isCurrentlyOpen: false,
 	cover: "",
 	title: "",
 	author: "",

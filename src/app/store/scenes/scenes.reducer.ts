@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import * as scenesActions from './scenes.actions'
 import { getNewID } from '../../utils/utils'
 import sceneReducer from './sceneReducer/scene.reducer'
 
