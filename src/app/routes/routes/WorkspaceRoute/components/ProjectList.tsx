@@ -78,7 +78,7 @@ export default function ProjectList () {
         <div className="mb-3">There are currently no projects in this workspace.</div>
       }
 
-      <ButtonGroup id="projectsList" data-testid="ProjectList" className='mb-3' minimal={false} vertical={true} style={{ minWidth: "250px" }}>
+      <ButtonGroup id="ProjectList" className='mb-3' minimal={false} vertical={true} style={{ minWidth: "250px" }}>
         {projectListItems}
         <Collapse isOpen={state.createIsOpen}>
           <Pre>
