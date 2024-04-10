@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import * as characterReducer from 'src/app/store/character/character.reducer';
+import * as characterReducer from './../../store/character/character.reducer';
 import { useAppSelector, useAppDispatch } from './../../hooks'
 
 import {
