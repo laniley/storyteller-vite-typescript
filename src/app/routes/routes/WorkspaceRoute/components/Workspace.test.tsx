@@ -1,5 +1,5 @@
-import { screen, act } from '@testing-library/react'
-import { renderWithProviders } from './../../../../utils/test-utils'
+import { waitFor } from '@testing-library/react'
+import { render } from '../../../../../utils/test-utils'
 import Workspace from './Workspace';
 
 //import { initialState as appState } from './../../store/appState/appState.model'
@@ -7,9 +7,12 @@ import Workspace from './Workspace';
 describe('Workspace component', () => {
 
 	it('renders', async() => {
-		await act(async() => renderWithProviders(<Workspace />))
-		expect(screen.getAllByTestId('Workspace').length).toEqual(1);
+    const {getAllById} = render(<Workspace />) 
+		await waitFor(() => {
+			expect(getAllById('Workspace').length).toEqual(1);
+		})
 	});
+
 /*
 	it('renders SelectWorkspaceButton if workspace is undefined', () => {
 
