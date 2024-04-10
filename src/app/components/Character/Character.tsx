@@ -1,4 +1,5 @@
-import React from 'react';
+import charactersReducer from 'src/app/store/characters/characters.reducer';
+import { useAppSelector, useAppDispatch } from './../../hooks'
 
 import {
 	Alert,
@@ -11,27 +12,23 @@ import {
 
 export default function Character() {
 /*
-	constructor(props) {
-
-		super(props);
-
-		// console.log(props.characters, props.match.params.id, props.character)
-
 		this.state = {
-
-			themeName: props.themeName || "bp3-body", // null || bp3-dark
 			moveToTrashIsOpen: false,
 
 			first_name: (props.character ? props.character.first_name : ""),
 			last_name: (props.character ? props.character.last_name : ""),
 		};
-	}
+	
 */
+
+	const appState = useAppSelector(state => state.appState)
+	const characters = useAppSelector(state => state.characters)
+	//const character = characters.find((characterInArray) => { return characterInArray.id == ownProps.match.params.id; });
+
 	return (
 			<div id="Character">
 
-				<h2>All Characters / {this.state.first_name} {this.state.last_name}
-				</h2>
+				{/* <h2>All Characters / {this.state.first_name} {this.state.last_name}</h2> */}
 
 				<Button
 					id="DeleteCharacter"
@@ -42,7 +39,7 @@ export default function Character() {
 				/>
 
 				<Alert
-					className={this.props.appState.theme}
+					className={appState.theme}
 					cancelButtonText="Cancel"
 					confirmButtonText="Move to Trash"
 					icon="trash"
@@ -52,7 +49,7 @@ export default function Character() {
 					onConfirm={() => this.handleMoveToTrashConfirm()}
 				>
 					<p>
-						Are you sure you want to move the character <b>{this.state.first_name} {this.state.last_name}</b> to Trash?
+						{/* Are you sure you want to move the character <b>{this.state.first_name} {this.state.last_name}</b> to Trash? */}
 					</p>
 				</Alert>
 			</div>
@@ -74,17 +71,6 @@ export default function Character() {
 	*/
 }
 /*
-function mapStateToProps({ appStateReducer, charactersReducer }, ownProps) {
-
-	var character = charactersReducer.find((characterInArray) => { return characterInArray.id == ownProps.match.params.id; });
-
-	return {
-		appState: appStateReducer,
-		characters: charactersReducer,
-		character
-	};
-}
-
 function mapDispatchToProps(dispatch) {
 	return {
 		setDeletedAt: (character, deleted_at) => dispatch(charactersActions.setDeletedAt(character, deleted_at)),

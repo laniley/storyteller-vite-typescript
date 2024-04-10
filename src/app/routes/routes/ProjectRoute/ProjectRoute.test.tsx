@@ -1,29 +1,12 @@
-import { shallow, mount, render } from 'enzyme';
+import {screen, act} from '@testing-library/react'
+import { renderWithProviders } from './../../../utils/test-utils'
 import ProjectRoute from './ProjectRoute';
-
-jest.mock('@electron/remote', () => ({ exec: jest.fn() }));
-jest.mock('app', () => ({ exec: jest.fn() }));
 
 describe('ProjectRoute component', () => {
 
-	it('renders dark mode', () => {
-
-		const container = shallow(
-			<ProjectRoute />
-		);
-
-		const result = container.find('#ProjectRoute');
-		expect(result.length).toEqual(1);
-	})
-
-	it('renders light mode', () => {
-
-		const container = shallow(
-			<ProjectRoute />
-		);
-
-		const result = container.find('#ProjectRoute');
-		expect(result.length).toEqual(1);
-	})
+	it('renders', async() => {
+		await act(async() => renderWithProviders(<ProjectRoute />))
+		expect(screen.getAllByTestId('ProjectRoute').length).toEqual(1);
+	});
 
 })
