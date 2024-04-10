@@ -1,10 +1,6 @@
 const fs = require('fs');
 
 // ############ ACTION TYPES ##############
-export const ADD_SCENE = 'ADD_SCENE';
-export const CREATE_SCENE = 'CREATE_SCENE';
-export const DELETE_SCENE = 'DELETE_SCENE';
-
 export const SET_FROM = 'SET_FROM';
 export const SET_TO = 'SET_TO';
 export const SET_LOCATION_ID = 'SET_LOCATION_ID';

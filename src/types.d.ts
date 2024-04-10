@@ -55,3 +55,20 @@ interface Part {
   position: number,
   name: string
 }
+
+interface Scenes {
+  scenes: []
+}
+
+interface Scene {
+	from: Date,
+	to: Date,
+	location_id: number,
+	title: string,
+	subtitle: string,
+	summary: string,
+	text: string,
+	chapter: number,
+	position: number,
+	deleted_at: Date
+};

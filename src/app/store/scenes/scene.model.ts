@@ -1,7 +1,7 @@
 export const initialState = {
-	from: "",
-	to: "",
-	location_id: "",
+	from: null,
+	to: null,
+	location_id: null,
 	title: "",
 	subtitle: "",
 	summary: "",
@@ -9,4 +9,4 @@ export const initialState = {
 	chapter: null,
 	position: 1,
 	deleted_at: null
-};
+} as Scene;
