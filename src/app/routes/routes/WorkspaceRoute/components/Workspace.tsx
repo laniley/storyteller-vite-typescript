@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../../hooks'
 
 import * as appStateReducer from "../../../../store/appState/appState.reducer";
@@ -18,12 +18,12 @@ export default function Workspace () {
 
 	function Content() {
 
-		const [ createIsOpen ] = useState(false)
+		//const [ createIsOpen ] = useState(false)
 
 		let workspace = useAppSelector(state => state.appState.workspace)
 	
 		return (
-			<div id="Workspace" data-testid="Workspace">
+			<div id="WorkspaceContent">
 				<h2 className="mb-2">Workspace</h2>
 				<hr/>
 				<div className="px-0 py-2">
