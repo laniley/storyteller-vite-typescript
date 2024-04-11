@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks'
 
 import ContentEditable from "react-contenteditable";
 //import ReactHtmlParser from 'react-html-parser';
 
-//import './TextInput.css';
+import './TextInput.css';
 
 interface TextInputProps {
 	id:string, 
@@ -18,71 +19,38 @@ interface TextInputProps {
 
 export default function TextInput(props:TextInputProps) {
 
-	const html = props.html || ""
-	const	isInEditMode = !props.html || props.html.length <= 0
-	const mouseOver = false
-/*
-	constructor(props) {
+	const [html, setHtml] = useState(props.html || "");
+	const [isInEditMode, setIsInEditMode] = useState(!props.html || props.html.length <= 0);
+	const [mouseOver, setMouseOver] = useState(false);
+	const initial_value = props.html || ""
+	var current_value = props.html || ""
+	const multiLine = props.multiLine
 
-		super(props);
-
-		this.state = {
-			
-			initial_value: props.html || "",
-			
-			multiLine: props.multiLine,
-		};
-	}
-*/
-		return (
-			<ContentEditable
-				id={props.id}
-				style={props.style}
-				className={`${isInEditMode || mouseOver ? 'showBorder ' : ''}` + "editable"}
-				//placeholder={props.placeholder}
-				html={html} // innerHTML of the editable div
-				disabled={false} // use true to disable edition
-				onClick={openEditMode}
-				onKeyDown={handleKeyDown}
-				onChange={handleChange} // handle innerHTML change
-				onBlur={handleBlur} // the element looses focus
-				onMouseEnter={onMouseEnter}
-				onMouseLeave={onMouseLeave}
-			/>
-		);
-	}
-
-	function onMouseEnter() {
-		this.setState({ mouseOver: true })
-	}
-
-	function onMouseLeave() {
-		this.setState({ mouseOver: false })
-	}
-
-	function openEditMode() {
-		this.setState({ isInEditMode: true });
-	}
+	return (
+		<ContentEditable
+			id={props.id}
+			style={props.style}
+			className={`${isInEditMode || mouseOver ? 'showBorder ' : ''}` + "editable"}
+			//placeholder={props.placeholder}
+			html={html} // innerHTML of the editable div
+			disabled={false} // use true to disable edition
+			onClick={() => { setIsInEditMode(true) }}
+			onKeyDown={handleKeyDown}
+			onChange={(e:any) => { setHtml(e.target.value) }} // handle innerHTML change
+			onBlur={handleBlur} // the element looses focus
+			onMouseEnter={() => { setMouseOver(true) }}
+			onMouseLeave={() => { setMouseOver(false) }}
+		/>
+	);
 
 	function closeEditMode() {
-		this.setState({ isInEditMode: false })
+		setIsInEditMode(false)
 	}
 
 	function undoEditing() {
 		this.setState({
-			isInEditMode: !this.props.html || this.props.html.length <= 0,
-			html: this.props.initial_value
-		});
-	}
-
-	function handleChange(event:any) {
-
-		if (this.props.onChange) {
-			this.props.onChange(event)
-		}
-
-		this.setState({
-			html: event.target.value,
+			isInEditMode: !html || html.length <= 0,
+			html: initial_value
 		});
 	}
 
@@ -96,10 +64,10 @@ export default function TextInput(props:TextInputProps) {
 	}
 
 	function handleBlur() {
-		if (this.state.html !== this.state.initial_value) {
-			this.state.initial_value = this.state.html;
-			this.props.save();
+		if (html !== current_value) {
+			current_value = html;
+			//this.props.save();
 		}
-
-		this.closeEditMode();
+		closeEditMode();
 	}
+}
