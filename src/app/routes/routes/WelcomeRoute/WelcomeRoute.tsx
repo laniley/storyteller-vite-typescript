@@ -21,7 +21,7 @@ export default function WelcomeRoute () {
 					Welcome to
 				</div>
 
-				<div className="app_name text-5xl mb-8">
+				<div className="typewriter text-5xl mb-8">
 					<Icon icon="draw" size={55} className="mr-4" />Storyteller
 				</div>
 

@@ -14,7 +14,6 @@ export default function ProjectRoute() {
 
 	const dispatch = useAppDispatch();
 	const theme = useAppSelector(state => state.appState.theme)
-	const title = useAppSelector(state => state.workspace.current_project_title)
 	const path = useAppSelector(state => state.appState.current_project_path)
 
   const initialState = {
@@ -31,7 +30,6 @@ export default function ProjectRoute() {
 		<div
 			id="ProjectRoute"
 			className={'absolute top-[0px] bottom-0 flex flex-col w-full ' + theme}>
-			<div id="Title" className="flex items-center p-3 bg-gray-600 text-lg">{title}</div>
 			<div id="Main" className="flex grow p-3 overflow-auto">
 				<div className="flex grow justify-center align-center">
 					<ProjectRouteContent />

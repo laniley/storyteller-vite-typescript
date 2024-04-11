@@ -15,6 +15,9 @@ export default function WorkspaceRoute () {
 	return (
 		<div id="WorkspaceRoute" data-testid="WorkspaceRoute" className={'absolute w-full h-full flex flex-col ' + theme}>
 			<div className="flex flex-col h-screen justify-center items-center">
+				<div className="typewriter text-5xl mb-8">
+					<Icon icon="draw" size={55} className="mr-4" />Storyteller
+				</div>
 				<Workspace />
 			</div>
 		</div>
