@@ -1,30 +1,70 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getNewID } from '../../../utils/utils'
-import sceneReducer from './sceneReducer/scene.reducer'
+import { initialState as initialStateModel } from './scene.model'
 
-export const initialState = {
-	scenes: []
-} as Scenes
+export const initialState: Scene[] = []
 
 const scenesSlice = createSlice({
 	name: 'scenes',
 	initialState,
 	reducers: {
 		setScenes(state, action) {
-			state.scenes = action.payload
+			state = action.payload
 		},
-		/*
 		addScene(state, action) {
-			state.scenes.push(action.payload)
-		},*/
-		/*
+			state.push(action.payload)
+		},
 		createScene(state, action) {
-			state.push(Object.assign(initialState, action.payload.scene, { id: getNewID(state), position: state.length }))
-		},*/
-		/*
+			state.push(Object.assign({}, initialStateModel, action.payload.scene, { id: getNewID(state), position: state.length + 1 }))
+		},
+		setFrom(state, action) {
+			state.forEach(scene => {
+				if (scene.id == action.payload.id)
+					scene.from = action.payload.from
+			});
+		},
+		setTo(state, action) {
+			state.forEach(scene => {
+				if (scene.id == action.payload.id)
+					scene.to = action.payload.to
+			});
+		},
+		setLocationID(state, action) {
+			state.forEach(scene => {
+				if (scene.id == action.payload.id)
+					scene.location_id = action.payload.location_id
+			});
+		},
+		setTitle(state, action) {
+			state.forEach(scene => {
+				if (scene.id == action.payload.id)
+					scene.title = action.payload.title
+			});
+		},
+		setSubtitle(state, action) {
+			state.forEach(scene => {
+				if (scene.id == action.payload.id)
+					scene.subtitle = action.payload.subtitle
+			});
+		},
+		setSummary(state, action) {
+			state.forEach(scene => {
+				if (scene.id == action.payload.id)
+					scene.summary = action.payload.summary
+			});
+		},
+		setText(state, action) {
+			state.forEach(scene => {
+				if (scene.id == action.payload.id)
+					scene.text = action.payload.text
+			});
+		},
 		setDeletedAt(state, action) {
-			state[state.indexOf(action.payload.scene)] = sceneReducer(action.payload.scene, action)
-		},*/
+			state.forEach(scene => {
+				if (scene.id == action.payload.id)
+					scene.deleted_at = action.payload.deleted_at
+			});
+		},
 	}
 })
 // Extract the action creators object and the reducer
@@ -32,36 +72,21 @@ const { actions, reducer } = scenesSlice
 // Extract and export each action creator by name
 export const { 
 	setScenes,
-	//addScene,
-	//createScene
+	addScene,
+	createScene,
+	setFrom,
+	setTo,
+	setLocationID,
+	setTitle,
+	setSubtitle,
+	setSummary,
+	setText,
+	setDeletedAt
 } = actions
 
 export default reducer
 /*
 const fs = require('fs');
-
-// ############ ACTION TYPES ##############
-export const SET_FROM = 'SET_FROM';
-export const SET_TO = 'SET_TO';
-export const SET_LOCATION_ID = 'SET_LOCATION_ID';
-export const SET_TITLE = 'SET_TITLE';
-export const SET_SUBTITLE = 'SET_SUBTITLE';
-export const SET_SUMMARY = 'SET_SUMMARY';
-export const SET_TEXT = 'SET_TEXT';
-export const SET_DELETED_AT = 'SET_DELETED_AT';
-
-// ############## ACTIONS #################
-export const addScene = (scene) => ({ type: ADD_SCENE, scene });
-export const createScene = (scene) => ({ type: CREATE_SCENE, scene });
-
-export const setFrom = (from) => ({ type: SET_FROM, from });
-export const setTo = (to) => ({ type: SET_TO, to });
-export const setLocationId = (locationID) => ({ type: SET_LOCATION_ID, locationID });
-export const setTitle = (title) => ({ type: SET_TITLE, title });
-export const setSubtitle = (subtitle) => ({ type: SET_SUBTITLE, subtitle });
-export const setSummary = (summary) => ({ type: SET_SUMMARY, summary });
-export const setText = (text) => ({ type: SET_TEXT, text });
-export const setDeletedAt = (scene, deleted_at) => ({ type: SET_DELETED_AT, scene, deleted_at });
 
 export const deleteScene = (scene) => {
 

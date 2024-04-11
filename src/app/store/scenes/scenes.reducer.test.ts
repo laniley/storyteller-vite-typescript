@@ -1,66 +1,94 @@
-import reducer from './scenes.reducer'
+import reducer, * as scenesReducer from './scenes.reducer'
 import { initialState as initialStateScene } from './scene.model'
-
-const initialState:Scenes = { scenes: [] };
 
 describe('Scenes reducer', () => {
 
   it('should return the initial state for an unknown action', () => {
-		expect(reducer(undefined, { type: 'unknown' })).toEqual(initialState)
+		expect(reducer(undefined, { type: 'unknown' })).toEqual(scenesReducer.initialState)
 	})
-/*
-	it('should handle ADD_SCENE', () => {
-		expect(
-			reducer(initialState, {
-				type: actions.ADD_SCENE,
-				scene: initialStateScene
-			})
-		).toEqual(
-			Object.assign([], initialState, [
-				initialStateScene
-			])
+
+	it('should handle setScenes', () => {
+		expect(reducer(scenesReducer.initialState, scenesReducer.setScenes([]))).toEqual([])
+	})
+
+	it('should handle addScene', () => {
+		expect(reducer(scenesReducer.initialState, scenesReducer.addScene(initialStateScene))).toEqual(
+			Object.assign([], scenesReducer.initialState, [initialStateScene])
 		)
 	})
-*/
-/*
-	it('should handle CREATE_SCENE', () => {
-		expect(
-			reducer(initialState, {
-				type: actions.CREATE_SCENE,
-				scene: initialStateScene
-			})
-		).toEqual(
-			Object.assign([], initialState, [
-				initialStateScene
-			])
+
+	it('should handle createScene', () => {
+		expect(reducer(scenesReducer.initialState, scenesReducer.createScene(initialStateScene))).toEqual(
+			[Object.assign({}, initialStateScene, { id: 1 })]
 		)
 	})
-*/
-/*
-	it('should handle SET_DELETED_AT', () => {
 
-		const scene = initialStateScene;
-
-		const state = reducer(initialState, {
-			type: actions.ADD_SCENE,
-			scene: scene
-		})
-
-		const expected_result = Object.assign({}, scene, { deleted_at: '01-01-1900 00:00:00' })
-
-		expect(
-			reducer(state, {
-				type: actions.SET_DELETED_AT,
-				scene: state[0],
-				deleted_at: '01-01-1900 00:00:00'
-			})
-		).toEqual(
-			Object.assign([], initialState, [
-				expected_result
-			])
+	it('should handle setFrom', () => {
+		const date = Date()
+		const scene:Scene = Object.assign({}, initialStateScene, { id: 1 })
+		const new_state = reducer(scenesReducer.initialState, scenesReducer.addScene(scene))
+		expect(reducer(new_state, scenesReducer.setFrom({id: 1, from: date}))).toEqual(
+			[Object.assign({}, initialStateScene, { id: 1, from: date })]
 		)
 	})
-	*/
+
+	it('should handle setTo', () => {
+		const date = Date()
+		const scene:Scene = Object.assign({}, initialStateScene, { id: 1 })
+		const new_state = reducer(scenesReducer.initialState, scenesReducer.addScene(scene))
+		expect(reducer(new_state, scenesReducer.setTo({id: 1, to: date}))).toEqual(
+			[Object.assign({}, initialStateScene, { id: 1, to: date })]
+		)
+	})
+
+	it('should handle setLocationID', () => {
+		const scene:Scene = Object.assign({}, initialStateScene, { id: 1 })
+		const new_state = reducer(scenesReducer.initialState, scenesReducer.addScene(scene))
+		expect(reducer(new_state, scenesReducer.setLocationID({id: 1, location_id: 1}))).toEqual(
+			[Object.assign({}, initialStateScene, { id: 1, location_id: 1 })]
+		)
+	})
+
+	it('should handle setTitle', () => {
+		const scene:Scene = Object.assign({}, initialStateScene, { id: 1 })
+		const new_state = reducer(scenesReducer.initialState, scenesReducer.addScene(scene))
+		expect(reducer(new_state, scenesReducer.setTitle({id: 1, title: 'title'}))).toEqual(
+			[Object.assign({}, initialStateScene, { id: 1, title: 'title' })]
+		)
+	})
+
+	it('should handle setSubtitle', () => {
+		const scene:Scene = Object.assign({}, initialStateScene, { id: 1 })
+		const new_state = reducer(scenesReducer.initialState, scenesReducer.addScene(scene))
+		expect(reducer(new_state, scenesReducer.setSubtitle({id: 1, subtitle: 'subtitle'}))).toEqual(
+			[Object.assign({}, initialStateScene, { id: 1, subtitle: 'subtitle' })]
+		)
+	})
+
+	it('should handle setSummary', () => {
+		const scene:Scene = Object.assign({}, initialStateScene, { id: 1 })
+		const new_state = reducer(scenesReducer.initialState, scenesReducer.addScene(scene))
+		expect(reducer(new_state, scenesReducer.setSummary({id: 1, summary: 'summary'}))).toEqual(
+			[Object.assign({}, initialStateScene, { id: 1, summary: 'summary' })]
+		)
+	})
+
+	it('should handle setText', () => {
+		const scene:Scene = Object.assign({}, initialStateScene, { id: 1 })
+		const new_state = reducer(scenesReducer.initialState, scenesReducer.addScene(scene))
+		expect(reducer(new_state, scenesReducer.setText({id: 1, text: 'text'}))).toEqual(
+			[Object.assign({}, initialStateScene, { id: 1, text: 'text' })]
+		)
+	})
+
+	it('should handle setDeletedAt', () => {
+		const date = Date()
+		const scene:Scene = Object.assign({}, initialStateScene, { id: 1 })
+		const new_state = reducer(scenesReducer.initialState, scenesReducer.addScene(scene))
+		expect(reducer(new_state, scenesReducer.setDeletedAt({id: 1, deleted_at: date}))).toEqual(
+			[Object.assign({}, initialStateScene, { id: 1, deleted_at: date })]
+		)
+	})
 })
 /*
 import configureStore from 'redux-mock-store'
