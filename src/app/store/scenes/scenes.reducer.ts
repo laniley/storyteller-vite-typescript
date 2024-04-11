@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getNewID } from '../../utils/utils'
+import { getNewID } from '../../../utils/utils'
 import sceneReducer from './sceneReducer/scene.reducer'
 
 export const initialState = {

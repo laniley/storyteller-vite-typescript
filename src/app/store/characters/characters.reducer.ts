@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getNewID } from '../../utils/utils'
-import characterReducer from './character.reducer'
+import { getNewID } from '../../../utils/utils'
+import characterReducer from '../character/character.reducer'
 
 export const initialState:Character[] = [];
 
