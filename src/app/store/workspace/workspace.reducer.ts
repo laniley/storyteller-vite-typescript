@@ -4,6 +4,7 @@ const { dialog } = require('@electron/remote');
 import { storage } from '../../../api/workspaceAPI'
 
 import * as projectReducer from "../../store/project/project.reducer";
+import { Project } from '../project/project.model';
 
 export const initialState = {
 	current_project_title: '',

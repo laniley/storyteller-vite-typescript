@@ -131,11 +131,9 @@ const path = require('path');
 
 // ############ ACTION TYPES ##############
 export const SET_SELECTED_CHAPTER = 'SET_SELECTED_CHAPTER';
-export const SET_STYLES = 'SET_STYLES';
 
 // ############## ACTIONS #################
 export const setSelectedChapter = (chapter) => ({ type: SET_SELECTED_CHAPTER, chapter });
-export const setStyles = (styles) => ({ type: SET_STYLES, styles });
 
 export const closeProjectAction = () => {
 

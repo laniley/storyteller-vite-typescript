@@ -12,7 +12,8 @@ interface TextInputProps {
 	html: string,
 	disabled: boolean,
 	multiLine: boolean,
-	save: () => {}
+	onChange: (e:React.FormEvent<HTMLInputElement>) => void,
+	//save: () => {}
 }
 
 export default function TextInput(props:TextInputProps) {

@@ -16,8 +16,6 @@ console.log("filePath: " + filePath)
 export default function RootRoute() {
 
 	const dispatch = useAppDispatch();
-	const title = useAppSelector(state => state.workspace.current_project_title)
-	const theme = useAppSelector(state => state.appState.theme)
 
 	const result = storage.get()
 	console.log("appState loaded: ", result)
@@ -41,17 +39,25 @@ export default function RootRoute() {
 	}
 
 	return (
-		<div id="RootRoute" className="h-screen">
-			<TopNavBar />
-			<div id="Title" className={`typewriter font-semibold flex items-center p-3 bg-gradient-to-l from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-2xl`}>{title}</div>
-			<div id="rootContent" className="absolute flex flex-col w-full top-[100px] bottom-0">
-				<div><Content /></div>
-			</div>
-		</div>
+		<Content />
 	);
 }
 
 export function Content() {
+	const title = useAppSelector(state => state.workspace.current_project_title)
+	const theme = useAppSelector(state => state.appState.theme)
+	return(
+		<div id="RootRoute" className="h-screen">
+			<TopNavBar />
+			<div id="Title" className={`typewriter font-semibold flex items-center p-3 bg-gradient-to-l from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-2xl`}>{title}</div>
+			<div id="rootContent" className="absolute flex flex-col w-full top-[100px] bottom-0">
+				<div><SubRoute /></div>
+			</div>
+		</div>
+	)
+}
+
+export function SubRoute() {
 
 	const root_route = useAppSelector(state => state.appState.route)
 	const workspace_path = useAppSelector(state => state.appState.workspace)

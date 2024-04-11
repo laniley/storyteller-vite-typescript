@@ -24,14 +24,6 @@ interface Workspace {
   projects: Array<Project>, 
 }
 
-interface Project { 
-  title: string; 
-  path: any; 
-  isCurrentlyOpen: boolean;
-  cover: string,
-  route: { current: string }
-}
-
 interface Chapters {
   chapters: Chapter[]
 }
