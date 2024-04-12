@@ -1,8 +1,10 @@
+import * as projectReducer from "src/app/store/project/project.reducer";
 import TextInput from "../../../../../../../../../../components/TextInput/TextInput";
 import { useAppSelector, useAppDispatch } from './../../../../../../../../../../hooks'
 
 export default function Title() {
 
+	const dispatch = useAppDispatch();
 	const title = useAppSelector(state => state.workspace.current_project_title)
 /*
 	constructor(props) {
@@ -46,7 +48,7 @@ export default function Title() {
 					html={title} // innerHTML of the editable div
 					disabled={false} // use true to disable edition
 					multiLine={false}
-					//onChange={this.onChange.bind(this)}
+					onChange={(event: any) => { dispatch(projectReducer.setTitle(event.target.value)); }}
 					save={() => { return false }}
 				/>
 
