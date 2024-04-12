@@ -3,6 +3,7 @@ const app = remote.app
 const fs = require('fs');
 const path = require('path');
 
+import { AppState } from 'src/app/store/appState/appState.reducer';
 import { Project, initialState as initialProjectState } from '../app/store/project/project.model'
 
 class ProjectAPI {

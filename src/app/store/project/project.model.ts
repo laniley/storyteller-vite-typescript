@@ -7,7 +7,21 @@ export type Project = {
 	abstract: string,
 	dedication: string,
 	selectedChapter: string,
-  route: { current: string },
+  route: { 
+		current: string,
+		script: {
+			current: string
+		},
+		characters: {
+			current: string
+		},
+		locations: {
+			current: string
+		},
+		timeline: {
+			current: string
+		}
+	},
 	styles: { 
 		default: { 
 			fontSize: string,

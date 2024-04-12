@@ -5,13 +5,17 @@ import { TabId } from '@blueprintjs/core'
 
 const { dialog } = require('@electron/remote');
 
+export type AppState = {
+  route: string,
+  theme: string,
+  workspace: string
+}
+
 export const initialState = {
 	route: "workspace",
 	theme: "bp5-dark",
-	workspace: "",
-	current_project_path: ""
+	workspace: ""
 } as AppState
-
 
 export const changeCurrentRootRoute = createAsyncThunk(
   'appState/changeCurrentRootRoute',

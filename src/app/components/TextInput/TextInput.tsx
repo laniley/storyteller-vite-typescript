@@ -14,7 +14,7 @@ interface TextInputProps {
 	disabled: boolean,
 	multiLine: boolean,
 	onChange: (e:React.FormEvent<HTMLInputElement>) => void,
-	//save: () => {}
+	save: () => {}
 }
 
 export default function TextInput(props:TextInputProps) {
@@ -66,7 +66,7 @@ export default function TextInput(props:TextInputProps) {
 	function handleBlur() {
 		if (html !== current_value) {
 			current_value = html;
-			//this.props.save();
+			props.save();
 		}
 		closeEditMode();
 	}

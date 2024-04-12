@@ -13,7 +13,7 @@ describe('TopNavBar component', () => {
 
 })
 /*
-test('TopNavBar - does not render tabs, when no path it set', () => {
+test('TopNavBar - does not render tabs, when no project path it set', () => {
 
     const topNavBar = shallow(
         <TopNavBar/>

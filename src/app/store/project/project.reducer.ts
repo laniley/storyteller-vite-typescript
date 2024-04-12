@@ -51,6 +51,12 @@ export const open = createAsyncThunk(
 		}
 })
 
+export const save = createAsyncThunk(
+	'project/save',
+	async(thunkAPI) => {
+		console.log('TODO: Implement project/save')
+})
+
 export const changeCurrentProjectRoute = createAsyncThunk(
   'project/changeCurrentRootRoute',
   async (navbarTabId:string, thunkAPI) => {
