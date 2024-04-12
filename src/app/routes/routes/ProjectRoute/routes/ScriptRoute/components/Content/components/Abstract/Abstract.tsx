@@ -28,6 +28,7 @@ export default function Abstract() {
 					disabled={false} // use true to disable edition
 					multiLine={true}
 					save={() => save}
+					onChange={() => { console.log('TODO: implement onchange')}}
 					style={{
 						height: `100%`,
 					}}
