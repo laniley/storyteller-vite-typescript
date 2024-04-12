@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../../../hooks'
 
 import * as workspaceReducer from "../../../../store/workspace/workspace.reducer";
 import * as projectReducer from "../../../../store/project/project.reducer";
-
+import { Project } from 'src/app/store/project/project.model';
 //import { save } from '../../store/chapters/chapter.actions';
 
 import ProjectListItem from './ProjectListItem';
@@ -20,6 +20,7 @@ import {
 	Intent,
 	Pre,
 } from '@blueprintjs/core';
+
 
 export default function ProjectList () {
 
