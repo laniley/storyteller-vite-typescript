@@ -30,7 +30,7 @@ export default function Dedication() {
 						onChange={(e:React.FormEvent<HTMLInputElement>) => { dispatch(projectReducer.setDedication(e.currentTarget.value)) }}
 						disabled={false} // use true to disable edition
 						multiLine={true}
-						//save={ () => { dispatch(projectReducer.save()) }}
+						save={ () => { return dispatch(projectReducer.save()) }}
 						style={{
 							textAlign: textAlign
 						}}
