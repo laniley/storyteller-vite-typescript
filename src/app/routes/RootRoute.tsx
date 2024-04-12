@@ -7,7 +7,7 @@ import WelcomeRoute from './routes/WelcomeRoute/WelcomeRoute';
 import WorkspaceRoute from './routes/WorkspaceRoute/WorkspaceRoute';
 import ProjectRoute from './routes/ProjectRoute/ProjectRoute';
 
-import { dataPath, filePath, storage } from '../../api/appStateAPI'
+import { dataPath, filePath, appStateAPI } from '../../api/appStateAPI'
 import { TopNavBar } from '../components';
 
 console.log("dataPath: " + dataPath)
@@ -17,7 +17,7 @@ export default function RootRoute() {
 
 	const dispatch = useAppDispatch();
 
-	const result = storage.get()
+	const result = appStateAPI.get()
 	console.log("appState loaded: ", result)
 
 	if (result.theme) {

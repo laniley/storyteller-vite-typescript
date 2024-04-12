@@ -1,3 +1,5 @@
+import { AppState } from "src/app/store/appState/appState.reducer";
+
 const remote = require('@electron/remote')
 const app = remote.app
 const fs = require('fs');
@@ -54,4 +56,4 @@ class AppStateAPI {
   }
 }
 
-export const storage = new AppStateAPI();
+export const appStateAPI = new AppStateAPI();

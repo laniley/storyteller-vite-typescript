@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { storage } from '../../../api/appStateAPI'
+import { appStateAPI } from '../../../api/appStateAPI'
 import * as workspaceReducer from '../workspace/workspace.reducer'
 import { TabId } from '@blueprintjs/core'
 
@@ -20,11 +20,11 @@ export const initialState = {
 export const changeCurrentRootRoute = createAsyncThunk(
   'appState/changeCurrentRootRoute',
   async (navbarTabId:TabId, thunkAPI) => {
-		console.log("Changing the current root route...")
+		console.log("Changing the current root route to '" + navbarTabId + "' ...")
 		let state:any = thunkAPI.getState()
 		thunkAPI.dispatch(setRoute(navbarTabId))
 		state = thunkAPI.getState()
-		storage.save(state.appState);
+		appStateAPI.save(state.appState);
   }
 )
 
@@ -39,7 +39,7 @@ export const changeWorkspace = createAsyncThunk(
 					thunkAPI.dispatch(setWorkspace(path))
 					thunkAPI.dispatch(workspaceReducer.open());
 					let state:any = thunkAPI.getState()
-					storage.saveWorkspace(state.appState.workspace)
+					appStateAPI.saveWorkspace(state.appState.workspace)
 			}
 		});
   }
