@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../../../../../../../../hooks'
 
 import TextInput from "../../../../../../../../../../components/TextInput/TextInput";
 
 export default function Author() {
 
-	const project = useAppSelector(state => state.project)
+	const [author, setAuthor] = useState("");
 
+	const project = useAppSelector(state => state.project)
+	
 	return (
 		<div id="Author" className="flex flex-col" style={{
 			height: "30%",
@@ -23,17 +26,13 @@ export default function Author() {
 				style={{}}
 				multiLine={false}
 				save={()=>{ return true }}
-				//save={save}
-				//onChange={onChange}
+				onChange={(event: any) => { setAuthor(event.target.value) }}
 			/>
 
 		</div>
 	)
 }
-/*
-function onChange(event:any) {
-	this.setState({ "author": event.target.value });
-}*/
+
 /*
 function save(author:string) {
 	this.props.setAuthor(author);
