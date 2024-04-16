@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../../hooks'
+import { useAppSelector, useAppDispatch } from '../../../../../hooks'
 
-import * as workspaceReducer from "../../../../store/workspace/workspace.reducer";
-import * as projectReducer from "../../../../store/project/project.reducer";
-import { Project } from 'src/app/store/project/project.model';
+import * as workspaceReducer from "../../../../../store/workspace/workspace.reducer";
+import * as projectReducer from "../../../../../store/project/project.reducer";
 //import { save } from '../../store/chapters/chapter.actions';
 
 import ProjectListItem from './ProjectListItem';
 
-import "./Workspace.css";
+import "./ProjectList.css";
 
 import {
 	Button,

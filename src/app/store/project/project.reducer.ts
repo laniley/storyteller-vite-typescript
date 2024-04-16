@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { storage  as workspaceAPI } from '../../../api/workspaceAPI'
+import { workspaceAPI } from '../../../api/workspaceAPI'
 import { projectAPI } from '../../../api/projectAPI'
-import { initialState } from './project.model'
+import { initialState } from './project.initialState'
 
 export const path = require('path');
 
@@ -24,7 +24,7 @@ export const create = createAsyncThunk(
 export const open = createAsyncThunk(
   'project/open',
 	async(title:string, thunkAPI) => {
-		let state:any = thunkAPI.getState()
+		let state:State = thunkAPI.getState()
 		let fileData = projectAPI.getProjectData(state.appState.workspace, title)
 		console.log('project loaded: ' + fileData)
 		if (!fileData) {
@@ -34,7 +34,7 @@ export const open = createAsyncThunk(
 			thunkAPI.dispatch(appState.changeCurrentRootRoute('project'))
 			thunkAPI.dispatch(setRoute(fileData.route || initialState.route));
 			thunkAPI.dispatch(setCover(fileData.cover));
-			thunkAPI.dispatch(setTitle(fileData.title));
+			thunkAPI.dispatch(setTitle(title));
 			thunkAPI.dispatch(setAuthor(fileData.author));
 			thunkAPI.dispatch(setAbstract(fileData.abstract));
 			thunkAPI.dispatch(setDedication(fileData.dedication));
@@ -44,8 +44,7 @@ export const open = createAsyncThunk(
 			//thunkAPI.dispatch(partsActions.load(directoryPath))
 			//thunkAPI.dispatch(chaptersActions.load(directoryPath))
 			//thunkAPI.dispatch(scenesActions.load(directoryPath))
-			thunkAPI.dispatch(workspace.setCurrentProjectTitle(fileData.title))
-			let state:any = thunkAPI.getState()
+			thunkAPI.dispatch(workspace.setCurrentProjectTitle(title))
 			workspaceAPI.saveCurrentProjectTitle(state.appState.workspace, title)
 			thunkAPI.dispatch(workspace.loadProjects());
 		}

@@ -58,11 +58,11 @@ class WorkspaceAPI {
           isCurrentlyOpen: project_title === workspace.current_project_title,
           cover: '',
           route: { current: 'script' }
-        }); 
+        } as Project); 
       }
     });
     return projects;
   }
 }
 
-export const storage = new WorkspaceAPI();
+export const workspaceAPI = new WorkspaceAPI();

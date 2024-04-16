@@ -1,5 +1,5 @@
 import { waitFor } from '@testing-library/react'
-import { render } from '../../../../../utils/test-utils'
+import { render } from '../../../../../../utils/test-utils'
 import ProjectList from './ProjectList';
 
 describe('ProjectList component', () => {

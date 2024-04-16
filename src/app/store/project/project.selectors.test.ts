@@ -1,5 +1,5 @@
 import * as selectors from './project.selectors'
-import { initialState } from './project.model'
+import { initialState } from './project.initialState'
 
 describe('Project selectors', () => {
 

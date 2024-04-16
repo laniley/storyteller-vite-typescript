@@ -2,7 +2,7 @@ import { waitFor } from '@testing-library/react'
 import { render } from '../../../../../../../../../../../utils/test-utils'
 import Author from './Author';
 
-import { initialState } from '../../../../../../../../../../store/project/project.model.js'
+import { initialState } from '../../../../../../../../../../store/project/project.initialState'
 
 describe('Author component', () => {
 

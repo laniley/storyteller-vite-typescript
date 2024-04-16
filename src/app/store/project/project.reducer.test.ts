@@ -1,5 +1,5 @@
 import reducer, { setCover, setTitle, setAuthor, setAbstract, setDedication, setRoute, setStyles } from './project.reducer'
-import { initialState } from './project.model'
+import { initialState } from './project.initialState'
 
 describe('Project reducer', () => {
 

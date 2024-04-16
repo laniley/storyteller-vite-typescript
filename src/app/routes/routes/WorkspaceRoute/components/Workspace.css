@@ -8,7 +8,3 @@ hr {
 	border-color: var(--bg-color-dark);
 	border-width: 0.1rem;
 }
-
-#projectsList > .bp3-button {
-	justify-content: left;
-}

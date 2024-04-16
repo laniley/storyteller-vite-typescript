@@ -10,7 +10,7 @@ import {
 	Card,
 } from '@blueprintjs/core';
 
-import ProjectList from './ProjectList';
+import ProjectList from './ProjectList/ProjectList';
 
 export default function Workspace () {
 

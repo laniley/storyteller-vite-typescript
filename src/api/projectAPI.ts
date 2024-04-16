@@ -3,10 +3,11 @@ const app = remote.app
 const fs = require('fs');
 const path = require('path');
 
-import { AppState } from 'src/app/store/appState/appState.reducer';
-import { Project, initialState as initialProjectState } from '../app/store/project/project.model'
+import { initialState as initialProjectState } from '../app/store/project/project.initialState'
 
 class ProjectAPI {
+
+  _result = {}
 
   save(projectPath:string, projectState:Project) {
     console.log("saving project...")
@@ -65,7 +66,7 @@ class ProjectAPI {
       if(this.storytellerProjectFileExists(src_path)) {
         console.log("project.json file exists");
 				console.log("reading project.json file...");
-        let result = fs.readFileSync(path.join(src_path, 'project.json'))
+        let result = fs.readFileSync(path.join(src_path, 'project.json'), { encoding: 'utf8', flag: 'r' })
         if(result) {
           try {
             return JSON.parse(result)

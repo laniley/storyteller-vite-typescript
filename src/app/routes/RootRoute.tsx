@@ -28,6 +28,14 @@ export default function RootRoute() {
 		console.log("theme: not set");
 	}
 
+	if (result.route) {
+		console.log("route: " + result.route);
+		dispatch(appStateReducer.setRoute(result.route))
+	}
+	else {
+		console.log("route: not set");
+	}
+
 	if (result.workspace) {
 		console.log("workspace: " + result.workspace);
 		dispatch(appStateReducer.setWorkspace(result.workspace))
