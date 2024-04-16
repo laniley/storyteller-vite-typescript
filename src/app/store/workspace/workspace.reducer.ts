@@ -17,15 +17,18 @@ export const open = createAsyncThunk(
 		let result = workspaceAPI.get(state.appState.workspace)
 		console.log("workspace loaded: ", result)
 		thunkAPI.dispatch(setCurrentProjectTitle(result.current_project_title));
-		let projects:Array<Project> = workspaceAPI.getProjects(state.appState, state.workspace);
-		projects.forEach(project => {
+		let projectListItems:Array<ProjectListItem> = workspaceAPI.getProjects(state.appState, state.workspace);
+		projectListItems.forEach(project => {
 			if(project.title === result.current_project_title) {
 				project.isCurrentlyOpen = true
 			}
 		});
-		thunkAPI.dispatch(setProjects(projects));
+		thunkAPI.dispatch(setProjects(projectListItems));
 		if(state.appState.route == 'project') {
 			thunkAPI.dispatch(projectReducer.open(result.current_project_title));
+		}
+		else {
+			thunkAPI.dispatch(projectReducer.load(result.current_project_title));
 		}
 	}
 );

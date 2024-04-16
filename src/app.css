@@ -13,7 +13,7 @@
 }
 
 body {
-	font-family: Verdana;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 button:focus, .bp5-tab:focus {
@@ -62,6 +62,23 @@ input {
 
 .bp5-dark .bp5-button:not([class*=bp5-intent-]):focus {
 	background-color: var(--bg-color-button-pressed);
+}
+
+.bp5-button {
+	font-size: 1.2em;
+}
+
+.bp5-button.bp5-intent-success {
+	color: var(--bg-color-darker);
+	background-color: var(--bg-color-button-success);
+	font-family: Storyteller;
+	font-size: 1.5em;
+	font-weight:bolder;
+}
+
+.bp5-button.bp5-intent-success:hover {
+	color: var(--bg-color-darker);
+	background-color: var(--bg-color-button-success-hover);
 }
 
 .bp5-dark .bp5-button:not([class*=bp5-intent-]).bp5-active {

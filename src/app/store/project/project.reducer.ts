@@ -21,8 +21,8 @@ export const create = createAsyncThunk(
   }
 )
 
-export const open = createAsyncThunk(
-  'project/open',
+export const load = createAsyncThunk(
+  'project/load',
 	async(title:string, thunkAPI) => {
 		let state:State = thunkAPI.getState()
 		let fileData = projectAPI.getProjectData(state.appState.workspace, title)
@@ -31,7 +31,6 @@ export const open = createAsyncThunk(
 			console.log("project.json file exists - but is empty");
 		}
 		else {
-			thunkAPI.dispatch(appState.changeCurrentRootRoute('project'))
 			thunkAPI.dispatch(setRoute(fileData.route || initialState.route));
 			thunkAPI.dispatch(setCover(fileData.cover));
 			thunkAPI.dispatch(setTitle(title));
@@ -45,9 +44,19 @@ export const open = createAsyncThunk(
 			//thunkAPI.dispatch(chaptersActions.load(directoryPath))
 			//thunkAPI.dispatch(scenesActions.load(directoryPath))
 			thunkAPI.dispatch(workspace.setCurrentProjectTitle(title))
-			workspaceAPI.saveCurrentProjectTitle(state.appState.workspace, title)
 			thunkAPI.dispatch(workspace.loadProjects());
 		}
+})
+
+export const open = createAsyncThunk(
+  'project/open',
+	async(title:string, thunkAPI) => {
+		thunkAPI.dispatch(load(title));
+		thunkAPI.dispatch(appState.changeCurrentRootRoute('project'))
+		thunkAPI.dispatch(workspace.setCurrentProjectTitle(title))
+		let state:State = thunkAPI.getState()
+		workspaceAPI.saveCurrentProjectTitle(state.appState.workspace, title)
+		thunkAPI.dispatch(workspace.loadProjects());
 })
 
 export const save = createAsyncThunk(

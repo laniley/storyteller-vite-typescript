@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../../../hooks'
 
 import * as workspaceReducer from "../../../../../store/workspace/workspace.reducer";
