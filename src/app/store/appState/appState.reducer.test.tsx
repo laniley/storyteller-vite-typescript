@@ -1,33 +1,52 @@
-import reducer, {initialState, setRoute, setTheme, setWorkspace} from './appState.reducer'
+import { act, screen, waitFor } from '@testing-library/react'
+import reducer, * as appStateReducer from './appState.reducer'
+import { setupStore } from './../../store';
 
 describe('AppState reducer', () => {
 
 	it('should return the initial state', () => {
-		expect(reducer(undefined, { type: 'unknown' })).toEqual(initialState)
+		expect(reducer(undefined, { type: 'unknown' })).toEqual(appStateReducer.initialState)
 	})
 
 	it('should handle setRoute', () => {
-		expect(reducer(initialState, setRoute('test_route'))).toEqual(
-			Object.assign({}, initialState, {
+		expect(reducer(appStateReducer.initialState, appStateReducer.setRoute('test_route'))).toEqual(
+			Object.assign({}, appStateReducer.initialState, {
 				route: "test_route"
 			})
 		)
 	})
 
 	it('should handle setTheme', () => {
-		expect(reducer(initialState, setTheme('test_theme'))).toEqual(
-			Object.assign({}, initialState, {
+		expect(reducer(appStateReducer.initialState, appStateReducer.setTheme('test_theme'))).toEqual(
+			Object.assign({}, appStateReducer.initialState, {
 				theme: "test_theme"
 			})
 		)
 	})
 
 	it('should handle setWorkspace', () => {
-		expect(reducer(initialState, setWorkspace('test_workspace'))).toEqual(
-			Object.assign({}, initialState, {
+		expect(reducer(appStateReducer.initialState, appStateReducer.setWorkspace('test_workspace'))).toEqual(
+			Object.assign({}, appStateReducer.initialState, {
 				workspace: "test_workspace"
 			})
 		)
+	})
+
+	describe('AppState Thunks', () => {
+
+		it('should handle changeCurrentRootRoute', async() => {
+			const store = setupStore();
+			let result = null
+			result = await store.dispatch(appStateReducer.changeCurrentRootRoute('welcome'))
+			expect(result.payload).toEqual(
+				Object.assign({}, appStateReducer.initialState, {route: "welcome"})
+			)
+			result = await store.dispatch(appStateReducer.changeCurrentRootRoute('workspace'))
+			expect(result.payload).toEqual(
+				Object.assign({}, appStateReducer.initialState, {route: "workspace"})
+			)
+		})
+
 	})
 
 	/*

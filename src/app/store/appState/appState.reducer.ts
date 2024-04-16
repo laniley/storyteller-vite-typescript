@@ -6,7 +6,7 @@ import { TabId } from '@blueprintjs/core'
 const { dialog } = require('@electron/remote');
 
 export type AppState = {
-  route: string,
+  route: "welcome" | "workspace",
   theme: string,
   workspace: string
 }
@@ -24,7 +24,8 @@ export const changeCurrentRootRoute = createAsyncThunk(
 		let state:any = thunkAPI.getState()
 		thunkAPI.dispatch(setRoute(navbarTabId))
 		state = thunkAPI.getState()
-		appStateAPI.save(state.appState);
+		appStateAPI.save(state.appState)
+		return state.appState
   }
 )
 

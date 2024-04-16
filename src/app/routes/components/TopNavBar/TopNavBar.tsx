@@ -57,9 +57,8 @@ export default function TopNavBar () {
 					selectedTabId={selectedTabId()}
 					animate={true}
 					fill={true}>
-
 						{appState.workspace &&
-							<Tab id="workspace" className="mr-0" >
+							<Tab id="workspace" data-testid="workspaceTab" className="mr-0" >
 								<Icon icon="box" className="mr-2 ml-2" /> Workspace
 							</Tab>
 						}

@@ -1,6 +1,11 @@
-import { waitFor } from '@testing-library/react'
+import { act, screen, waitFor } from '@testing-library/react'
+
+import userEvent from '@testing-library/user-event'
 import { render } from '../../../../utils/test-utils'
 import TopNavBar from './TopNavBar';
+import { getById } from 'src/utils/custom-queries';
+import * as appStateReducer from 'src/app/store/appState/appState.reducer';
+import RootRoute from '../../RootRoute';
 
 describe('TopNavBar component', () => {
 
@@ -11,6 +16,25 @@ describe('TopNavBar component', () => {
 		})
 	});
 
+  describe('handleTabChange', () => {
+
+    it('changes the current root route to "workspace" if the tab got clicked and if appState.route != "workspace" ', async() => {
+      
+      const user = userEvent.setup()
+      const appState = Object.assign({}, appStateReducer.initialState, { workspace: './../Storyteller_Test_Workspace'})
+
+      const {getAllById} = render(<RootRoute />, { preloadedState: { appState: appState } })
+      act(() => {
+        const tab = screen.getByTestId('workspaceTab')
+        user.click(tab)
+      });
+      
+      await waitFor(() => {
+        expect(getAllById('WorkspaceRoute').length).toEqual(1);
+      })
+    });
+
+  })
 })
 /*
 test('TopNavBar - does not render tabs, when no project path it set', () => {

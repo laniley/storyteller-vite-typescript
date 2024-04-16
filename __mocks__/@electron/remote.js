@@ -1,5 +1,5 @@
 module.exports = {
   app: {
-    getPath: () => {return 'C:\Users\melan\AppData\Roaming\Storyteller'},
+    getPath: () => {return 'C:\\Users\\melan\\AppData\\Roaming\\Storyteller_Test'},
   },
 };

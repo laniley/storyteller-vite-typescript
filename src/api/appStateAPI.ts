@@ -39,6 +39,7 @@ class AppStateAPI {
   }
 
   save(state:AppState) {
+    console.log("Saving the AppState to '" + filePath + "' ...")
     fs.writeFileSync( filePath, JSON.stringify(state))
   }
 
