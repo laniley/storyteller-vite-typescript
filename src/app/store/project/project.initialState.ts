@@ -1,8 +1,6 @@
-
 export const initialState = {
 	title: "",
 	path: "",
-	isCurrentlyOpen: false,
 	cover: "",
 	author: "",
 	abstract: "",

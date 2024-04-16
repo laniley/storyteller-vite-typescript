@@ -31,7 +31,7 @@ export default function TextInput(props:TextInputProps) {
 			id={props.id}
 			style={props.style}
 			className={`${isInEditMode || mouseOver ? 'showBorder ' : ''}` + "editable"}
-			//placeholder={props.placeholder}
+			placeholder={props.placeholder}
 			html={html} // innerHTML of the editable div
 			disabled={false} // use true to disable edition
 			onClick={() => { setIsInEditMode(true) }}

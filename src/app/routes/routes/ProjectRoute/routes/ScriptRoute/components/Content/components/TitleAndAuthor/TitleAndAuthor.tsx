@@ -8,21 +8,16 @@ import {
 
 export default function TitleAndAuthor() {
 
-	return (
+	//const style = {textAlign: "center", overflow: "hidden"}
+	const style = { color: "var(--bg-color-darker)"}
+	const className="flex flex-col items-center justify-center text-2xl"
 
-		<div id="TitleAndAuthor" data-testid="TitleAndAuthor" style={{
-			width: `100%`,
-			height: `100%`,
-		}}>
+	return (
+		<div id="TitleAndAuthor" className="w-full h-full">
 			<PagePreview content={
-				<div id="TitleAndAuthorContent" data-testid="TitleAndAuthorContent" style={{
-					display: `flex`,
-					flexDirection: `column`,
-					justifyContent: `center`,
-					height: `100%`
-				}}>
-					{/* <Title /> */}
-					<Author />
+				<div id="TitleAndAuthorContent" className="flex flex-col justify-center h-full">
+					<Title style={style} className={className} />
+					<Author style={style} className={className} />
 				</div>
 			} />
 		</div>

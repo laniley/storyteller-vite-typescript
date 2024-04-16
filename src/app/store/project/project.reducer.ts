@@ -31,9 +31,9 @@ export const load = createAsyncThunk(
 			console.log("project.json file exists - but is empty");
 		}
 		else {
+			thunkAPI.dispatch(setTitle(title));
 			thunkAPI.dispatch(setRoute(fileData.route || initialState.route));
 			thunkAPI.dispatch(setCover(fileData.cover));
-			thunkAPI.dispatch(setTitle(title));
 			thunkAPI.dispatch(setAuthor(fileData.author));
 			thunkAPI.dispatch(setAbstract(fileData.abstract));
 			thunkAPI.dispatch(setDedication(fileData.dedication));

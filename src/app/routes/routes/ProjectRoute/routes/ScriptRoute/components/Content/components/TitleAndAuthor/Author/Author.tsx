@@ -3,27 +3,26 @@ import { useAppSelector, useAppDispatch } from '../../../../../../../../../../ho
 
 import TextInput from "../../../../../../../../../../components/TextInput/TextInput";
 
-export default function Author() {
+export default function Author(props: { style?:any, className?:string }) {
 
 	const [author, setAuthor] = useState("");
 
 	const project = useAppSelector(state => state.project)
 	
 	return (
-		<div id="Author" className="flex flex-col" style={{
-			height: "30%",
-			margin: "10px 0",
-			fontSize: "24px",
-			alignItems: "center",
-			justifyContent: "center"
-		}}>
+		<div id="Author" 
+			className={props.className}
+			style={{
+				height: "30%",
+				margin: "10px 0",
+			}}>
 
 			<TextInput
 				id="AuthorInput"
 				placeholder="Author..."
 				html={project.author} // innerHTML of the editable div
 				disabled={false} // use true to disable edition
-				style={{}}
+				style={props.style}
 				multiLine={false}
 				save={()=>{ return true }}
 				onChange={(event: any) => { setAuthor(event.target.value) }}
